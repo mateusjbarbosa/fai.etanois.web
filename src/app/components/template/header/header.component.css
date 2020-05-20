@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.header a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+/*tamanho logo*/
+.header .logo {
+    max-height: 37px;
+}
+/*distância titulo*/
+.header .title-group {
+    padding-left: 25px;
+}
+
+.header .title-group i {
+    padding-right:  5px;
+}
+
+/*distância titulo*/
+.botton_header {
+    padding-left: 25px;
+    justify-content: flex-end;
+}
