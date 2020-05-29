@@ -5,9 +5,6 @@
 export const environment = {
   production: false,
   api:'http://etanois.com.br/api/v1/',
-
-
-
 };
 
 /*

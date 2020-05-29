@@ -1,10 +1,11 @@
 import { map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
 import { User } from './user.model';
 import { APP_API } from 'src/app/app.api';
+
 
 
 
@@ -13,7 +14,7 @@ import { APP_API } from 'src/app/app.api';
 })
 
 export class UserService {
-    endpoint: string = ` ${APP_API}/user`
+    endpoint: string = ` ${APP_API}user`
 
     constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -40,8 +41,18 @@ export class UserService {
     // }
 
     readById(id: number): Observable<User> {
+       
+        var headers_object = new HttpHeaders({
+            'Content-Type': 'application/json',
+             'Authorization': 'Bearer '+sessionStorage.getItem('token')
+          });
+         
+       console.log("aqui ", sessionStorage.getItem('token'))
+
         const url = `${this.endpoint}/${id}`;
-        return this.http.get<User>(url).pipe(
+        
+           
+        return this.http.get<User>(url, {headers : headers_object}).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
@@ -71,13 +82,13 @@ export class UserService {
 
     generateToken(username: string, password: string): Observable<any> {
 
-        const url = `${APP_API}/auth/token/`
+        const url = `${APP_API}auth/token/`
         //var c = {"username": username, "password": password}
-        this.http.post<any>(url, { "username": username, "password": password }).pipe(
+        return this.http.post<any>(url, { "username": username, "password": password }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
-        return;
+        
     }
 
 }
