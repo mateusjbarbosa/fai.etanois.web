@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { HomeComponent } from './views/home/home.component';
+import { LoginComponent } from './views/login/login.component';
+import { UserCreateComponent } from './components/user/user-create/user-create.component';
+import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
+import { UserCrudComponent } from './views/user-crud/user-crud.component';
+import { UserUpdateComponent } from './components/user/user-update/user-update.component';
+import { ObjectiveComponent } from './views/objective/objective.component';
+import { AttendantAreaComponent } from './views/attendant-area/attendant-area.component';
 
-import { PostCreateComponent } from './components/post/post-create/post-create.component';
-import { PostUpdateComponent } from './components/post/post-update/post-update.component';
-import { HomePageComponent } from './views/home-page/home-page.component';
-import { PostCrudComponent } from './views/post-crud/post-crud.component';
-import { PostDeleteComponent } from './components/post/post-delete/post-delete.component';
+
 
 
 
@@ -18,23 +20,33 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path:"posts",
-    component: PostCrudComponent
+    path:"objectives",
+    component: ObjectiveComponent
   },
   {
-    path:"post/create",
-    component: PostCreateComponent
+    path:"attendant-area",
+    component: AttendantAreaComponent
   },
   {
-    path:"post/update/:id",
-    component: PostUpdateComponent
+    path:"login",
+    component: LoginComponent
   },
   {
-    path:"post/delete/:id",
-    component: PostDeleteComponent
+    path:"user",
+    component: UserCrudComponent
   },
-
-
+  {
+    path:"user/create",
+    component: UserCreateComponent
+  },
+  {
+    path:"user/update/:id",
+    component: UserUpdateComponent
+  },
+  {
+    path:"user/delete/:id",
+    component: UserDeleteComponent
+  }
 ];
 
 @NgModule({

@@ -1,0 +1,56 @@
+<mat-card>
+   <mat-card-title>Alterar Usuario</mat-card-title>
+   <form> 
+      <mat-form-field>
+         <input matInput placeholder="NOME DO USUARIO"
+          [(ngModel)]="user.username" name="username">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="EMAIL"
+           [(ngModel)]="user.email" name="email">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="SENHA"
+           [(ngModel)]="user.password" name="password">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="NOME"
+           [(ngModel)]="user.name" name="name">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="CEP"
+           [(ngModel)]="user.cep" name="cep">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="DISTANCIA COM ROTA"
+           [(ngModel)]="user.search_distance_with_route" name="search_distance_with_route">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="DISTANCIA SEM ROTA"
+           [(ngModel)]="user.search_distance_without_route" name="search_distance_without_route"> 
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="MODO DE PAGAMENTO"
+           [(ngModel)]="user.payment_mode" name="payment_mode">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="TELEFONE"
+          [(ngModel)]="user.phone_number" name="phone_number">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="PROFISSÃO"
+          [(ngModel)]="user.role" name="role">
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="ETACOINS"
+           [(ngModel)]="user.etacoins" name="etacoins">
+      </mat-form-field>
+   </form>
+   <button mat-raised-button (click)="updateUser()"color="primary">
+      Atualizar
+   </button>
+
+   <button mat-raised-button (click)="cancel()">
+       Cancelar
+   </button>
+</mat-card>

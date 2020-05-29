@@ -1,3 +1,4 @@
+import { UserReadComponent } from './components/user/user-read/user-read.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 
@@ -14,8 +15,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './views/home/home.component';
-import { PostCrudComponent } from './views/post-crud/post-crud.component';
-import { PostCreateComponent } from './components/post/post-create/post-create.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -24,16 +23,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from "@angular/material/input";
-import { PostReadComponent } from './components/post/post-read/post-read.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { PostUpdateComponent } from './components/post/post-update/post-update.component';
-import { PostDeleteComponent } from './components/post/post-delete/post-delete.component';
-import { HomePageComponent } from './views/home-page/home-page.component';
+
+import { LoginComponent } from './views/login/login.component';
+import { UserCrudComponent } from './views/user-crud/user-crud.component';
+import { UserCreateComponent } from './components/user/user-create/user-create.component';
+import { UserUpdateComponent } from './components/user/user-update/user-update.component';
+import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
+import { ObjectiveComponent } from './views/objective/objective.component';
+import { AttendantAreaComponent } from './views/attendant-area/attendant-area.component';
+
+
+
+
+
 
 
 registerLocaleData(localePt);
@@ -45,12 +53,17 @@ registerLocaleData(localePt);
     FooterComponent,
     NavComponent,
     HomeComponent,
-    PostCrudComponent,
-    PostCreateComponent,
-    PostReadComponent,
-    PostUpdateComponent,
-    PostDeleteComponent,
-    HomePageComponent,
+    UserCrudComponent,
+    UserCreateComponent,
+    UserUpdateComponent,
+    UserDeleteComponent,
+    UserReadComponent,
+    LoginComponent,
+    ObjectiveComponent,
+    AttendantAreaComponent
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -69,7 +82,7 @@ registerLocaleData(localePt);
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
   ],
   providers: [{
     provide: LOCALE_ID,

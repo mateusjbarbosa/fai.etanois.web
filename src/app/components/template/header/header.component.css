@@ -1,29 +1,17 @@
-.header {
-    display: flex;
-    align-items: center;
-}
 
-.header a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-}
 /*tamanho logo*/
 .header .logo {
-    max-height: 37px;
+    max-height: 80px;
 }
-/*distância titulo*/
-.header .title-group {
-    padding-left: 25px;
+.spacer{
+    flex: 1 1 auto;
 }
-
-.header .title-group i {
-    padding-right:  5px;
-}
-
-/*distância titulo*/
-.botton_header {
-    padding-left: 25px;
-    justify-content: flex-end;
+.btn{
+    background:  #ff9d00 ;
+    width: 10%;
+    border-radius: 30px;
+    padding: 8px;
+    border: 0px;
+    outline: 0;
+    color: white;
 }
