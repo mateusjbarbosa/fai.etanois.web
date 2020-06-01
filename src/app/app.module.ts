@@ -1,3 +1,6 @@
+import { PostDeleteComponent } from './components/post/post-delete/post-delete.component';
+import { PostUpdateComponent } from './components/post/post-update/post-update.component';
+import { PostCrudComponent } from './views/post-crud/post-crud.component';
 import { ManagerAreaLoginComponent } from './views/manager-area-login/manager-area-login.component';
 import { AttendantAreaLoginComponent } from './views/attendant-area-login/attendant-area-login.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
@@ -38,6 +41,8 @@ import { UserCreateComponent } from './components/user/user-create/user-create.c
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
 import { PostReadComponent } from './components/post/post-read/post-read.component';
+import { PostCreateComponent } from './components/post/post-create/post-create.component';
+import { PostCreatedSuccessfullyComponent } from './views/post-created-successfully/post-created-successfully.component';
 
 
 
@@ -64,7 +69,12 @@ registerLocaleData(localePt);
     LoginComponent,
     AttendantAreaLoginComponent,
     ManagerAreaLoginComponent,
-    PostReadComponent
+    PostCrudComponent,
+    PostCreateComponent,
+    PostReadComponent,
+    PostUpdateComponent,
+    PostDeleteComponent,
+    PostCreatedSuccessfullyComponent
 
 
 

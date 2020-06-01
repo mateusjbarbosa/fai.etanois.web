@@ -42,24 +42,6 @@ body {
     color: #1a1a1a;
 }
 
-.manage-p-bold {
-    display: inline;
-    font-family: bagatela, serif;
-    text-align: left;
-    font-size: 24px;
-    font-weight: bold;
-    color: #1a1a1a;
-}
-
-.attendant-link {
-    display: inline;
-    font-family: bagatela, serif;
-    text-align: left;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff951c;
-}
-
 .manage-input-section {
     position: relative;
     margin: 0 auto;
@@ -107,25 +89,16 @@ body {
     align-items: center;
     justify-content: space-evenly;
     font-family: bagatela, serif;
-    font-size: 24px;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 36px;
+    font-weight: 379px;
     text-align: left;
 }
 
-.manage-buttons-div button:first-child {
-    margin-left: auto;
-    height: 60px;
-    width: 200px;
-    color: #11205e;
-    background: transparent;
-    font-weight: bold;
-    padding: 8px;
-    border: none;
-    outline: none;
-}
-
 .manage-buttons-div button:last-child {
-    height: 60px;
-    width: 200px;
+    height: 75px;
+    width: 575px;
     color: #fafafa;
     font-weight: bold;
     background: #ff951c;
@@ -134,3 +107,5 @@ body {
     border: none;
     outline: none;
 }
+
+

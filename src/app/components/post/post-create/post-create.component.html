@@ -1,0 +1,46 @@
+<body>
+   <link rel="stylesheet" href="https://use.typekit.net/dzj6knh.css">
+   <div class="manage-container">
+       <section class="manage-info-section">
+           <h1 class="manage-h1">Certo, Manuel!
+               <br>
+               em poucos minutos você
+               <br>
+               irá ter acesso a todas as
+               <br>
+               ferramentas do Etanóis.</h1>
+           <br>
+           <p class="manage-h2">Insira os dados do seu posto nos campos ao lado e o
+               <br>
+               restante o Etanóis fará por você.
+           </p>
+       </section> 
+       <section class="manage-input-section">
+           <div class="input-item-div">
+               <label>Qual o nome do posto de combustível?</label>
+               <input type="name" name="name" placeholder="Digite nome do posto"
+               [(ngModel)]="post.name" required>
+           </div>
+           <div class="input-item-div">
+               <label>Qual razão social?</label>
+               <input type="cnpj" name="cnpj" placeholder="Digite o cnpj"
+               [(ngModel)]="post.cnpj" required>
+           </div>
+           <div class="input-item-div">
+               <label>E a bandeira?</label>
+               <input type="flag_of_fuel_station" name="flag_of_fuel_station" placeholder="Digite a bandeira"
+               [(ngModel)]="post.flag_of_fuel_station" required>
+           </div>
+           <div class="input-item-div">
+               <label>Agora o endereço</label>
+               <input type="address" name="address" placeholder="Digite seu endereço"
+               [(ngModel)]="post.address"  required>
+           </div>
+           <div class="manage-buttons-div">
+               <button type="button" class="btn1" (click)="cancel()">
+                   < Voltar</button>
+                       <button type="button" class="btn2">Seguir ></button>
+           </div>
+       </section>
+   </div>
+</body>

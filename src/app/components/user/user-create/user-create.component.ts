@@ -16,10 +16,10 @@ import { User } from '../user.model';
 export class UserCreateComponent implements OnInit {
 
   user: User = {
-    username: "Jonas",
-    email: "jonas.augusto@hotmail.com",
+    username: "Manuel Fábio da Mata",
+    email: "manuelfm@gmail.com",
     password: "12345678",
-    name: "Jonas Augusto",
+    name: "Manuel Fabio",
     cep: "37.540.000",
     search_distance_with_route: 15,
     search_distance_without_route: 15,

@@ -30,6 +30,7 @@ body {
     color: #11205e;
 }
 
+
 .manage-h2 {
     font-family: bagatela, serif;
     height: 100%;
@@ -40,24 +41,6 @@ body {
     letter-spacing: -0.12px;
     line-height: normal;
     color: #1a1a1a;
-}
-
-.manage-p-bold {
-    display: inline;
-    font-family: bagatela, serif;
-    text-align: left;
-    font-size: 24px;
-    font-weight: bold;
-    color: #1a1a1a;
-}
-
-.attendant-link {
-    display: inline;
-    font-family: bagatela, serif;
-    text-align: left;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff951c;
 }
 
 .manage-input-section {
@@ -80,6 +63,7 @@ body {
     color: #11205e;
 }
 
+
 .input-item-div input {
     outline: none;
     width: 100%;
@@ -93,6 +77,7 @@ body {
     border: none;
     border-radius: 20px;
 }
+
 
 .manage-buttons-div {
     display: flex;

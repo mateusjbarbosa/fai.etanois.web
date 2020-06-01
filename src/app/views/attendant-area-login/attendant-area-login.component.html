@@ -22,16 +22,18 @@
         <section class="manage-input-section">
             <div class="input-item-div">
                 <label>Digite seu e-mail ou username</label>
-                <input type="email" name="email" placeholder="Digite seu email" required>
+                <input type="email" name="email" placeholder="Digite seu email"
+                [(ngModel)]='login.email' required>
             </div>
             <div class="input-item-div">
                 <label>Digite sua senha de acesso</label>
-                <input type="password" name="senha" placeholder="Digite sua senha" required>    
+                <input type="password" name="senha" placeholder="Digite sua senha"
+                [(ngModel)]='login.password' required>    
             </div>
             <div class="manage-buttons-div">
                 <button type="button" class="btn1" (click)="cancel()">
                     < Voltar</button>
-                        <button type="button" class="btn2">Seguir ></button>    
+                        <button type="button" class="btn2" (click)="actionLogin()">Seguir ></button>    
             </div>
         
         </section>   
