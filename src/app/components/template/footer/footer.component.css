@@ -3,6 +3,7 @@
     bottom: 0;
     display: flex;
     justify-content: center;
+    background-color: #fafafa; /* Adicionado cor de fundo */
 }
 .footer span {
     font-size: 1rem;
@@ -13,5 +14,3 @@
     align-items: center;
     max-height: 37px;
 }
-
-

@@ -1,15 +1,22 @@
-<mat-toolbar class="header" role="heading" aria-label="navigation"> 
+<mat-toolbar class="header" role="heading" aria-label="navigation">
     <mat-toolbar-row>
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         <span>
             <a routerLink="/">
                 <img class='logo' src="assets/img/logo.png" alt="logo">
             </a>
         </span>
-    <div class="spacer"></div>
-    <nav mat-tab-nav-bar>
-    <a mat-button routerLink="objectives">Nosso Objetivo</a>
-    <a mat-button routerLink="attendant-area">Área do Frentista</a>
-    <a mat-raise-button  class="btn" routerLink="login">Quero meu posto no Etanóis</a>
-    </nav>
-    </mat-toolbar-row> 
-</mat-toolbar> 
+        <div class="spacer"></div>
+        <nav mat-tab-nav-bar>
+            <a class="nav-item" mat-button routerLink="manager-area-login">
+                Nosso Objetivo
+            </a>
+            <a class="nav-item" mat-button routerLink="attendant-area-login">
+                Área do Frentista
+            </a>
+            <button class="nav-item" routerLink="login">
+                Quero meu posto no Etanóis
+            </button>
+        </nav>
+    </mat-toolbar-row>
+</mat-toolbar>

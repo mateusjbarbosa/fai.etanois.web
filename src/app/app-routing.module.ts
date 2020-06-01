@@ -1,3 +1,5 @@
+import { ManagerAreaLoginComponent } from './views/manager-area-login/manager-area-login.component';
+import { AttendantAreaLoginComponent } from './views/attendant-area-login/attendant-area-login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
@@ -6,8 +8,8 @@ import { UserCreateComponent } from './components/user/user-create/user-create.c
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
 import { UserCrudComponent } from './views/user-crud/user-crud.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
-import { ObjectiveComponent } from './views/objective/objective.component';
-import { AttendantAreaComponent } from './views/attendant-area/attendant-area.component';
+
+
 
 
 
@@ -20,12 +22,12 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path:"objectives",
-    component: ObjectiveComponent
+    path:"manager-area-login",
+    component: ManagerAreaLoginComponent
   },
   {
-    path:"attendant-area",
-    component: AttendantAreaComponent
+    path:"attendant-area-login",
+    component: AttendantAreaLoginComponent
   },
   {
     path:"login",

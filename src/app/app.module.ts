@@ -1,3 +1,5 @@
+import { ManagerAreaLoginComponent } from './views/manager-area-login/manager-area-login.component';
+import { AttendantAreaLoginComponent } from './views/attendant-area-login/attendant-area-login.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -35,8 +37,9 @@ import { UserCrudComponent } from './views/user-crud/user-crud.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
-import { ObjectiveComponent } from './views/objective/objective.component';
-import { AttendantAreaComponent } from './views/attendant-area/attendant-area.component';
+import { PostReadComponent } from './components/post/post-read/post-read.component';
+
+
 
 
 
@@ -59,8 +62,9 @@ registerLocaleData(localePt);
     UserDeleteComponent,
     UserReadComponent,
     LoginComponent,
-    ObjectiveComponent,
-    AttendantAreaComponent
+    AttendantAreaLoginComponent,
+    ManagerAreaLoginComponent,
+    PostReadComponent
 
 
 

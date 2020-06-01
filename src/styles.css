@@ -1,23 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    background-color: #fafafa;
+    margin: 0;
+    font-family: bagatela, serif;
+}
 
 .red {
     color: rgb(277, 94, 107);
-}
-/*para centralizar o coração junto a frase*/
-.v-middle {
-    vertical-align: middle;
 }
 
 /*mensagem sucesso*/
 .msg-success {
     background-color: #28a754;
-    color:#fff;
+    color: #fff;
 }
 /*mensagem erro*/
 .msg-error {
     background-color: #e35e6b;
-    color:#fff;
+    color: #fff;
 }

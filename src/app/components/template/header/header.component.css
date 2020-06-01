@@ -1,17 +1,40 @@
+.header {
+    /*  
+    Display flex e justify-content para centralizar os itens no header
+    */
+    font-family: bagatela, serif;
+    display: flex;
+    justify-content: center;
+    padding: 0 45px;
+    min-height: 150px;
+    width: 100%;
+    background-color: #fafafa; /* Adicionado cor de fundo */
+}
 
 /*tamanho logo*/
 .header .logo {
-    max-height: 80px;
+    height: 60px;
+    width: 150px;
 }
-.spacer{
+
+.spacer {
     flex: 1 1 auto;
 }
-.btn{
-    background:  #ff9d00 ;
-    width: 10%;
-    border-radius: 30px;
+
+.nav-item {
+    font-family: bagatela, serif;
+    color: #11205e66;
+    font-size: 20px;
+    margin: 0 32px;
+}
+
+button.nav-item {
+    color: #fafafa;
+    font-weight: bold;
+    margin-right: 0;
+    background: #ff951c;
+    border-radius: 10px;
     padding: 8px;
-    border: 0px;
-    outline: 0;
-    color: white;
+    border: none;
+    outline: none;
 }
