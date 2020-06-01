@@ -47,7 +47,7 @@ export class AttendantAreaLoginComponent implements OnInit {
         console.log(userResponse)
 
         if (userResponse != null){
-          this.router.navigate(['/post/create']);
+          this.router.navigate(['/post']);
         }
       })
       

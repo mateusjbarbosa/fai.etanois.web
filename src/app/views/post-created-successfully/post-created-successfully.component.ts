@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/components/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-created-successfully',
@@ -13,9 +15,14 @@ export class PostCreatedSuccessfullyComponent implements OnInit {
     toke:''
   }
 
-  constructor() { }
+  constructor(private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  actionButton(): void {
+    this.router.navigate(['user/create']);
   }
 
 }

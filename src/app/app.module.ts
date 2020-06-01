@@ -43,6 +43,7 @@ import { UserDeleteComponent } from './components/user/user-delete/user-delete.c
 import { PostReadComponent } from './components/post/post-read/post-read.component';
 import { PostCreateComponent } from './components/post/post-create/post-create.component';
 import { PostCreatedSuccessfullyComponent } from './views/post-created-successfully/post-created-successfully.component';
+import { UserCreatedSuccessfullyComponent } from './views/user-created-successfully/user-created-successfully.component';
 
 
 
@@ -74,7 +75,8 @@ registerLocaleData(localePt);
     PostReadComponent,
     PostUpdateComponent,
     PostDeleteComponent,
-    PostCreatedSuccessfullyComponent
+    PostCreatedSuccessfullyComponent,
+    UserCreatedSuccessfullyComponent
 
 
 

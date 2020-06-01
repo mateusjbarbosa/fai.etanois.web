@@ -43,4 +43,10 @@ export class PostCreateComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['/post'])
   }
+
+  actionButton(): void {
+    this.router.navigate(['post-created-successfully']);
+  }
+ 
+
 }

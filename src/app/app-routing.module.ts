@@ -1,3 +1,4 @@
+import { UserCreatedSuccessfullyComponent } from './views/user-created-successfully/user-created-successfully.component';
 import { ManagerAreaLoginComponent } from './views/manager-area-login/manager-area-login.component';
 import { AttendantAreaLoginComponent } from './views/attendant-area-login/attendant-area-login.component';
 import { NgModule } from '@angular/core';
@@ -73,6 +74,10 @@ const routes: Routes = [
   {
     path:"post-created-successfully",
     component: PostCreatedSuccessfullyComponent
+  },
+  {
+    path:"user-created-successfully",
+    component: UserCreatedSuccessfullyComponent
   },
 ];
 
