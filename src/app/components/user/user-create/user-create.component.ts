@@ -16,17 +16,17 @@ import { User } from '../user.model';
 export class UserCreateComponent implements OnInit {
 
   user: User = {
-    username: "Manuel Fábio da Mata",
+    username: undefined,
     email: "manuelfm@gmail.com",
     password: "12345678",
-    name: "Manuel Fabio",
-    cep: "37.540.000",
-    search_distance_with_route: 15,
-    search_distance_without_route: 15,
-    payment_mode: "dinheiro",
-    phone_number: "(35)98524-1221",
-    role: "frentista",
-    etacoins: 10,
+    name: "Manuel Fabio"
+    // cep: "",
+    // search_distance_with_route: 15,
+    // search_distance_without_route: 15,
+    // payment_mode: "dinheiro",
+    // phone_number: "(35)98524-1221",
+    // role: "frentista",
+    // etacoins: 10,
   }
   constructor(private userService: UserService,
     private router: Router) { }

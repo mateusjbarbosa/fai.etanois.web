@@ -43,7 +43,7 @@ export class AttendantAreaLoginComponent implements OnInit {
       console.log('o token da sessão é', loginResponse.payload.token)*/
       //this.readUser();
 
-      this.userService.readById(4).subscribe(userResponse=> {
+      this.userService.readById(loginResponse.payload.id).subscribe(userResponse=> {
         console.log(userResponse)
 
         if (userResponse != null){

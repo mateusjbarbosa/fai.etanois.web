@@ -74,6 +74,7 @@ body {
     color: #1a1a1a;
     border: none;
     border-radius: 20px;
+    
 }
 
 .manage-buttons-div {
@@ -106,6 +107,20 @@ body {
     padding: 8px;
     border: none;
     outline: none;
+}
+.labe1{
+    outline: none;
+    width: 100%;
+    font-family: bagatela, serif;
+    font-weight: 600;
+    font-size: 24px;
+    background-color: #f5f5f5;
+    padding: 18px 20px;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 20px;
+  
 }
 
 

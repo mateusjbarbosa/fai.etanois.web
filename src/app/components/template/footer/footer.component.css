@@ -1,6 +1,7 @@
 .footer {
     position: fixed;
     bottom: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     background-color: #fafafa; /* Adicionado cor de fundo */
