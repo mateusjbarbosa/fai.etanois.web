@@ -24,4 +24,5 @@ export class PostCrudComponent implements OnInit {
   navigateToPostCreate(): void {
     this.router.navigate(['/post/create'])
   }
+  
 }

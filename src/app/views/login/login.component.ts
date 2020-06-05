@@ -1,4 +1,3 @@
-import { token } from './../../authorization';
 import { UserService } from './../../components/user/user.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';

@@ -17,9 +17,9 @@ export class UserCreateComponent implements OnInit {
 
   user: User = {
     username: undefined,
-    email: "manuelfm@gmail.com",
-    password: "12345678",
-    name: "Manuel Fabio"
+    email: undefined,
+    password: undefined,
+    name: undefined
     // cep: "",
     // search_distance_with_route: 15,
     // search_distance_without_route: 15,
@@ -38,7 +38,7 @@ export class UserCreateComponent implements OnInit {
   createUser(): void {
     this.userService.create(this.user).subscribe(() => {
       this.userService.showMessage('Usuário criado com sucesso!')
-      this.router.navigate(['/'])
+      this.router.navigate(['user-created-successfully'])
     })
   }
   cancel(): void {

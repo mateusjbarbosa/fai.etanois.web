@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/components/user/user.service';
-import { token } from './../../authorization';
-import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-attendant-area-login',
@@ -11,10 +11,10 @@ import { Observable } from 'rxjs';
 })
 export class AttendantAreaLoginComponent implements OnInit {
   login = {
-    email:'',
-    password:''
+    email: '',
+    password: ''
   }
-
+  private usuarioAutenticado: boolean = false;
   constructor(private userService: UserService,
     private router: Router) { }
 
@@ -26,7 +26,6 @@ export class AttendantAreaLoginComponent implements OnInit {
   }
 
   actionLogin(): void {
-    console.log(this.login.email, this.login.password)
     this.userService.generateToken(this.login.email, this.login.password).subscribe(loginResponse=> {
       //this.userService.showMessage('Usuário criado com sucesso!')
       //this.router.navigate(['/user'])
@@ -47,20 +46,21 @@ export class AttendantAreaLoginComponent implements OnInit {
         console.log(userResponse)
 
         if (userResponse != null){
+          this.usuarioAutenticado = true;
           this.router.navigate(['/post']);
+        }else{
+          this.usuarioAutenticado = false;
         }
       })
       
     })
 
-    
+
   }
 
- // readUser(): void {
- //   this.userService.readById(4).subscribe(userResponse=> {
- //    console.log(userResponse)
- //   })
- // }
-
-
+  // readUser(): void {
+  //   this.userService.readById(4).subscribe(userResponse=> {
+  //    console.log(userResponse)
+  //   })
+  // }
 }

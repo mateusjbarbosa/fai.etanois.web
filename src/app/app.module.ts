@@ -53,6 +53,7 @@ import { UserCreatedSuccessfullyComponent } from './views/user-created-successfu
 
 
 
+
 registerLocaleData(localePt);
 
 @NgModule({
@@ -78,8 +79,6 @@ registerLocaleData(localePt);
     PostCreatedSuccessfullyComponent,
     UserCreatedSuccessfullyComponent
 
-
-
   ],
   imports: [
     BrowserModule,
@@ -99,7 +98,9 @@ registerLocaleData(localePt);
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+  
   ],
+  /*adicionado AuthService */
   providers: [{
     provide: LOCALE_ID,
     useValue: 'pt-BR'

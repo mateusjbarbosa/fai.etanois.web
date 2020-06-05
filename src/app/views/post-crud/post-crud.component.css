@@ -42,41 +42,42 @@ body {
     color: #1a1a1a;
 }
 
-.manage-input-section {
+.manage-label-section {
     position: relative;
     margin: 0 auto;
     width: 575px;
+    text-align: center;
 }
 
-.input-item-div {
+.label-item-div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
 }
 
-.input-item-div label {
+.label-item-div label {
     font-family: bagatela, serif;
     font-weight: 800;
     font-size: 24px;
-    color: #11205e;
+    text-align: center;
 }
 
-.input-item-div input {
+.label-item-div label {
     outline: none;
     width: 100%;
     font-family: bagatela, serif;
     font-weight: 600;
     font-size: 24px;
-    background-color: #f5f5f5;
+    background-color: #dadada;
     padding: 18px 20px;
     margin-bottom: 30px;
-    color: #1a1a1a;
+    color: #11205e;
     border: none;
     border-radius: 20px;
+   
     
 }
-
 .manage-buttons-div {
     display: flex;
     align-items: center;
@@ -107,20 +108,6 @@ body {
     padding: 8px;
     border: none;
     outline: none;
-}
-.labe1{
-    outline: none;
-    width: 100%;
-    font-family: bagatela, serif;
-    font-weight: 600;
-    font-size: 24px;
-    background-color: #f5f5f5;
-    padding: 18px 20px;
-    margin-bottom: 30px;
-    color: #1a1a1a;
-    border: none;
-    border-radius: 20px;
-  
 }
 
 

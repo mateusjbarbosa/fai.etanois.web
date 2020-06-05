@@ -47,6 +47,5 @@ export class PostCreateComponent implements OnInit {
   actionButton(): void {
     this.router.navigate(['post-created-successfully']);
   }
- 
 
 }

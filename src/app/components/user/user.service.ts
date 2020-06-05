@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
 import { User } from './user.model';
 import { APP_API } from 'src/app/app.api';
+import { header } from 'src/app/authorization';
 
 
 
@@ -41,18 +42,10 @@ export class UserService {
     // }
 
     readById(id: number): Observable<User> {
-       
-        var headers_object = new HttpHeaders({
-            'Content-Type': 'application/json',
-             'Authorization': 'Bearer '+sessionStorage.getItem('token')
-          });
-         
        console.log("aqui ", sessionStorage.getItem('token'))
-
         const url = `${this.endpoint}/${id}`;
         
-           
-        return this.http.get<User>(url, {headers : headers_object}).pipe(
+        return this.http.get<User>(url, {headers : header}).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
