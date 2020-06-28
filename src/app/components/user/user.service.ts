@@ -73,7 +73,6 @@ export class UserService {
     }
 
     generateToken(username: string, password: string): Observable<any> {
-
         const url = `${APP_API}auth/token/`
         return this.http.post<any>(url, { "username": username, "password": password }).pipe(
             map((obj) => obj),
