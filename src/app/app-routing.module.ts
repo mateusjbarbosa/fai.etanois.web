@@ -1,10 +1,10 @@
+import { NotFoundComponent } from './views/not-found/not-found.component';
+import { ObjectiveComponent } from './views/objective/objective.component';
 import { UserCreatedSuccessfullyComponent } from './views/user-created-successfully/user-created-successfully.component';
-import { ManagerAreaLoginComponent } from './views/manager-area-login/manager-area-login.component';
 import { AttendantAreaLoginComponent } from './views/attendant-area-login/attendant-area-login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
-import { LoginComponent } from './views/login/login.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
 import { UserCrudComponent } from './views/user-crud/user-crud.component';
@@ -28,16 +28,12 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path:"manager-area-login",
-    component: ManagerAreaLoginComponent
+    path:"objectives",
+    component: ObjectiveComponent
   },
   {
     path:"attendant-area-login",
     component: AttendantAreaLoginComponent
-  },
-  {
-    path:"login",
-    component: LoginComponent
   },
   {
     path:"user",
@@ -79,6 +75,7 @@ const routes: Routes = [
     path:"user-created-successfully",
     component: UserCreatedSuccessfullyComponent
   },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

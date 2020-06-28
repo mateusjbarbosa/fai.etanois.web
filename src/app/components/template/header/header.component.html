@@ -2,21 +2,18 @@
     <mat-toolbar-row>
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         <span>
-            <a routerLink="/">
-                <img class='logo' src="assets/img/logo.png" alt="logo">
-            </a>
+            <app-header-logo></app-header-logo>
         </span>
         <div class="spacer"></div>
-        <nav mat-tab-nav-bar>
-            <a class="nav-item" mat-button routerLink="user/create">
-                Nosso Objetivo
-            </a>
-            <a class="nav-item" mat-button routerLink="attendant-area-login">
-                Área do Frentista
-            </a>
-            <button class="nav-item" routerLink="user/create">
-                Quero meu posto no Etanóis
-            </button>
-        </nav>
+        <div *ngIf="!usuarioLogado">
+        <span>
+            <app-header-navigation></app-header-navigation>
+        </span>
+    </div>
+    <div *ngIf="usuarioLogado">
+        <span  >
+            <app-header-navigation-user-authorization></app-header-navigation-user-authorization>
+        </span>
+    </div>
     </mat-toolbar-row>
 </mat-toolbar>

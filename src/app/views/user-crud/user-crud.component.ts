@@ -9,13 +9,7 @@ import { Router } from '@angular/router'
 })
 export class UserCrudComponent implements OnInit {
 
-  constructor(private router: Router, private headerService: HeaderService) {
-    headerService.headerData = {
-      title: 'Cadastro de Usuários',
-      icon: ' local_gas_station',
-      routeUrl: '/user'
-
-    }
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {

@@ -1,0 +1,10 @@
+<nav mat-tab-nav-bar> 
+    <div>
+        <button class="btn btn-secondary dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown">{{userName}}</button>
+        <div class="dropdown-menu">
+          <button class="btn1 dropdown-item" type="button" routerLink="user/update/:id">Editar Perfil</button>
+          <button class="btn1 dropdown-item" type="button"  (click)="logout()">Sair</button>
+        </div>
+      </div>
+
+</nav>

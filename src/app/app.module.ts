@@ -1,7 +1,6 @@
 import { PostDeleteComponent } from './components/post/post-delete/post-delete.component';
 import { PostUpdateComponent } from './components/post/post-update/post-update.component';
 import { PostCrudComponent } from './views/post-crud/post-crud.component';
-import { ManagerAreaLoginComponent } from './views/manager-area-login/manager-area-login.component';
 import { AttendantAreaLoginComponent } from './views/attendant-area-login/attendant-area-login.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,7 +13,7 @@ import { HeaderComponent } from './components/template/header/header.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterComponent } from './components/template/footer/footer.component';
-import { NavComponent } from './components/template/nav/nav.component';
+
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
@@ -35,7 +34,7 @@ import { MatSortModule } from '@angular/material/sort';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 
-import { LoginComponent } from './views/login/login.component';
+
 import { UserCrudComponent } from './views/user-crud/user-crud.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
@@ -44,14 +43,11 @@ import { PostReadComponent } from './components/post/post-read/post-read.compone
 import { PostCreateComponent } from './components/post/post-create/post-create.component';
 import { PostCreatedSuccessfullyComponent } from './views/post-created-successfully/post-created-successfully.component';
 import { UserCreatedSuccessfullyComponent } from './views/user-created-successfully/user-created-successfully.component';
-
-
-
-
-
-
-
-
+import { HeaderLogoComponent } from './components/template/header/header-logo/header-logo.component';
+import { HeaderNavigationComponent } from './components/template/header/header-navigation/header-navigation.component';
+import { HeaderNavigationUserAuthorizationComponent } from './components/template/header/header-navigation-user-authorization/header-navigation-user-authorization.component';
+import { ObjectiveComponent } from './views/objective/objective.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 
 registerLocaleData(localePt);
@@ -61,24 +57,26 @@ registerLocaleData(localePt);
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    NavComponent,
     HomeComponent,
     UserCrudComponent,
     UserCreateComponent,
     UserUpdateComponent,
     UserDeleteComponent,
     UserReadComponent,
-    LoginComponent,
     AttendantAreaLoginComponent,
-    ManagerAreaLoginComponent,
     PostCrudComponent,
     PostCreateComponent,
     PostReadComponent,
     PostUpdateComponent,
     PostDeleteComponent,
     PostCreatedSuccessfullyComponent,
-    UserCreatedSuccessfullyComponent
-
+    UserCreatedSuccessfullyComponent,
+    HeaderLogoComponent,
+    HeaderNavigationComponent,
+    HeaderNavigationUserAuthorizationComponent,
+    ObjectiveComponent,
+    NotFoundComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -98,12 +96,11 @@ registerLocaleData(localePt);
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-  
   ],
   /*adicionado AuthService */
   providers: [{
     provide: LOCALE_ID,
-    useValue: 'pt-BR'
+    useValue: 'pt-BR',
   }],
   bootstrap: [AppComponent]
 })

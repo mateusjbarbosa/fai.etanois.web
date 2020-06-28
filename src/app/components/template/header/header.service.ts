@@ -1,5 +1,5 @@
-import { HeaderData } from './header-data.model';
-import { Injectable } from '@angular/core';
+import { User } from './../../user/user.model';
+import { Injectable, Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -7,22 +7,16 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class HeaderService {
-
-  private _headerData = new BehaviorSubject<HeaderData>({
-    title: 'Início',
-    icon: 'home',
-    routeUrl: ''
-  });
- 
+  usuarioLogado = new BehaviorSubject<User>(null);
 
   constructor() { }
 
-  get headerData(): HeaderData {
-    return this._headerData.value
+  setUsuarioLogado(usuarioLogado){
+    this.usuarioLogado.next(usuarioLogado);
   }
 
-  set headerData(headerData: HeaderData) {
-    this._headerData.next(headerData)
+  getUsuarioLogado(): User {
+    return this.usuarioLogado.value;
   }
 
 }

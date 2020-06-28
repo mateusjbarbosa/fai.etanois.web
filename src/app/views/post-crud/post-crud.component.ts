@@ -9,13 +9,8 @@ import { Router } from '@angular/router'
 })
 export class PostCrudComponent implements OnInit {
 
-  constructor(private router: Router, private headerService: HeaderService) {
-    headerService.headerData = {
-      title: 'Cadastro de Postos de Combustível',
-      icon: ' local_gas_station',
-      routeUrl: '/post'
-
-    }
+  constructor(private router: Router) {
+ 
   }
 
   ngOnInit(): void {

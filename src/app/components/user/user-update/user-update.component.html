@@ -1,56 +1,51 @@
-<mat-card>
-   <mat-card-title>Alterar Usuario</mat-card-title>
-   <form> 
-      <mat-form-field>
-         <input matInput placeholder="NOME DO USUARIO"
-          [(ngModel)]="user.username" name="username">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="EMAIL"
-           [(ngModel)]="user.email" name="email">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="SENHA"
-           [(ngModel)]="user.password" name="password">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="NOME"
-           [(ngModel)]="user.name" name="name">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="CEP"
-           [(ngModel)]="user.cep" name="cep">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="DISTANCIA COM ROTA"
-           [(ngModel)]="user.search_distance_with_route" name="search_distance_with_route">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="DISTANCIA SEM ROTA"
-           [(ngModel)]="user.search_distance_without_route" name="search_distance_without_route"> 
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="MODO DE PAGAMENTO"
-           [(ngModel)]="user.payment_mode" name="payment_mode">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="TELEFONE"
-          [(ngModel)]="user.phone_number" name="phone_number">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="PROFISSÃO"
-          [(ngModel)]="user.role" name="role">
-      </mat-form-field>
-      <mat-form-field>
-         <input matInput placeholder="ETACOINS"
-           [(ngModel)]="user.etacoins" name="etacoins">
-      </mat-form-field>
-   </form>
-   <button mat-raised-button (click)="updateUser()"color="primary">
-      Atualizar
-   </button>
-
-   <button mat-raised-button (click)="cancel()">
-       Cancelar
-   </button>
-</mat-card>
+<body>
+   <link rel="stylesheet" href="https://use.typekit.net/dzj6knh.css">
+   <div class="manage-container">
+       <section class="manage-info-section">
+           <h1 class="manage-h1">Olá, gerente!
+               <br>
+               Atualize sempre que necessário
+               <br>
+               Seu cadastro, para que possamos
+               <br>
+               mantêlo informado.</h1>
+           <br>
+           <!-- <p class="manage-h2">Credencie seu posto de combustível e tenha controle
+               <br>
+               sobre seu negócio. O Etanóis possui diversos
+               <br>
+               recursos que facilitam o seu trabalho!
+           </p> -->
+           <br>
+           <!-- <p class="manage-p-bold">Já é cadastrado?</p>
+           <a class="attendant-link" href="attendant-area-login" > Vá para a Área do Frentista</a> -->
+       </section>
+       <section class="manage-input-section">
+           <div class="input-item-div">
+               <label>Qual o seu nome?</label>
+               <input type="name" name="name" placeholder="Digite seu nome"
+                [(ngModel)]="user.name" name="name" required>
+           </div>
+           <div class="input-item-div">
+               <label>Qual o seu username?</label>
+               <input type="text" name="username" placeholder="Digite seu username"
+                [(ngModel)]="user.username" name="username" required>
+           </div>
+           <div class="input-item-div">
+               <label>Qual o seu melhor e-mail?</label>
+               <input type="email" name="email" placeholder="Digite seu email"
+               [(ngModel)]="user.email" name="email" required>
+           </div>
+           <div class="input-item-div">
+               <label>Digite sua senha de acesso</label>
+               <input type="password" name="senha" placeholder="Digite sua senha"
+               [(ngModel)]="user.password" name="password" required>
+           </div>
+           <div class="manage-buttons-div">
+               <button type="button" class="btn1" (click)="cancel()">
+                   < Voltar</button>
+                       <button type="button" class="btn2" (click)="updateUser()">Atualizar ></button>
+           </div>
+       </section>
+   </div>
+</body>

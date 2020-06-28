@@ -22,7 +22,7 @@ export class PostCreatedSuccessfullyComponent implements OnInit {
   }
 
   actionButton(): void {
-    this.router.navigate(['user/create']);
+    this.router.navigate(['post']);
   }
 
 }

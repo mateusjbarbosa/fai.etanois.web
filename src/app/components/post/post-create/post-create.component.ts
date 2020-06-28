@@ -11,6 +11,7 @@ import { Post } from '../post.model';
   styleUrls: ['./post-create.component.css']
 })
 export class PostCreateComponent implements OnInit {
+  
 
   post: Post = {
     name: 'Posto Vasconcelos',
@@ -27,12 +28,16 @@ export class PostCreateComponent implements OnInit {
     car_wash: true,
     mechanical: false
   }
+  
   constructor(private postService: PostService,
     private router: Router) { }
+    
 
   ngOnInit(): void {
 
   }
+  
+  
 
   createPost(): void {
     this.postService.create(this.post).subscribe(() => {
@@ -47,5 +52,9 @@ export class PostCreateComponent implements OnInit {
   actionButton(): void {
     this.router.navigate(['post-created-successfully']);
   }
+
+  refresh(): void {
+    window.location.reload();
+}
 
 }

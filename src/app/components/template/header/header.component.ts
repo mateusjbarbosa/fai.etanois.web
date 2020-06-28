@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { User } from './../../user/user.model';
+import { Component, OnInit, Input } from '@angular/core';
 import { HeaderService } from './header.service';
 
 
@@ -9,20 +9,27 @@ import { HeaderService } from './header.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  usuarioLogado: User = null; 
+  // usuarioLogado:User = null
 
-  constructor(private headerService: HeaderService) { }
-
+  constructor(private headerService: HeaderService) {}
+  
   ngOnInit(): void {
+    this.headerService.usuarioLogado.subscribe(usuarioLogado => {
+      console.log('aqui teste', usuarioLogado);      
+      this.usuarioLogado = usuarioLogado;
+    });
   }
 
-  get title(): string{
-    return this.headerService.headerData.title
-  }
-  get icon(): string{
-    return this.headerService.headerData.icon
-  }
-  get routeUrl(): string{
-    return this.headerService.headerData.routeUrl
-  }
 
+  // load() {
+  //   this.usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado")); 
+  // }
+
+  // load() {
+  //   console.log("usuarioLogado:",sessionStorage.refresh);
+  //   (sessionStorage.refresh === 'true') 
+  //       && location.reload();
+  //   sessionStorage.refresh = false;
+  // }
 }

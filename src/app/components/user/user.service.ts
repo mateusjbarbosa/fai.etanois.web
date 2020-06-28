@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
 import { User } from './user.model';
 import { APP_API } from 'src/app/app.api';
-import { header } from 'src/app/authorization';
+import { header_object } from 'src/app/authorization';
 
 
 
@@ -42,10 +42,9 @@ export class UserService {
     // }
 
     readById(id: number): Observable<User> {
-       console.log("aqui ", sessionStorage.getItem('token'))
         const url = `${this.endpoint}/${id}`;
-        
-        return this.http.get<User>(url, {headers : header}).pipe(
+
+        return this.http.get<User>(url, { headers: header_object }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
@@ -53,7 +52,7 @@ export class UserService {
 
     update(user: User): Observable<User> {
         const url = `${this.endpoint}/${user.id}`;
-        return this.http.patch<User>(url, user).pipe(
+        return this.http.patch<User>(url,{ headers: header_object }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
@@ -76,12 +75,11 @@ export class UserService {
     generateToken(username: string, password: string): Observable<any> {
 
         const url = `${APP_API}auth/token/`
-        //var c = {"username": username, "password": password}
         return this.http.post<any>(url, { "username": username, "password": password }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
-        
+
     }
 
 }

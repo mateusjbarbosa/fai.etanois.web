@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/components/user/user.service';
+import { HeaderService } from 'src/app/components/template/header/header.service';
+
 
 
 
@@ -12,13 +15,17 @@ import { UserService } from 'src/app/components/user/user.service';
 export class AttendantAreaLoginComponent implements OnInit {
   login = {
     email: '',
-    password: ''
+    password: '',
+    refresh: '',
   }
-  private usuarioAutenticado: boolean = false;
+
   constructor(private userService: UserService,
-    private router: Router) { }
+    private router: Router, private http: HttpClient, private hearderService:HeaderService) {
+
+  }
 
   ngOnInit(): void {
+   
   }
 
   cancel(): void {
@@ -26,41 +33,21 @@ export class AttendantAreaLoginComponent implements OnInit {
   }
 
   actionLogin(): void {
-    this.userService.generateToken(this.login.email, this.login.password).subscribe(loginResponse=> {
-      //this.userService.showMessage('Usuário criado com sucesso!')
-      //this.router.navigate(['/user'])
-      
+    this.userService.generateToken(this.login.email, this.login.password).subscribe(loginResponse => {
       sessionStorage.setItem('token', loginResponse.payload.token)
       sessionStorage.setItem('id', loginResponse.payload.id)
-      console.log('login action', loginResponse)
-     /* sessionStorage.setItem('usuario', JSON.stringify({nome: "Gui"})) // insere um object json na sessão da applicação
-      var u = sessionStorage.getItem('usuario') // resgata o objecto setado na sessão da aplicação
-      console.log(JSON.parse(u).nome) // sintaxe de conversão de string para ocject json
-    
-      console.log(loginResponse)
+      // console.log('login action', loginResponse)
+      this.userService.readById(loginResponse.payload.id).subscribe(userResponse => {
+        // console.log('userResponse: ', userResponse);
 
-      console.log('o token da sessão é', loginResponse.payload.token)*/
-      //this.readUser();
-
-      this.userService.readById(loginResponse.payload.id).subscribe(userResponse=> {
-        console.log(userResponse)
-
-        if (userResponse != null){
-          this.usuarioAutenticado = true;
-          this.router.navigate(['/post']);
-        }else{
-          this.usuarioAutenticado = false;
+        if (userResponse != null) {
+          sessionStorage.setItem('usuarioLogado', JSON.stringify({ userResponse }))
+          this.hearderService.setUsuarioLogado(userResponse);
+          this.router.navigate(['/post']); 
         }
+
       })
-      
     })
 
-
   }
-
-  // readUser(): void {
-  //   this.userService.readById(4).subscribe(userResponse=> {
-  //    console.log(userResponse)
-  //   })
-  // }
 }
