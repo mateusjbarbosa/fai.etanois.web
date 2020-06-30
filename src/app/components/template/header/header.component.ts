@@ -10,26 +10,13 @@ import { HeaderService } from './header.service';
 })
 export class HeaderComponent implements OnInit {
   usuarioLogado: User = null; 
-  // usuarioLogado:User = null
 
   constructor(private headerService: HeaderService) {}
   
   ngOnInit(): void {
     this.headerService.usuarioLogado.subscribe(usuarioLogado => {
-      console.log('aqui teste', usuarioLogado);      
+      // console.log('aqui teste', usuarioLogado);      
       this.usuarioLogado = usuarioLogado;
     });
   }
-
-
-  // load() {
-  //   this.usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado")); 
-  // }
-
-  // load() {
-  //   console.log("usuarioLogado:",sessionStorage.refresh);
-  //   (sessionStorage.refresh === 'true') 
-  //       && location.reload();
-  //   sessionStorage.refresh = false;
-  // }
 }

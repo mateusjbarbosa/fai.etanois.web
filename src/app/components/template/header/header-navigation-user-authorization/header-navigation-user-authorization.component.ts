@@ -12,27 +12,24 @@ import { HeaderService } from '../header.service';
 })
 
 export class HeaderNavigationUserAuthorizationComponent implements OnInit {
-  
-  
-  constructor(private router: Router, private hearderService:HeaderService) { }
+
+
+  constructor(private router: Router, private hearderService: HeaderService) { }
 
   ngOnInit(): void {
     this.enviaUsuario(sessionStorage);
   }
   logout(): void {
-    sessionStorage.removeItem('usuarioLogado');
-    localStorage.removeItem('token');
+    // sessionStorage.removeItem('usuarioLogado');
+    // localStorage.removeItem('token');
     sessionStorage.clear();
     this.hearderService.setUsuarioLogado(null);
     this.router.navigate(['/']);
   }
 
   @Input() usuarioLogado: User;
-  @Input() userName: String;
-  enviaUsuario(user):void{
+  enviaUsuario(user: Storage): void {
     this.usuarioLogado = JSON.parse(user["usuarioLogado"]);
     this.usuarioLogado = this.usuarioLogado["userResponse"]["payload"];
-    this.userName = this.usuarioLogado.name;
-    console.log(this.usuarioLogado);  
   }
 }

@@ -35,7 +35,7 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 
 
-import { UserCrudComponent } from './views/user-crud/user-crud.component';
+
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
@@ -58,7 +58,6 @@ registerLocaleData(localePt);
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    UserCrudComponent,
     UserCreateComponent,
     UserUpdateComponent,
     UserDeleteComponent,

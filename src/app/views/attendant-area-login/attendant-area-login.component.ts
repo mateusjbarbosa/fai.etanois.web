@@ -16,16 +16,15 @@ export class AttendantAreaLoginComponent implements OnInit {
   login = {
     email: '',
     password: '',
-    refresh: '',
   }
 
   constructor(private userService: UserService,
-    private router: Router, private http: HttpClient, private hearderService:HeaderService) {
+    private router: Router, private http: HttpClient, private hearderService: HeaderService) {
 
   }
 
   ngOnInit(): void {
-   
+
   }
 
   cancel(): void {
@@ -39,11 +38,13 @@ export class AttendantAreaLoginComponent implements OnInit {
       // console.log('login action', loginResponse)
       this.userService.readById(loginResponse.payload.id).subscribe(userResponse => {
         // console.log('userResponse: ', userResponse);
-
+        // console.log('sessionStorage: ', sessionStorage);
+        
         if (userResponse != null) {
           sessionStorage.setItem('usuarioLogado', JSON.stringify({ userResponse }))
           this.hearderService.setUsuarioLogado(userResponse);
-          this.router.navigate(['/post']); 
+          // console.log('userResponse: ', sessionStorage);
+          this.router.navigate(['/post']);
         }
 
       })

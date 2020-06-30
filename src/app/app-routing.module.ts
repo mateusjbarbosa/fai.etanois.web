@@ -7,7 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
-import { UserCrudComponent } from './views/user-crud/user-crud.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { PostCrudComponent } from './views/post-crud/post-crud.component';
 import { PostCreateComponent } from './components/post/post-create/post-create.component';
@@ -34,10 +33,6 @@ const routes: Routes = [
   {
     path:"attendant-area-login",
     component: AttendantAreaLoginComponent
-  },
-  {
-    path:"user",
-    component: UserCrudComponent
   },
   {
     path:"user/create",
