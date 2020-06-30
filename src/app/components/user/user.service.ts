@@ -59,6 +59,7 @@ export class UserService {
     }
 
     delete(id: number): Observable<User> {
+        console.log(header_object);
         const url = `${this.endpoint}/${id}`;
         return this.http.delete<User>(url, { headers: header_object }).pipe(
             map((obj) => obj),
