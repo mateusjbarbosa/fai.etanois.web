@@ -19,6 +19,8 @@ export class UserCreateComponent implements OnInit {
     username: undefined,
     email: undefined,
     password: undefined,
+    new_password: undefined,
+    old_password: undefined,
     name: undefined
     // cep: "",
     // search_distance_with_route: 15,

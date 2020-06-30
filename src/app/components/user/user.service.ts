@@ -50,21 +50,17 @@ export class UserService {
     }
 
     update(user: User): Observable<User> {
-        console.log("Header:",header_object)
+        console.log(user);
         const url = `${this.endpoint}/${user.id}`;
-        return this.http.patch<User>(url,user, { headers: header_object }).pipe(
+        return this.http.patch<User>( url, user, { headers: header_object }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
-            //  if(error.status === 401 || error.status === 403){
-            //      console.log('Acesso não autorizado!');
-            //      localStorage.removeItem('token');
-            //  }
         );
     }
 
     delete(id: number): Observable<User> {
         const url = `${this.endpoint}/${id}`;
-        return this.http.delete<User>(url).pipe(
+        return this.http.delete<User>(url, { headers: header_object }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );

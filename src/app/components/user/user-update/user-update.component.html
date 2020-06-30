@@ -31,17 +31,22 @@
            <div class="input-item-div">
                <label>Qual o seu apelido?</label>
                <input type="text" name="username" placeholder="Digite seu apelido"
-                [(ngModel)]="usuarioLogado.username" name="username" required>
+                [(ngModel)]="usuarioLogado.username" name="username"disabled>
            </div>
            <div class="input-item-div">
                <label>Qual o seu melhor e-mail?</label>
                <input type="email" name="email" placeholder="Digite seu e-mail"
-               [(ngModel)]="usuarioLogado.email" name="email" required>
+               [(ngModel)]="usuarioLogado.email" name="email"disabled>
            </div>
            <div class="input-item-div">
-               <label>Digite sua senha de acesso</label>
-               <input type="password" name="senha" placeholder="Digite sua senha"
-               [(ngModel)]="usuarioLogado.password" name="password" required>
+               <label>Digite sua nova senha de acesso</label>
+               <input type="password" name="new_password" placeholder="Digite sua nova senha"
+               [(ngModel)]="usuarioLogado.new_password" name="new_password" required>
+           </div>
+           <div class="input-item-div">
+               <label>Digite sua antiga senha acesso</label>
+               <input type="password" name="old_password" placeholder="Digite sua antiga senha"
+               [(ngModel)]="usuarioLogado.old_password" name="old_password" required>
            </div>
            <div class="manage-buttons-div">
                <button type="button" class="btn1" (click)="cancel()">

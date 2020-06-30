@@ -3,6 +3,8 @@ export interface User {
     username: string,
     email: string,
     password: string,
+    new_password: string,
+    old_password: string,
     name: string,
     cep?: string,
     search_distance_with_route?: number,

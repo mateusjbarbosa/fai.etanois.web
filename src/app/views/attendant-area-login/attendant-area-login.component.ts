@@ -35,7 +35,7 @@ export class AttendantAreaLoginComponent implements OnInit {
     this.userService.generateToken(this.login.email, this.login.password).subscribe(loginResponse => {
       sessionStorage.setItem('token', loginResponse.payload.token)
       sessionStorage.setItem('id', loginResponse.payload.id)
-      // console.log('login action', loginResponse)
+      console.log('token', loginResponse.payload.token)
       this.userService.readById(loginResponse.payload.id).subscribe(userResponse => {
         // console.log('userResponse: ', userResponse);
         // console.log('sessionStorage: ', sessionStorage);
