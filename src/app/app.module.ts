@@ -1,3 +1,4 @@
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PostDeleteComponent } from './components/post/post-delete/post-delete.component';
 import { PostUpdateComponent } from './components/post/post-update/post-update.component';
 import { PostCrudComponent } from './views/post-crud/post-crud.component';
@@ -48,6 +49,10 @@ import { HeaderNavigationComponent } from './components/template/header/header-n
 import { HeaderNavigationUserAuthorizationComponent } from './components/template/header/header-navigation-user-authorization/header-navigation-user-authorization.component';
 import { ObjectiveComponent } from './views/objective/objective.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { DialogElementsComponent } from './components/dialog-elements/dialog-elements.component';
+
+
+
 
 
 registerLocaleData(localePt);
@@ -75,6 +80,11 @@ registerLocaleData(localePt);
     HeaderNavigationUserAuthorizationComponent,
     ObjectiveComponent,
     NotFoundComponent,
+    DialogElementsComponent,
+
+ 
+    
+   
  
   ],
   imports: [
@@ -95,6 +105,7 @@ registerLocaleData(localePt);
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule
   ],
   /*adicionado AuthService */
   providers: [{

@@ -24,7 +24,7 @@
            <div class="input-item-div">
                <label>Qual razão social?</label>
                <input type="cnpj" name="cnpj" placeholder="Digite o cnpj"
-               [(ngModel)]="post.cnpj" mak="00.000.000/0000-00"  required>
+               [(ngModel)]="post.cnpj" mask="00.000.000/0000-00"  required>
            </div>
            <div class="input-item-div">
                <label>E a bandeira?</label>
@@ -39,7 +39,7 @@
            <div class="manage-buttons-div">
                <button type="button" class="btn1" (click)="cancel()">
                    < Voltar</button>
-                       <button type="button" class="btn2" (click)="actionButton()">Seguir ></button>
+                       <button type="button" class="btn2" (click)="createPost()">Cadastrar ></button>
            </div>
        </section>
    </div>

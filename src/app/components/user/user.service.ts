@@ -52,7 +52,7 @@ export class UserService {
     update(user: User): Observable<User> {
         console.log(user);
         const url = `${this.endpoint}/${user.id}`;
-        return this.http.patch<User>( url, user, { headers: header_object }).pipe(
+        return this.http.patch<User>(url, user, { headers: header_object }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
@@ -74,8 +74,16 @@ export class UserService {
     }
 
     generateToken(username: string, password: string): Observable<any> {
-        const url = `${APP_API}auth/token/`
+        const url = `${APP_API}auth/token/`;
         return this.http.post<any>(url, { "username": username, "password": password }).pipe(
+            map((obj) => obj),
+            catchError(e => this.errorHandler(e))
+        );
+    }
+
+    verifyExistenceCredentials(email: string): Observable<any> {
+        const url = `${APP_API}user/verify_use_of_credentials`;
+        return this.http.post<any>(url, { "email": email }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );

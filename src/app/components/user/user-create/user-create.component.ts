@@ -8,6 +8,7 @@ import { User } from '../user.model';
 
 
 
+
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
@@ -38,6 +39,10 @@ export class UserCreateComponent implements OnInit {
   }
 
   createUser(): void {
+    // this.userService.verifyExistenceCredentials(this.user.email).subscribe(() =>{
+    //   console.log(error);
+    // });
+
     this.userService.create(this.user).subscribe(() => {
       this.userService.showMessage('Usuário criado com sucesso!')
       this.router.navigate(['user-created-successfully'])

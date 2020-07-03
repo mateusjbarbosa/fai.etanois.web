@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/components/user/user.service';
 import { HeaderService } from 'src/app/components/template/header/header.service';
@@ -51,4 +51,5 @@ export class AttendantAreaLoginComponent implements OnInit {
     })
 
   }
+
 }

@@ -5,13 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import { Post } from './post.model';
 import { Observable, EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { header_object } from 'src/app/authorization';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class PostService {
-    endpoint: string = ` ${APP_API}post`
+    endpoint: string = ` ${APP_API}fuel_station`
     constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
     showMessage(msg: string, isError: boolean = false): void {
@@ -24,7 +25,7 @@ export class PostService {
     }
 /*caso aconteça erro no post, chamo método errorHandler*/
     create(post: Post): Observable<Post> {
-        return this.http.post<Post>(this.endpoint, post).pipe(
+        return this.http.post<Post>(`${this.endpoint}/new`, post).pipe(
             map((obj )=> obj),
             catchError(e => this.errorHandler(e))
         );
@@ -39,7 +40,7 @@ export class PostService {
 
     readById(id: number): Observable<Post> {
         const url = `${this.endpoint}/${id}`;
-        return this.http.get<Post>(url).pipe(
+        return this.http.get<Post>(url, { headers: header_object }).pipe(
             map((obj )=> obj),
             catchError(e => this.errorHandler(e))
         );
@@ -47,7 +48,7 @@ export class PostService {
 
     update(post: Post): Observable<Post> {
         const url = `${this.endpoint}/${post.id}`;
-        return this.http.put<Post>(url, post).pipe(
+        return this.http.put<Post>(url, post, { headers: header_object }).pipe(
             map((obj )=> obj),
             catchError(e => this.errorHandler(e))
         );
@@ -55,7 +56,7 @@ export class PostService {
 
     delete(id: number): Observable<Post> {
         const url = `${this.endpoint}/${id}`;
-        return this.http.delete<Post>(url).pipe(
+        return this.http.delete<Post>(url, { headers: header_object }).pipe(
             map((obj )=> obj),
             catchError(e => this.errorHandler(e))
         );
