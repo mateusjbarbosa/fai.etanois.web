@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { User } from '../user.model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -31,11 +32,60 @@ export class UserCreateComponent implements OnInit {
     // role: "frentista",
     // etacoins: 10,
   }
-  constructor(private userService: UserService,
-    private router: Router) { }
+  // Aqui damos um nome para nosso formulário
+  // E ele precisa ser do tipo FormGroup
+  formularioDeUsuario: FormGroup;
+  // Via DI, nós obtemos o FormBuilder.
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.criarFormularioDeUsuario();
 
+  }
+
+  enviarDados() {
+    const dadosFormulario = this.formularioDeUsuario.value;
+    const usuario = (
+      dadosFormulario.name,
+      dadosFormulario.username,
+      dadosFormulario.email,
+      dadosFormulario.password
+    );
+    alert(`O usuário ${usuario.name} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
+    this.formularioDeUsuario.reset();
+  }
+
+  criarFormularioDeUsuario() {
+    this.formularioDeUsuario = this.fb.group({
+      name: ['',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50)
+        ])],
+
+      username: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30)
+        ])],
+
+      email: ['', Validators.compose([Validators.email])],
+      
+      password: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(12)
+        ])
+      ],
+    });
   }
 
   createUser(): void {
@@ -50,5 +100,21 @@ export class UserCreateComponent implements OnInit {
   }
   cancel(): void {
     this.router.navigate(['/'])
+  }
+
+  // Propriedades do formulário que vamos utilizar para obter os erros
+  get name() {
+    return this.formularioDeUsuario.get('name');
+  }
+  get username() {
+    return this.formularioDeUsuario.get('username');
+  }
+
+  get email() {
+    return this.formularioDeUsuario.get('email');
+  }
+
+  get password() {
+    return this.formularioDeUsuario.get('password');
   }
 }

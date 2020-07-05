@@ -16,31 +16,85 @@
            </p>
        </section> 
        <section class="manage-input-section">
+        <form [formGroup]="formularioDeUsuario" (ngSubmit)="enviarDados()">
            <div class="input-item-div">
-               <label>Qual o nome do posto de combustível?</label>
-               <input type="name" name="name" placeholder="Digite nome do posto"
-               [(ngModel)]="post.name" required>
+               <label for="name">Qual o nome do posto de combustível?</label>
+               <input type="text" name="name" placeholder="Digite nome do posto"
+               [(ngModel)]="post.name" formControlName="name"  required>
+
+               <div class="input-item" *ngIf="!name.pristine && name.errors">
+                <p *ngIf="name.errors.required">
+                  Nome é obrigatório.
+                </p>
+                <p *ngIf="name.errors.minlength">
+                  Nome deve ter no mínimo 3 caracters.
+                </p>
+                <p *ngIf="name.errors.maxlength">
+                  Nome deve ter no máximo 50 caracters.
+                </p>
+              </div>
            </div>
            <div class="input-item-div">
-               <label>Qual razão social?</label>
-               <input type="cnpj" name="cnpj" placeholder="Digite o cnpj"
-               [(ngModel)]="post.cnpj" mask="00.000.000/0000-00"  required>
-           </div>
+               <label for="cnpj">Qual razão social?</label>
+               <input type="text" name="cnpj" placeholder="Digite o cnpj"
+               [(ngModel)]="post.cnpj" mask="00.000.000/0000-00"  formControlName="cnpj" required>
+          
+               <div class="input-item" *ngIf="!cnpj.pristine && cnpj.errors">
+                <p *ngIf="cnpj.errors.required">
+                  CNPJ é obrigatório.
+                </p>
+                <p *ngIf="name.errors.minlength">
+                  CNPJ deve ter no mínimo 14 caracters.
+                </p>
+                <p *ngIf="name.errors.maxlength">
+                    CNPJ deve ter no máximo 14 caracters.
+                </p>
+              </div>
+            </div>
            <div class="input-item-div">
-               <label>E a bandeira?</label>
-               <input type="flag_of_fuel_station" name="flag_of_fuel_station" placeholder="Digite a bandeira"
-               [(ngModel)]="post.flag_of_fuel_station" required>
-           </div>
+               <label for="flag_of_fuel_station">E a bandeira?</label>
+               <input type="text" name="flag_of_fuel_station" placeholder="Digite a bandeira"
+               [(ngModel)]="post.flag_of_fuel_station" formControlName="flag_of_fuel_station" required>
+           
+               <div class="input-item" *ngIf="!flag_of_fuel_station.pristine && flag_of_fuel_station.errors">
+                <p *ngIf="flag_of_fuel_station.errors.required">
+                  Bandeira é obrigatório.
+                </p>
+                <p *ngIf="flag_of_fuel_station.errors.minlength">
+                  Bandeira deve ter no mínimo 6 caracters.
+                </p>
+                <p *ngIf="flag_of_fuel_station.errors.maxlength">
+                    Bandeira deve ter no máximo 12 caracters.
+                </p>
+              </div>
+
+            </div>
            <div class="input-item-div">
-               <label>Agora o endereço</label>
-               <input type="address" name="address" placeholder="Digite seu endereço"
-               [(ngModel)]="post.address"  required>
+               <label for="address">Agora o endereço</label>
+               <input type="text" name="address" placeholder="Digite seu endereço"
+               [(ngModel)]="post.address"  formControlName="address" required>
+
+               <div class="input-item" *ngIf="!address.pristine && address.errors">
+                <p *ngIf="address.errors.required">
+                  Endereço é obrigatório.
+                </p>
+                <p *ngIf="address.errors.minlength">
+                  Endereço deve ter no mínimo 10 caracters.
+                </p>
+                <p *ngIf="address.errors.maxlength">
+                  Endereço deve ter no máximo 50 caracters.
+                </p>
+              </div>
+               
            </div>
            <div class="manage-buttons-div">
                <button type="button" class="btn1" (click)="cancel()">
                    < Voltar</button>
-                       <button type="button" class="btn2" (click)="createPost()">Cadastrar ></button>
+                       <button [disabled]="!formularioDeUsuario.valid" type="button" class="btn2" (click)="createPost()">Cadastrar ></button>
            </div>
+              <div>{{ formularioDeUsuario.value | json}}</div>
+           <div>{{ formularioDeUsuario.valid | json }}</div>
+        </form>
        </section>
    </div>
 </body>

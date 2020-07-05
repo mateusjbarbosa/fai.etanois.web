@@ -134,3 +134,7 @@ body {
     border: none;
     outline: none;
 }
+
+.input-item {
+    color: #ff951c;
+}

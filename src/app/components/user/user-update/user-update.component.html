@@ -23,36 +23,78 @@
            <a class="attendant-link" href="attendant-area-login" > Vá para a Área do Frentista</a> -->
        </section>
        <section class="manage-input-section">
+        <form [formGroup]="formularioDeUsuario" (ngSubmit)="enviarDados()">
            <div class="input-item-div">
-               <label>Qual o seu nome?</label>
-               <input type="name" name="name" placeholder="Digite seu nome"
-                [(ngModel)]="usuarioLogado.name" name="name" required>
+               <label for="name">Qual o seu novo nome?</label>
+               <input type="text" name="name" placeholder="Digite seu nome"
+                [(ngModel)]="usuarioLogado.name" formControlName="name" required>
+
+                <div class="input-item" *ngIf="!name.pristine && name.errors">
+                    <p *ngIf="name.errors.required">
+                      Nome é obrigatório.
+                    </p>
+                    <p *ngIf="name.errors.minlength">
+                      Nome deve ter no mínimo 3 caracters.
+                    </p>
+                    <p *ngIf="name.errors.maxlength">
+                      Nome deve ter no máximo 50 caracters.
+                    </p>
+                  </div>
            </div>
            <div class="input-item-div">
-               <label>Qual o seu apelido?</label>
+               <label for="username">Qual o seu apelido?</label>
                <input type="text" name="username" placeholder="Digite seu apelido"
-                [(ngModel)]="usuarioLogado.username" name="username"disabled>
+                [(ngModel)]="usuarioLogado.username" formControlName="username" disabled>
            </div>
            <div class="input-item-div">
-               <label>Qual o seu melhor e-mail?</label>
+               <label for="email">Qual o seu melhor e-mail?</label>
                <input type="email" name="email" placeholder="Digite seu e-mail"
-               [(ngModel)]="usuarioLogado.email" name="email"disabled>
+               [(ngModel)]="usuarioLogado.email" formControlName="email" disabled>
            </div>
            <div class="input-item-div">
-               <label>Digite sua nova senha de acesso</label>
+               <label for="new_password">Digite sua nova senha de acesso</label>
                <input type="password" name="new_password" placeholder="Digite sua nova senha"
-               [(ngModel)]="usuarioLogado.new_password" name="new_password" required>
+               [(ngModel)]="usuarioLogado.new_password" formControlName="new_password" required>
+
+               <div class="input-item" *ngIf="!new_password.pristine && new_password.errors">
+                <p *ngIf="new_password.errors.required">
+                  Nova senha é obrigatória.
+                </p>
+                <p *ngIf="new_password.errors.minlength">
+                  Nova senha deve ter no mínimo 6 caracters.
+                </p>
+                <p *ngIf="new_password.errors.maxlength">
+                  Nova senha deve ter no máximo 12 caracters.
+                </p>
+              </div>
+
            </div>
            <div class="input-item-div">
-               <label>Digite sua antiga senha acesso</label>
+               <label for="old_password">Digite sua antiga senha acesso</label>
                <input type="password" name="old_password" placeholder="Digite sua antiga senha"
-               [(ngModel)]="usuarioLogado.old_password" name="old_password" required>
+               [(ngModel)]="usuarioLogado.old_password" formControlName="old_password"required>
+
+               <div class="input-item" *ngIf="!old_password.pristine && old_password.errors">
+                <p *ngIf="old_password.errors.required">
+                  Antiga senha é obrigatória.
+                </p>
+                <p *ngIf="old_password.errors.minlength">
+                  Antiga senha deve ter no mínimo 6 caracters.
+                </p>
+                <p *ngIf="old_password.errors.maxlength">
+                  Antiga senha deve ter no máximo 12 caracters.
+                </p>
+              </div>
+
            </div>
            <div class="manage-buttons-div">
                <button type="button" class="btn1" (click)="cancel()">
                    < Voltar</button>
-                       <button type="button" class="btn2" (click)="updateUser()">Atualizar ></button>
+                       <button [disabled]="!formularioDeUsuario.valid" type="button" class="btn2" (click)="updateUser()">Atualizar ></button>
            </div>
+              <div>{{ formularioDeUsuario.value | json}}</div>
+              <div>{{ formularioDeUsuario.valid | json }}</div>
+        </form>
        </section>
    </div>
 </body>

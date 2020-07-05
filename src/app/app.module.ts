@@ -51,6 +51,7 @@ import { ObjectiveComponent } from './views/objective/objective.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { DialogElementsComponent } from './components/dialog-elements/dialog-elements.component';
 
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -81,6 +82,7 @@ registerLocaleData(localePt);
     ObjectiveComponent,
     NotFoundComponent,
     DialogElementsComponent,
+ 
 
  
     
@@ -105,7 +107,8 @@ registerLocaleData(localePt);
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   /*adicionado AuthService */
   providers: [{
