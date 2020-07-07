@@ -28,49 +28,58 @@
                 [(ngModel)]="user.name" name="name" formControlName="name" required>
                
                 <div class="input-item" *ngIf="!name.pristine && name.errors">
-                    <p *ngIf="name.errors.required">
-                      Nome é obrigatório.
-                    </p>
-                    <p *ngIf="name.errors.minlength">
-                      Nome deve ter no mínimo 3 caracters.
-                    </p>
-                    <p *ngIf="name.errors.maxlength">
-                      Nome deve ter no máximo 50 caracters.
-                    </p>
+                  <div class="alert alert-danger" role="alert" *ngIf="name.errors.required">
+                    Nome é obrigatório.
                   </div>
+
+                  <div class="alert alert-danger" role="alert" *ngIf="name.errors.minlength">
+                    Nome deve ter no mínimo 3 caracters.
+                  </div>
+
+                  <div class="alert alert-danger" role="alert" *ngIf="name.errors.maxlength">
+                    Nome deve ter no máximo 50 caracters.
+                  </div>
+                </div>
                 
            </div>
-           <div class="input-item-div">
+            <div class="input-item-div">
                <label for="username">Qual o seu apelido?</label>
                <input type="text" name="username" placeholder="Digite seu apelido"
                 [(ngModel)]="user.username" name="username" formControlName="username" required>
 
                 <div class="input-item" *ngIf="!username.pristine && username.errors">
-                    <p *ngIf="username.errors.required">
+                    <div class="alert alert-danger" role="alert" *ngIf="username.errors.required">
                       Apelido é obrigatório.
-                    </p>
-                    <p *ngIf="username.errors.minlength">
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" *ngIf="username.errors.minlength">
                       Apelido deve ter no mínimo 3 caracters.
-                    </p>
-                    <p *ngIf="username.errors.maxlength">
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" *ngIf="username.errors.maxlength">
                       Apelido deve ter no máximo 30 caracters.
-                    </p>
-                  </div>
-           </div>
+                    </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="userNameError">
+                  {{ userNameError }}
+                </div>
+            </div>
            <div class="input-item-div">
                <label for="email">Qual o seu melhor e-mail?</label>
                <input type="text" name="email" placeholder="Digite seu e-mail"
                [(ngModel)]="user.email" name="email" formControlName="email" required>
 
                <div class="input-item" *ngIf="!email.pristine && email.errors">
-                <p *ngIf="email.errors.required">
+                  <div class="alert alert-danger" role="alert" *ngIf="email.errors.required">
                     E-mail é obrigatório.
-                  </p>
-                <p *ngIf="email.errors.email">
-                  Digite um e-mail válido.
-                </p>
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="email.errors.email">
+                    Digite um e-mail válido.
+                  </div>
               </div>
-
+              <div class="alert alert-danger" role="alert" *ngIf="emailError">
+                {{ emailError }}
+              </div>
            </div>
            <div class="input-item-div">
                <label for="password">Digite sua senha de acesso</label>
@@ -78,16 +87,16 @@
                [(ngModel)]="user.password" formControlName="password" required>
 
                <div class="input-item" *ngIf="!password.pristine && password.errors">
-                <p *ngIf="password.errors.required">
+                <div class="alert alert-danger" role="alert" *ngIf="password.errors.required">
                   Senha é obrigatória.
-                </p>
-                <p *ngIf="password.errors.minlength">
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="password.errors.minlength">
                   Senha deve ter no mínimo 6 caracters.
-                </p>
-                <p *ngIf="password.errors.maxlength">
-                  Senha deve ter no máximo 12 caracters.
-                </p>
-              </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="password.errors.maxlength">
+                  Senha deve ter no máximo 255 caracters.
+                </div>
+            </div>
 
            </div>
 

@@ -23,22 +23,23 @@
            <a class="attendant-link" href="attendant-area-login" > Vá para a Área do Frentista</a> -->
        </section>
        <section class="manage-input-section">
-        <form [formGroup]="formularioDeUsuario" (ngSubmit)="enviarDados()">
+        <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
            <div class="input-item-div">
                <label for="name">Qual o seu novo nome?</label>
                <input type="text" name="name" placeholder="Digite seu nome"
                 [(ngModel)]="usuarioLogado.name" formControlName="name" required>
 
-                <div class="input-item" *ngIf="!name.pristine && name.errors">
-                    <p *ngIf="name.errors.required">
-                      Nome é obrigatório.
-                    </p>
-                    <p *ngIf="name.errors.minlength">
-                      Nome deve ter no mínimo 3 caracters.
-                    </p>
-                    <p *ngIf="name.errors.maxlength">
-                      Nome deve ter no máximo 50 caracters.
-                    </p>
+
+                   <div class="input-item" *ngIf="!name.pristine && name.errors">
+                     <p *ngIf="name.errors.required">
+                       Nome é obrigatório.
+                     </p>
+                      <p *ngIf="name.errors.minlength">
+                       Nome deve ter no mínimo 3 caracters.
+                      </p>
+                      <p *ngIf="name.errors.maxlength">
+                       Nome deve ter no máximo 50 caracters.
+                      </p>
                   </div>
            </div>
            <div class="input-item-div">
@@ -56,17 +57,17 @@
                <input type="password" name="new_password" placeholder="Digite sua nova senha"
                [(ngModel)]="usuarioLogado.new_password" formControlName="new_password" required>
 
-               <div class="input-item" *ngIf="!new_password.pristine && new_password.errors">
-                <p *ngIf="new_password.errors.required">
-                  Nova senha é obrigatória.
-                </p>
-                <p *ngIf="new_password.errors.minlength">
-                  Nova senha deve ter no mínimo 6 caracters.
-                </p>
-                <p *ngIf="new_password.errors.maxlength">
-                  Nova senha deve ter no máximo 12 caracters.
-                </p>
-              </div>
+                <div class="input-item" *ngIf="!new_password.pristine && new_password.errors">
+                   <p *ngIf="new_password.errors.required">
+                   Nova senha é obrigatória.
+                   </p>
+                   <p *ngIf="new_password.errors.minlength">
+                   Nova senha deve ter no mínimo 6 caracters.
+                   </p>
+                   <p *ngIf="new_password.errors.maxlength">
+                   Nova senha deve ter no máximo 12 caracters.
+                  </p>
+               </div>
 
            </div>
            <div class="input-item-div">
@@ -74,26 +75,26 @@
                <input type="password" name="old_password" placeholder="Digite sua antiga senha"
                [(ngModel)]="usuarioLogado.old_password" formControlName="old_password"required>
 
-               <div class="input-item" *ngIf="!old_password.pristine && old_password.errors">
-                <p *ngIf="old_password.errors.required">
-                  Antiga senha é obrigatória.
-                </p>
-                <p *ngIf="old_password.errors.minlength">
-                  Antiga senha deve ter no mínimo 6 caracters.
-                </p>
-                <p *ngIf="old_password.errors.maxlength">
-                  Antiga senha deve ter no máximo 12 caracters.
-                </p>
-              </div>
+                <div class="input-item" *ngIf="!old_password.pristine && old_password.errors">
+                    <p *ngIf="old_password.errors.required">
+                     Antiga senha é obrigatória.
+                    </p>
+                    <p *ngIf="old_password.errors.minlength">
+                     Antiga senha deve ter no mínimo 6 caracters.
+                    </p>
+                    <p *ngIf="old_password.errors.maxlength">
+                     Antiga senha deve ter no máximo 12 caracters.
+                    </p>
+                </div>
 
            </div>
            <div class="manage-buttons-div">
                <button type="button" class="btn1" (click)="cancel()">
                    < Voltar</button>
-                       <button [disabled]="!formularioDeUsuario.valid" type="button" class="btn2" (click)="updateUser()">Atualizar ></button>
+                       <button [disabled]="!formulario.valid" type="button" class="btn2" (click)="updateUser()">Atualizar ></button>
            </div>
-              <div>{{ formularioDeUsuario.value | json}}</div>
-              <div>{{ formularioDeUsuario.valid | json }}</div>
+              <!-- <div>{{ formulario.value | json}}</div>
+              <div>{{ formulario.valid | json }}</div> -->
         </form>
        </section>
    </div>

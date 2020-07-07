@@ -2,7 +2,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable, EMPTY, throwError } from 'rxjs';
 import { User } from './user.model';
 import { APP_API } from 'src/app/app.api';
 import { header_object } from 'src/app/authorization';
@@ -31,7 +31,9 @@ export class UserService {
     create(user: User): Observable<User> {
         return this.http.post<User>(`${this.endpoint}/new`, user).pipe(
             map((obj) => obj),
-            catchError(e => this.errorHandler(e))
+            // catchError(e => this.errorHandler(e))
+            catchError(e => throwError(e))
+
         );
     }
     // read(): Observable<User[]> {

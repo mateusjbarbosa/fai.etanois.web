@@ -15,7 +15,7 @@ import { Validacoes } from '../../validacoes';
 export class UserUpdateComponent implements OnInit {
   user: User;
 
-  formularioDeUsuario: FormGroup;
+  formulario: FormGroup;
 
   constructor(
     private userService: UserService,
@@ -37,29 +37,38 @@ export class UserUpdateComponent implements OnInit {
   }
 
   enviarDados() {
-    const dadosFormulario = this.formularioDeUsuario.value;
+    const dadosFormulario = this.formulario.value;
 
     const usuario = (
-      dadosFormulario.name,
-      dadosFormulario.username,
-      dadosFormulario.email,
-      dadosFormulario.new_password,
-      dadosFormulario.old_password
+      dadosFormulario.usuarioLogado.name,
+      dadosFormulario.usuarioLogado.username,
+      dadosFormulario.usuarioLogado.email,
+      dadosFormulario.usuarioLogado.new_password,
+      dadosFormulario.usuarioLogado.old_password
     );
 
     alert(`O usuário ${usuario.name} foi editado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
-    this.formularioDeUsuario.reset();
+    this.formulario.reset();
   }
 
   criarFormularioDeUsuario() {
 
-    this.formularioDeUsuario = this.fb.group({
+    this.formulario = this.fb.group({
       name: ['',
         Validators.compose([
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(50)
         ])],
+
+        username: ['',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30)
+        ])],
+
+        email: ['', Validators.compose([Validators.email])],
 
       new_password: [
         '',
@@ -86,26 +95,30 @@ export class UserUpdateComponent implements OnInit {
     );
   }
   get name() {
-    return this.formularioDeUsuario.get('name');
+    return this.formulario.get('name');
   }
   get username() {
-    return this.formularioDeUsuario.get('username');
+    return this.formulario.get('username');
   }
   get email() {
-    return this.formularioDeUsuario.get('email');
+    return this.formulario.get('email');
   }
   get new_password() {
-    return this.formularioDeUsuario.get('new_password');
+    return this.formulario.get('new_password');
   }
   get old_password() {
-    return this.formularioDeUsuario.get('old_password');
+    return this.formulario.get('old_password');
   }
 
 
   updateUser(): void {
     this.userService.update(this.usuarioLogado).subscribe(() => {
+    if(this.userService.verifyExistenceCredentials(this.usuarioLogado.email)){
       this.userService.showMessage('Usuario atualizado com sucesso!')
       this.router.navigate(['/post']);
+    }
+      // this.userService.showMessage('Usuario atualizado com sucesso!')
+      // this.router.navigate(['/post']);
     })
   }
   cancel(): void {
