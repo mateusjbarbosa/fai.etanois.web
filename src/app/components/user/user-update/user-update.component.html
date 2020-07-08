@@ -85,7 +85,12 @@
                   <div class="alert alert-danger" role="alert" *ngIf="new_password.errors.maxlength">
                     Nova senha deve ter no máximo 255 caracters.
                   </div>
-               </div>
+                </div>
+                
+                <div class="alert alert-danger" role="alert" *ngIf="old_passwordError">
+                    {{ old_passwordError }}
+                </div> 
+             
 
            </div>
            <div class="manage-buttons-div">

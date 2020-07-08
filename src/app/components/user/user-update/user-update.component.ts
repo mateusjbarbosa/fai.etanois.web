@@ -15,6 +15,8 @@ import { Validacoes } from '../../validacoes';
 export class UserUpdateComponent implements OnInit {
   user: User;
 
+  old_passwordError: string = '';
+
   formulario: FormGroup;
 
   constructor(
@@ -116,11 +118,25 @@ export class UserUpdateComponent implements OnInit {
     if(this.userService.verifyExistenceCredentials(this.usuarioLogado.email)){
       this.userService.showMessage('Usuario atualizado com sucesso!')
       this.router.navigate(['/post']);
+    } else{
+      this.old_passwordError = "Senha atual errada!"
+
     }
       // this.userService.showMessage('Usuario atualizado com sucesso!')
-      // this.router.navigate(['/post']);
-    })
+      //  this.router.navigate(['/post']);
+    },
+    err => {
+      console.log('error: ', err);
+      this.old_passwordError = "Senha atual errada!";
+    },
+    () => console.log('HTTP request completed.')
+    )
+    
   }
+
+
+
+
   cancel(): void {
     this.router.navigate(['/post']);
 

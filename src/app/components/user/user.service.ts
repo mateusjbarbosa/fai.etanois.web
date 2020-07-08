@@ -56,7 +56,7 @@ export class UserService {
         const url = `${this.endpoint}/${user.id}`;
         return this.http.patch<User>(url, user, { headers: header_object }).pipe(
             map((obj) => obj),
-            catchError(e => this.errorHandler(e))
+            catchError(e => throwError(e))
         );
     }
 
