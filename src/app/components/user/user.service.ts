@@ -79,7 +79,7 @@ export class UserService {
         const url = `${APP_API}auth/token/`;
         return this.http.post<any>(url, { "username": username, "password": password }).pipe(
             map((obj) => obj),
-            catchError(e => this.errorHandler(e))
+            catchError(e => throwError(e))
         );
     }
 

@@ -21,30 +21,22 @@
         <section class="manage-input-section">
             <form [formGroup]="formularioDeUsuario" (ngSubmit)="enviarDados()">
              <div class="input-item-div">
-                    <label>E-mail ou apelido</label>
+                    <label>Apelido</label>
                     <input type="text" id="imputEmail" formControlName="email" class="form-control" name="email" placeholder="Digite seu e-mail ou apelido"
                     [(ngModel)]='login.email' required>
-                    <!-- <div class="input-item" *ngIf="!email.pristine && email.errors">
-                          <p *ngIf="email.errors.email">
-                          Digite um e-mail válido.
-                        </p>
-                      </div>  -->
             </div>
             <div class="input-item-div">
                 <label>Senha de acesso</label>
                 <input type="password" name="senha" placeholder="Digite sua senha" formControlName="password"
                 [(ngModel)]='login.password' required> 
                 <div class="input-item" *ngIf="!password.pristine && password.errors">
-                    <p *ngIf="password.errors.required">
-                      Senha é obrigatória.
-                    </p>
-                    <p *ngIf="password.errors.minlength">
-                      Senha deve ter no mínimo 6 caracters.
-                    </p>
-                    <p *ngIf="password.errors.maxlength">
-                      Senha deve ter no máximo 12 caracters.
-                    </p>
-                  </div>   
+                  <!-- <div class="alert alert-danger" role="alert" *ngIf="password.errors.required">
+                    Senha é obrigatória.
+                  </div>  -->
+                </div>  
+                <div class="alert alert-danger" role="alert" *ngIf="loginError">
+                    {{ loginError }}
+                </div> 
             </div>
             <div class="manage-buttons-div">
                 <button type="button" class="btn1" (click)="cancel()">

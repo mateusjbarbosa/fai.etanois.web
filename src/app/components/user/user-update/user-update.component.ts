@@ -75,7 +75,7 @@ export class UserUpdateComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.minLength(6),
-          Validators.maxLength(12)
+          Validators.maxLength(255)
         ])
       ],
 
@@ -84,7 +84,7 @@ export class UserUpdateComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.minLength(6),
-          Validators.maxLength(12)
+          Validators.maxLength(255)
         ])
       ],
       // confirmarSenha: ['', Validators.compose([Validators.required])]

@@ -20,9 +20,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AttendantAreaLoginComponent implements OnInit {
   login = {
     email: '',
+    userName: '',
     password: '',
   }
   formularioDeUsuario: FormGroup;
+  loginError: string = '';
 
   constructor(
     private userService: UserService,
@@ -45,7 +47,7 @@ export class AttendantAreaLoginComponent implements OnInit {
     const dadosFormulario = this.formularioDeUsuario.value;
 
     const usuario = (
-      dadosFormulario.email,
+      dadosFormulario.userName,
       dadosFormulario.password
     );
     // alert(`O usuário ${usuario.nome} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
@@ -54,56 +56,53 @@ export class AttendantAreaLoginComponent implements OnInit {
   criarFormularioDeUsuario() {
     this.formularioDeUsuario = this.fb.group(
       {
-        // email: ['', Validators.compose([Validators.email])],
         email: ['',],
-
+        userName: ['',],
         password: [
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(12)
           ])
         ],
-        // confirmarSenha: ['', Validators.compose([Validators.required])]
+
       },
       {
-        // validator: Validacoes.SenhasCombinam
+
       }
     );
   }
-   // Propriedades do formulário que vamos utilizar para obter os erros
-
-  // get email() {
-  //   return this.formularioDeUsuario.get('email');
-  // }
-
 
   get password() {
     return this.formularioDeUsuario.get('password');
   }
 
-
-  
-
   actionLogin(): void {
-    this.userService.generateToken(this.login.email, this.login.password).subscribe(loginResponse => {
-      sessionStorage.setItem('token', loginResponse.payload.token)
-      sessionStorage.setItem('id', loginResponse.payload.id)
-      console.log('token', loginResponse.payload.token)
-      this.userService.readById(loginResponse.payload.id).subscribe(userResponse => {
-        // console.log('userResponse: ', userResponse);
-        // console.log('sessionStorage: ', sessionStorage);
+    this.userService.generateToken(this.login.email, this.login.password).subscribe(
+      loginResponse => {
+        sessionStorage.setItem('token', loginResponse.payload.token)
+        sessionStorage.setItem('id', loginResponse.payload.id)
+        console.log('token', loginResponse.payload.token)
+        this.userService.readById(loginResponse.payload.id).subscribe(userResponse => {
+          console.log('userResponse: ', userResponse);
+          // console.log('sessionStorage: ', sessionStorage);
 
-        if (userResponse != null) {
-          sessionStorage.setItem('usuarioLogado', JSON.stringify({ userResponse }))
-          this.hearderService.setUsuarioLogado(userResponse);
-          // console.log('userResponse: ', sessionStorage);
-          this.router.navigate(['/post']);
-        }
 
-      })
-    })
+
+          if (userResponse != null) {
+            sessionStorage.setItem('usuarioLogado', JSON.stringify({ userResponse }))
+            this.hearderService.setUsuarioLogado(userResponse);
+            // console.log('userResponse: ', sessionStorage);
+            this.router.navigate(['/post']);
+          } else {
+            this.loginError = "Apelido ou senha inválidos!"
+          }
+        })
+      },
+      err => {
+        console.log('error: ', err);
+        this.loginError = "Apelido ou senha inválidos!";
+      },
+      () => console.log('HTTP request completed.'))
 
   }
 

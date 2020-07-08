@@ -79,7 +79,7 @@ export class UserCreateComponent implements OnInit {
         ])],
 
       email: ['', Validators.compose([Validators.email])],
-      
+
       password: [
         '',
         Validators.compose([
@@ -92,10 +92,6 @@ export class UserCreateComponent implements OnInit {
   }
 
   createUser(): void {
-    // this.userService.verifyExistenceCredentials(this.user.email).subscribe(() =>{
-    //   console.log(error);
-    // });
-
     this.userService.create(this.user).subscribe(
       res => console.log('HTTP response', res),
       err => {
@@ -103,17 +99,17 @@ export class UserCreateComponent implements OnInit {
 
         if (err.error.msg[0] === 'E-mail is already in use') {
           this.emailError = 'Esse e-mail já está cadastrado!';
-        }else if(err.error.msg[0] === 'Username is already in use'){
+        } else if (err.error.msg[0] === 'Username is already in use') {
           this.userNameError = 'Esse apelido já está cadastrado!';
         }
-        // this.userService.showMessage(err.error.msg[0], true);
       },
       () => console.log('HTTP request completed.')
-  );
+
+    );
 
     // this.userService.create(this.user).subscribe(() => {
     //   this.userService.showMessage('Usuário criado com sucesso!')
-    //   this.router.navigate(['user-created-successfully'])
+    this.router.navigate(['user-created-successfully'])
     // })
   }
   cancel(): void {
