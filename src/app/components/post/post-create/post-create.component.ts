@@ -32,7 +32,7 @@ export class PostCreateComponent implements OnInit {
 
   // Aqui damos um nome para nosso formulário
   // E ele precisa ser do tipo FormGroup
-  formularioDeUsuario: FormGroup;
+  formulario: FormGroup;
   // Via DI, nós obtemos o FormBuilder.
   constructor(
     private postService: PostService,
@@ -45,7 +45,7 @@ export class PostCreateComponent implements OnInit {
   }
 
   enviarDados() {
-    const dadosFormulario = this.formularioDeUsuario.value;
+    const dadosFormulario = this.formulario.value;
     const usuario = (
       dadosFormulario.name,
       dadosFormulario.cnpj,
@@ -53,11 +53,11 @@ export class PostCreateComponent implements OnInit {
       dadosFormulario.address
     );
     alert(`O usuário ${usuario.name} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
-    this.formularioDeUsuario.reset();
+    this.formulario.reset();
   }
 
   criarFormularioDeUsuario() {
-    this.formularioDeUsuario = this.fb.group({
+    this.formulario = this.fb.group({
       name: ['',
         Validators.compose([
           Validators.required,
@@ -106,18 +106,18 @@ export class PostCreateComponent implements OnInit {
 
   // Propriedades do formulário que vamos utilizar para obter os erros
   get name() {
-    return this.formularioDeUsuario.get('name');
+    return this.formulario.get('name');
   }
   get cnpj() {
-    return this.formularioDeUsuario.get('cnpj');
+    return this.formulario.get('cnpj');
   }
 
   get flag_of_fuel_station() {
-    return this.formularioDeUsuario.get('flag_of_fuel_station');
+    return this.formulario.get('flag_of_fuel_station');
   }
 
   get address() {
-    return this.formularioDeUsuario.get('address');
+    return this.formulario.get('address');
   }
 
 }

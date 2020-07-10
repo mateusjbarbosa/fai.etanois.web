@@ -31,8 +31,8 @@ export class UserService {
     create(user: User): Observable<User> {
         return this.http.post<User>(`${this.endpoint}/new`, user).pipe(
             map((obj) => obj),
-            // catchError(e => this.errorHandler(e))
             catchError(e => throwError(e))
+            // catchError(e => this.errorHandler(e))
 
         );
     }

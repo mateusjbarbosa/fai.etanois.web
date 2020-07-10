@@ -93,24 +93,27 @@ export class UserCreateComponent implements OnInit {
 
   createUser(): void {
     this.userService.create(this.user).subscribe(
-      res => console.log('HTTP response', res),
+      // res => console.log('HTTP response', res){
+      res => {
+        console.log('HTTP response', res);
+        this.userService.showMessage('Usuário criado com sucesso!');
+        this.router.navigate(['user-created-successfully']);
+      },
       err => {
         console.log('error: ', err);
 
         if (err.error.msg[0] === 'E-mail is already in use') {
           this.emailError = 'Esse e-mail já está cadastrado!';
+          this.userService.errorHandler('Erro!');
         } else if (err.error.msg[0] === 'Username is already in use') {
           this.userNameError = 'Esse apelido já está cadastrado!';
+          this.userService.errorHandler('Erro!');
         }
       },
       () => console.log('HTTP request completed.')
 
-    );
 
-    // this.userService.create(this.user).subscribe(() => {
-    //   this.userService.showMessage('Usuário criado com sucesso!')
-    this.router.navigate(['user-created-successfully'])
-    // })
+    );
   }
   cancel(): void {
     this.router.navigate(['/'])
