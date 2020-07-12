@@ -15,10 +15,10 @@ export class PostCreateComponent implements OnInit {
 
 
   post: Post = {
-    name: 'Posto Vasconcelos',
-    cnpj: '49.461.000/0001-88',
-    flag_of_fuel_station: 'Branca',
-    address: 'Travessa da Luz n° 165 B: São Luís'
+    name: undefined,
+    cnpj: undefined,
+    flag_of_fuel_station: undefined,
+    address: undefined
     // cep: '65068-687',
     // email: 'posto@hotmail.com',
     // phone_number: '(35)3473-1221',
@@ -97,7 +97,7 @@ export class PostCreateComponent implements OnInit {
     console.log(this.post);
     this.postService.create(this.post).subscribe(() => {
       this.postService.showMessage('Posto criado com sucesso!')
-      this.router.navigate(['/post'])
+      this.router.navigate(['post/created/successfully'])
     })
   }
   cancel(): void {

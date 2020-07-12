@@ -97,7 +97,7 @@ export class UserCreateComponent implements OnInit {
       res => {
         console.log('HTTP response', res);
         this.userService.showMessage('Usuário criado com sucesso!');
-        this.router.navigate(['user-created-successfully']);
+        this.router.navigate(['user/created/successfully']);
       },
       err => {
         console.log('error: ', err);

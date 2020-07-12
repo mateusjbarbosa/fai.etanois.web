@@ -20,32 +20,29 @@
 
         <section class="manage-input-section">
             <form [formGroup]="formularioDeUsuario" (ngSubmit)="enviarDados()">
-             <div class="input-item-div">
-                    <label>Apelido</label>
-                    <input type="text" id="imputEmail" formControlName="email" class="form-control" name="email" placeholder="Digite seu e-mail ou apelido"
-                    [(ngModel)]='login.email' required>
-            </div>
-            <div class="input-item-div">
-                <label>Senha de acesso</label>
-                <input type="password" name="senha" placeholder="Digite sua senha" formControlName="password"
-                [(ngModel)]='login.password' required> 
-                <div class="input-item" *ngIf="!password.pristine && password.errors">
-                  <!-- <div class="alert alert-danger" role="alert" *ngIf="password.errors.required">
-                    Senha é obrigatória.
-                  </div>  -->
-                </div>  
-                <div class="alert alert-danger" role="alert" *ngIf="loginError">
+                  <div class="input-item-div">
+                        <label>Apelido</label>
+                        <input type="text" id="imputEmail" formControlName="email" class="form-control" name="email" placeholder="Digite seu apelido"
+                        [(ngModel)]='login.email' required>
+                  </div>
+                  <div class="input-item-div">
+                        <label>Senha de acesso</label>
+                        <input type="password" name="senha" placeholder="Digite sua senha" formControlName="password"
+                        [(ngModel)]='login.password' required> 
+                 </div>
+                 <div class="alert alert-danger" role="alert" *ngIf="loginError">
                     {{ loginError }}
-                </div> 
-            </div>
-            <div class="manage-buttons-div">
-                <button type="button" class="btn1" (click)="cancel()">
-                    < Voltar</button>
-                        <button type="button" class="btn2" (click)="actionLogin()" [disabled]="!formularioDeUsuario.valid">Seguir ></button>
-            </div>
-            <!-- <div>{{ formularioDeUsuario.value | json}}</div>
-            <div>{{ formularioDeUsuario.valid | json }}</div> -->
-        </form>
+                 </div> 
+                 <div class="manage-buttons-div">
+                    <button type="button" class="btn1" (click)="cancel()">
+                         < Voltar</button>
+                             <button type="button" class="btn2" (click)="actionLogin()" [disabled]="!formularioDeUsuario.valid">Seguir ></button>
+                        
+                 </div>
+                 <div class="col-lg-12" style="text-align: right;">
+                     <a class="btn btn-link" href="Forgot/Password">Esqueceu sua senha? clique aqui!</a>
+                 </div>
+            </form>
         </section>   
     </div>
 </body>

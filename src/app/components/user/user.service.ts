@@ -92,4 +92,13 @@ export class UserService {
 
     }
 
+    forgotPassword(email: string): Observable<any> {
+        const url = `${APP_API}user/forgot_password`;
+        // console.log("email:", email)
+        return this.http.post<any>(url, { "email": email }).pipe(
+            map((obj) => obj),
+            catchError(e => throwError(e))
+        );
+
+    }
 }

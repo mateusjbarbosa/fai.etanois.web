@@ -138,3 +138,11 @@ body {
 .input-item {
     color: #ff951c;
 }
+
+.btn-link{
+    color: #11205e;
+    font-family: bagatela, serif;
+    justify-content: right;
+    
+
+}

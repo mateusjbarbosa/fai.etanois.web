@@ -52,6 +52,8 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { DialogElementsComponent } from './components/dialog-elements/dialog-elements.component';
 
 import { ReactiveFormsModule } from "@angular/forms";
+import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
+
 
 
 
@@ -82,6 +84,7 @@ registerLocaleData(localePt);
     ObjectiveComponent,
     NotFoundComponent,
     DialogElementsComponent,
+    ForgotPasswordComponent,
  
 
  

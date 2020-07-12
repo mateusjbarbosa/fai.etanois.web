@@ -13,6 +13,7 @@ import { PostCreateComponent } from './components/post/post-create/post-create.c
 import { PostUpdateComponent } from './components/post/post-update/post-update.component';
 import { PostDeleteComponent } from './components/post/post-delete/post-delete.component';
 import { PostCreatedSuccessfullyComponent } from './views/post-created-successfully/post-created-successfully.component';
+import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 
 
 
@@ -31,8 +32,12 @@ const routes: Routes = [
     component: ObjectiveComponent
   },
   {
-    path:"attendant-area-login",
+    path:"attendant/area/login",
     component: AttendantAreaLoginComponent
+  },
+  {
+    path:"Forgot/Password",
+    component: ForgotPasswordComponent
   },
   {
     path:"user/create",
@@ -63,11 +68,11 @@ const routes: Routes = [
     component: PostDeleteComponent
   },
   {
-    path:"post-created-successfully",
+    path:"post/created/successfully",
     component: PostCreatedSuccessfullyComponent
   },
   {
-    path:"user-created-successfully",
+    path:"user/created/successfully",
     component: UserCreatedSuccessfullyComponent
   },
   { path: '**', component: NotFoundComponent }

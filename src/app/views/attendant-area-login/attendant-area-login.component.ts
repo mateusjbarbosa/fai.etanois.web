@@ -105,5 +105,4 @@ export class AttendantAreaLoginComponent implements OnInit {
       () => console.log('HTTP request completed.'))
 
   }
-
 }
