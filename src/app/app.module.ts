@@ -1,6 +1,9 @@
+
+import { FuelStationReadComponent } from './components/fuel-station/fuel-station-read/fuel-station-read.component';
+import { FuelReadComponent } from './components/fuel/fuel-read/fuel-read.component';
+import { FuelDeleteComponent } from './components/fuel/fuel-delete/fuel-delete.component';
+import { FuelStationCreateComponent } from './components/fuel-station/fuel-station-create/fuel-station-create.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { PostDeleteComponent } from './components/post/post-delete/post-delete.component';
-import { PostUpdateComponent } from './components/post/post-update/post-update.component';
 import { PostCrudComponent } from './views/post-crud/post-crud.component';
 import { AttendantAreaLoginComponent } from './views/attendant-area-login/attendant-area-login.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
@@ -40,8 +43,6 @@ import { registerLocaleData } from '@angular/common';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
-import { PostReadComponent } from './components/post/post-read/post-read.component';
-import { PostCreateComponent } from './components/post/post-create/post-create.component';
 import { PostCreatedSuccessfullyComponent } from './views/post-created-successfully/post-created-successfully.component';
 import { UserCreatedSuccessfullyComponent } from './views/user-created-successfully/user-created-successfully.component';
 import { HeaderLogoComponent } from './components/template/header/header-logo/header-logo.component';
@@ -53,6 +54,9 @@ import { DialogElementsComponent } from './components/dialog-elements/dialog-ele
 
 import { ReactiveFormsModule } from "@angular/forms";
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
+import { FuelStationDeleteComponent } from './components/fuel-station/fuel-station-delete/fuel-station-delete.component';
+import { FuelStationUpdateComponent } from './components/fuel-station/fuel-station-update/fuel-station-update.component';
+
 
 
 
@@ -72,10 +76,6 @@ registerLocaleData(localePt);
     UserReadComponent,
     AttendantAreaLoginComponent,
     PostCrudComponent,
-    PostCreateComponent,
-    PostReadComponent,
-    PostUpdateComponent,
-    PostDeleteComponent,
     PostCreatedSuccessfullyComponent,
     UserCreatedSuccessfullyComponent,
     HeaderLogoComponent,
@@ -85,12 +85,20 @@ registerLocaleData(localePt);
     NotFoundComponent,
     DialogElementsComponent,
     ForgotPasswordComponent,
- 
+    FuelStationCreateComponent,
+    FuelStationReadComponent,
+    FuelStationDeleteComponent,
+    FuelStationUpdateComponent
 
- 
     
-   
- 
+
+
+
+
+
+
+
+
   ],
   imports: [
     BrowserModule,

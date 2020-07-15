@@ -1,3 +1,4 @@
+import { FuelStationReadComponent } from './components/fuel-station/fuel-station-read/fuel-station-read.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ObjectiveComponent } from './views/objective/objective.component';
 import { UserCreatedSuccessfullyComponent } from './views/user-created-successfully/user-created-successfully.component';
@@ -9,11 +10,11 @@ import { UserCreateComponent } from './components/user/user-create/user-create.c
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { PostCrudComponent } from './views/post-crud/post-crud.component';
-import { PostCreateComponent } from './components/post/post-create/post-create.component';
-import { PostUpdateComponent } from './components/post/post-update/post-update.component';
-import { PostDeleteComponent } from './components/post/post-delete/post-delete.component';
 import { PostCreatedSuccessfullyComponent } from './views/post-created-successfully/post-created-successfully.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
+import { FuelStationCreateComponent } from './components/fuel-station/fuel-station-create/fuel-station-create.component';
+import { FuelStationUpdateComponent } from './components/fuel-station/fuel-station-update/fuel-station-update.component';
+import { FuelStationDeleteComponent } from './components/fuel-station/fuel-station-delete/fuel-station-delete.component';
 
 
 
@@ -56,16 +57,20 @@ const routes: Routes = [
     component: PostCrudComponent
   },
   {
-    path:"post/create",
-    component: PostCreateComponent
+    path:"fuelStation/create",
+    component: FuelStationCreateComponent
   },
   {
-    path:"post/update/:id",
-    component: PostUpdateComponent
+    path:"fuelStation/update/:id",
+    component: FuelStationUpdateComponent
   },
   {
-    path:"post/delete/:id",
-    component: PostDeleteComponent
+    path:"fuel/delete/:id",
+    component: FuelStationDeleteComponent
+  },
+  {
+    path:"fuel/read/:id",
+    component: FuelStationReadComponent
   },
   {
     path:"post/created/successfully",
