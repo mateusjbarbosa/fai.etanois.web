@@ -1,0 +1,113 @@
+
+<div class="mat-elevation-z4">
+    <table mat-table [dataSource]="fuelStation">
+      <!-- Id Column -->
+       <ng-container matColumnDef="id">
+       <th mat-header-cell *matHeaderCellDef>Id</th>
+       <td mat-cell *matCellDef="let row">{{row.id}}</td>
+       </ng-container>
+
+       <!-- name Column -->
+      <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+       <!-- address Column -->
+       <ng-container matColumnDef="address">
+       <th mat-header-cell *matHeaderCellDef>Endereço</th>
+       <td mat-cell *matCellDef="let row">{{row.address}}</td>
+       </ng-container>
+  
+      <!-- CNPJ Column -->
+      <ng-container matColumnDef="cnpj">
+      <th mat-header-cell *matHeaderCellDef>Cnpj</th>
+      <td mat-cell *matCellDef="let row">{{row.cnpj}}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let row">{{row.email}}</td>
+      </ng-container>
+
+      <!-- phone_number Column -->
+      <ng-container matColumnDef="phone_number">
+      <th mat-header-cell *matHeaderCellDef>Telefone</th>
+      <td mat-cell *matCellDef="let row">{{row.phone_number}}</td>
+      </ng-container>
+
+      <!-- payment_card Column -->
+      <ng-container matColumnDef="payment_card">
+      <th mat-header-cell *matHeaderCellDef>Numero Cartão</th>
+      <td mat-cell *matCellDef="let row">{{row.payment_card}}</td>
+      </ng-container>
+          
+      <!-- password Column -->
+      <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef>Senha</th>
+      <td mat-cell *matCellDef="let row">{{row.password}}</td>
+      </ng-container>
+
+      <!-- cep Column -->
+      <ng-container matColumnDef="cep">
+      <th mat-header-cell *matHeaderCellDef>Cep</th>
+      <td mat-cell *matCellDef="let row">{{row.cep}}</td>
+      </ng-container>
+
+      <!-- flag_of_fuel_station Column -->
+      <ng-container matColumnDef="flag_of_fuel_station">
+      <th mat-header-cell *matHeaderCellDef>Bandeira Posto</th>
+      <td mat-cell *matCellDef="let row">{{row.flag_of_fuel_station}}</td>
+      </ng-container>
+
+      <!-- openning_hours Column -->
+      <ng-container matColumnDef="openning_hours">
+      <th mat-header-cell *matHeaderCellDef>Horário Funcionamento</th>
+      <td mat-cell *matCellDef="let row">{{row.openning_hours}}</td>
+      </ng-container>
+
+      <!-- restaurant Column -->
+      <ng-container matColumnDef="restaurant">
+      <th mat-header-cell *matHeaderCellDef>Restaurante</th>
+      <td mat-cell *matCellDef="let row">{{row.restaurant}}</td>
+      </ng-container>
+
+      <!-- car_wash Column -->
+      <ng-container matColumnDef="car_wash">
+      <th mat-header-cell *matHeaderCellDef>Lava-jato</th>
+      <td mat-cell *matCellDef="let row">{{row.car_wash}}</td>
+      </ng-container>
+
+      <!-- mechanical Column -->
+      <ng-container matColumnDef="mechanical">
+      <th mat-header-cell *matHeaderCellDef>Mecânico</th>
+      <td mat-cell *matCellDef="let row">{{row.mechanical}}</td>
+      </ng-container>       
+    
+
+         
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let row">
+          <a routerLink="/fuelStation/update/{{row.id}}" class="edit">
+              <i class="material-icons">
+                edit
+              </i>
+          </a>
+          <a routerLink="/fuelStation/delete/{{row.id}}"class="delete"> 
+              <i class="material-icons">
+                delete
+              </i>
+          </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+    </table>
+  </div>
+  
+
