@@ -4,9 +4,9 @@ export interface FuelStation {
     cnpj: string,
     flag_of_fuel_station: string,
     address: string,
-    // email: string,
-    // phone_number: string,
-    // payment_card: number,
+    email: string,
+    phone_number: string,
+    payment_card: number,
     // password: string,
     cep: string
     // openning_hours: string,

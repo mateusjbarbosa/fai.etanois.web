@@ -37,8 +37,8 @@
             </div>
             <div class="input-item-div">
                 <label for="cnpj">Qual razão social?</label>
-                <input (keyup)="cnpjmask()" type="text" name="cnpj" placeholder="Digite o cnpj"
-                [(ngModel)]="fuelStation.cnpj" formControlName="cnpj"  [mask]="mask">
+                <input (keyup)="cnpjMask()" type="text" name="cnpj" placeholder="Digite o cnpj"
+                [(ngModel)]="fuelStation.cnpj" formControlName="cnpj"  [mask]="maskCnpj">
            
                 <div class="input-item" *ngIf="!cnpj.pristine && cnpj.errors">
                  
@@ -97,8 +97,88 @@
                    Endereço deve ter no máximo 50 caracters.
                  </div>
                </div>
-                
             </div>
+            <div class="input-item-div">
+              <label for="cep">Qual é o Cep?</label>
+              <input (keyup)="cepMask()"  [mask]="maskCep" type="text" name="cep" placeholder="Digite o cep"
+              [(ngModel)]="fuelStation.cep" formControlName="cep">
+
+              <div class="input-item" *ngIf="!cep.pristine && cep.errors">
+                 
+                <div class="alert alert-danger" role="alert" *ngIf="cep.errors.required">
+                  Cep é obrigatório.
+                </div>
+
+                <div class="alert alert-danger" role="alert" *ngIf="cep.errors.minlength">
+                  Cep deve ter no mínimo 8 caracters.
+                </div>
+             
+                <div class="alert alert-danger" role="alert" *ngIf="cep.errors.maxlength">
+                  Cep deve ter no máximo 8 caracters.
+                </div>
+               </div> 
+            </div>
+
+            <div class="input-item-div">
+              <label for="email">Qual é o E-mail</label>
+              <input type="text" name="email" placeholder="Digite o e-mail"
+              [(ngModel)]="fuelStation.email" formControlName="email">
+
+              <div class="input-item" *ngIf="!email.pristine && email.errors">
+                 
+                <div class="alert alert-danger" role="alert" *ngIf="email.errors.required">
+                  E-mail é obrigatório.
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="email.errors.email">
+                  Digite um e-mail válido.
+                </div>
+               </div> 
+               <div class="alert alert-danger" role="alert" *ngIf="emailError">
+                {{ emailError }}
+              </div>
+            </div>
+            <div class="input-item-div">
+              <label for="phone_number">Qual telefone?</label>
+              <input (keyup)="phoneNumberMask()" type="text" name="phone_number" placeholder="Digite o telefone"
+              [(ngModel)]="fuelStation.phone_number" formControlName="phone_number"  [mask]="maskPhone">
+         
+              <div class="input-item" *ngIf="!phone_number.pristine && phone_number.errors">
+               
+                 <div class="alert alert-danger" role="alert" *ngIf="phone_number.errors.required">
+                   Telefone é obrigatório.
+                 </div>
+
+                 <div class="alert alert-danger" role="alert" *ngIf="phone_number.errors.minlength">
+                   Telefone deve ter no mínimo 10 caracters.
+                 </div>
+              
+                 <div class="alert alert-danger" role="alert" *ngIf="phone_number.errors.maxlength">
+                   Telefone deve ter no máximo 11 caracters.
+                 </div>
+             
+               </div>
+           </div>
+           <div class="input-item-div">
+            <label for="payment_card">Qual seu cartão crédito?</label>
+            <input (keyup)="PaymentCardMask()" type="text" name="payment_card" placeholder="Digite o cartão de crédito"
+            [(ngModel)]="fuelStation.payment_card" formControlName="payment_card"  [mask]="maskPaymentCard">
+       
+            <div class="input-item" *ngIf="!payment_card.pristine && payment_card.errors">
+             
+               <div class="alert alert-danger" role="alert" *ngIf="payment_card.errors.required">
+                 Cartão de crédito é obrigatório.
+               </div>
+
+               <div class="alert alert-danger" role="alert" *ngIf="payment_card.errors.minlength">
+                 Cartão de crédito deve ter no mínimo 16 caracters.
+               </div>
+            
+               <div class="alert alert-danger" role="alert" *ngIf="payment_card.errors.maxlength">
+                 Cartão de crédito deve ter no máximo 16 caracters.
+               </div>
+           
+             </div>
+         </div>
             <div class="manage-buttons-div">
                 <button type="button" class="btn1" (click)="cancel()">
                     < Voltar</button>
