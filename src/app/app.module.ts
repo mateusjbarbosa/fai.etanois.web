@@ -52,6 +52,11 @@ import { FuelStationCreateComponent } from './components/fuel-station/fuel-stati
 import { FuelStationReadComponent } from './components/fuel-station/fuel-station-read/fuel-station-read.component';
 import { FuelStationUpdateComponent } from './components/fuel-station/fuel-station-update/fuel-station-update.component';
 import { FuelStationDeleteComponent } from './components/fuel-station/fuel-station-delete/fuel-station-delete.component';
+import { DashboardAttendantComponent } from './views/dashboard-attendant/dashboard-attendant.component';
+import { NavComponent } from './components/template/nav/nav.component';
+
+
+
 
 
 registerLocaleData(localePt);
@@ -84,7 +89,9 @@ registerLocaleData(localePt);
     FuelStationCreateComponent,
     FuelStationReadComponent,
     FuelStationDeleteComponent,
-    FuelStationUpdateComponent
+    FuelStationUpdateComponent,
+    DashboardAttendantComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

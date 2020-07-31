@@ -58,7 +58,6 @@ export class ForgotPasswordComponent implements OnInit {
       res => {
         console.log('HTTP response', res);
         this.userService.showMessage('E-mail enviado com sucesso!');
-        // this.router.navigate(['user/created/successfully']);
       },
       err => {
         console.log('error: ', err);

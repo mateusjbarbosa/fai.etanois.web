@@ -1,6 +1,8 @@
 import { FuelService } from './../fuel.service';
 import { Component, OnInit } from '@angular/core';
 import { Fuel } from '../fuel.model';
+import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-fuel-create',
@@ -8,14 +10,19 @@ import { Fuel } from '../fuel.model';
   styleUrls: ['./fuel-create.component.css']
 })
 export class FuelCreateComponent implements OnInit {
-  [x: string]: any;
+
 
   fuel: Fuel = {
     name: undefined,
 
   }
+  
 
-  constructor() { }
+  constructor(
+    private fuelService: FuelService,
+    private router: Router,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
   }
@@ -24,26 +31,17 @@ export class FuelCreateComponent implements OnInit {
     this.fuelService.create(this.fuel).subscribe(
       res => {
         console.log('HTTP response', res);
-        this.fuelService.showMessage('Combuustível criado com sucesso!');
-        // this.router.navigate(['user/created/successfully']);
+        this.fuelService.showMessage('Combustível criado com sucesso!');
       },
       err => {
         console.log('error: ', err);
-        this.userService.errorHandler('Erro!');
-
-        // if (err.error.msg[0] === 'E-mail is already in use') {
-        //   this.emailError = 'Esse e-mail já está cadastrado!';
-        //   this.userService.errorHandler('Erro!');
-        // } else if (err.error.msg[0] === 'Username is already in use') {
-        //   this.userNameError = 'Esse apelido já está cadastrado!';
-        //   this.userService.errorHandler('Erro!');
-        // }
+        this.fuelService.errorHandler('Erro!');
       },
       () => console.log('HTTP request completed.')
     );
   }
   cancel(): void {
-    // this.router.navigate(['/'])
+    this.router.navigate(['/post'])
   }
 
 }

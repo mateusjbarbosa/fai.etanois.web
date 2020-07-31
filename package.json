@@ -25,6 +25,7 @@
     "angular-material": "^1.1.22",
     "bootstrap": "^4.5.0",
     "brmasker": "^1.0.19",
+    "cors": "^2.8.5",
     "jquery": "^3.5.1",
     "ngx-mask": "^9.1.2",
     "popper.js": "^1.14.3",

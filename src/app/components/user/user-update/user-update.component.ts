@@ -5,7 +5,7 @@ import { UserService } from '../user.service';
 import { User } from '../user.model';
 import { Token } from '@angular/compiler/src/ml_parser/lexer';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Validacoes } from '../../validacoes';
+
 
 @Component({
   selector: 'app-user-update',

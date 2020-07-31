@@ -23,12 +23,12 @@ export class UserCreateComponent implements OnInit {
     password: undefined,
     new_password: undefined,
     old_password: undefined,
-    name: undefined
-    // cep: "",
+    name: undefined,
+    cep: undefined,
+    phone_number: undefined,
     // search_distance_with_route: 15,
     // search_distance_without_route: 15,
     // payment_mode: "dinheiro",
-    // phone_number: "(35)98524-1221",
     // role: "frentista",
     // etacoins: 10,
   }
@@ -49,21 +49,53 @@ export class UserCreateComponent implements OnInit {
 
   }
 
+  createUser(): void {
+    console.log("usuário: ", this.user);
+    this.userService.create(this.user).subscribe(
+      res => {
+        console.log('HTTP response', res);
+        this.userService.showMessage('Usuário criado com sucesso!');
+        this.router.navigate(['user/created/successfully']);
+      },
+      err => {
+        console.log('error: ', err);
+        if (err.error.msg[0] === 'E-mail is already in use') {
+          this.emailError = 'Esse e-mail já está cadastrado!';
+          this.userService.errorHandler('Erro!');
+        } else if (err.error.msg[0] === 'Username is already in use') {
+          this.userNameError = 'Esse apelido já está cadastrado!';
+          this.userService.errorHandler('Erro!');
+        }
+      },
+      () => console.log('HTTP request completed.')
+    );
+  }
+
+  cancel(): void {
+    this.router.navigate(['/'])
+  }
+
+
+  //Início Validações usuário
   enviarDados() {
     const dadosFormulario = this.formularioDeUsuario.value;
     const usuario = (
       dadosFormulario.name,
       dadosFormulario.username,
       dadosFormulario.email,
-      dadosFormulario.password
+      dadosFormulario.password,
+      dadosFormulario.cep
+
     );
     alert(`O usuário ${usuario.name} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
     this.formularioDeUsuario.reset();
   }
 
+
   criarFormularioDeUsuario() {
     this.formularioDeUsuario = this.fb.group({
-      name: ['',
+      name: [
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(3),
@@ -78,47 +110,35 @@ export class UserCreateComponent implements OnInit {
           Validators.maxLength(30)
         ])],
 
-      email: ['', Validators.compose([Validators.email])],
+      email: [
+        '', Validators.compose([Validators.email])],
 
       password: [
         '',
         Validators.compose([
           Validators.required,
           Validators.minLength(6),
-          Validators.maxLength(12)
+          Validators.maxLength(255)
         ])
       ],
+      cep: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(8)
+        ])
+      ],
+
+      phone_number: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(11)
+        ])],
     });
   }
-
-  createUser(): void {
-    this.userService.create(this.user).subscribe(
-      // res => console.log('HTTP response', res){
-      res => {
-        console.log('HTTP response', res);
-        this.userService.showMessage('Usuário criado com sucesso!');
-        this.router.navigate(['user/created/successfully']);
-      },
-      err => {
-        console.log('error: ', err);
-
-        if (err.error.msg[0] === 'E-mail is already in use') {
-          this.emailError = 'Esse e-mail já está cadastrado!';
-          this.userService.errorHandler('Erro!');
-        } else if (err.error.msg[0] === 'Username is already in use') {
-          this.userNameError = 'Esse apelido já está cadastrado!';
-          this.userService.errorHandler('Erro!');
-        }
-      },
-      () => console.log('HTTP request completed.')
-
-
-    );
-  }
-  cancel(): void {
-    this.router.navigate(['/'])
-  }
-
   // Propriedades do formulário que vamos utilizar para obter os erros
   get name() {
     return this.formularioDeUsuario.get('name');
@@ -134,4 +154,33 @@ export class UserCreateComponent implements OnInit {
   get password() {
     return this.formularioDeUsuario.get('password');
   }
+  get cep() {
+    return this.formularioDeUsuario.get('cep');
+  }
+  get phone_number() {
+    return this.formularioDeUsuario.get('phone_number');
+  }
+  //Fim Validações
+
+
+  //Início Máscaras
+  maskCep: string;
+  cepMask() {
+    const value = this.formularioDeUsuario.get('cep').value;
+    // console.log(value, value.length, this.formularioForm)
+    if (value.length <= 8) {
+      this.maskCep = '00.000-000'
+    }
+  }
+
+  maskPhone: string;
+  phoneNumberMask() {
+    const value = this.formularioDeUsuario.get('phone_number').value;
+    // console.log(value, value.length, this.formularioForm)
+    if (value.length <= 11) {
+      this.maskPhone = '(00)00000-0000'
+    }
+  }
+
+
 }

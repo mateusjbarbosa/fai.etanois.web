@@ -1,5 +1,5 @@
 import { User } from './../../components/user/user.model';
-import { Validacoes } from './../../components/validacoes';
+
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';

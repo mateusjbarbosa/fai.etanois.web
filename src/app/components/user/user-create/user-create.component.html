@@ -82,23 +82,61 @@
               </div>
            </div>
            <div class="input-item-div">
-               <label for="password">Digite sua senha de acesso</label>
-               <input type="password" name="password" placeholder="Digite sua senha"
-               [(ngModel)]="user.password" formControlName="password" required>
+            <label for="cep">Digite seu Cep</label>
+            <input (keyup)="cepMask()"  [mask]="maskCep" type="cep" name="cep" placeholder="Digite seu Cep"
+            [(ngModel)]="user.cep" formControlName="cep" required>
 
-               <div class="input-item" *ngIf="!password.pristine && password.errors">
-                <div class="alert alert-danger" role="alert" *ngIf="password.errors.required">
-                  Senha é obrigatória.
-                </div>
-                <div class="alert alert-danger" role="alert" *ngIf="password.errors.minlength">
-                  Senha deve ter no mínimo 6 caracters.
-                </div>
-                <div class="alert alert-danger" role="alert" *ngIf="password.errors.maxlength">
-                  Senha deve ter no máximo 255 caracters.
-                </div>
-            </div>
+            <div class="input-item" *ngIf="!cep.pristine && cep.errors">
+             <div class="alert alert-danger" role="alert" *ngIf="cep.errors.required">
+               Cep é obrigatório.
+             </div>
+             <div class="alert alert-danger" role="alert" *ngIf="cep.errors.minlength">
+               Cep deve ter no mínimo 8 caracters.
+             </div>
+             <div class="alert alert-danger" role="alert" *ngIf="cep.errors.maxlength">
+               Cep deve ter no máximo 8 caracters.
+             </div>
+         </div>
+        </div>
+        <div class="input-item-div">
+          <label for="phone_number">Qual telefone?</label>
+          <input (keyup)="phoneNumberMask()" type="text" name="phone_number" placeholder="Digite o telefone"
+          [(ngModel)]="user.phone_number" formControlName="phone_number"  [mask]="maskPhone">
+     
+          <div class="input-item" *ngIf="!phone_number.pristine && phone_number.errors">
+           
+             <div class="alert alert-danger" role="alert" *ngIf="phone_number.errors.required">
+               Telefone é obrigatório.
+             </div>
 
+             <div class="alert alert-danger" role="alert" *ngIf="phone_number.errors.minlength">
+               Telefone deve ter no mínimo 11 caracters.
+             </div>
+          
+             <div class="alert alert-danger" role="alert" *ngIf="phone_number.errors.maxlength">
+               Telefone deve ter no máximo 11 caracters.
+             </div>
+         
            </div>
+       </div>
+       <div class="input-item-div">
+        <label for="password">Digite sua senha de acesso</label>
+        <input type="password" name="password" placeholder="Digite sua senha"
+        [(ngModel)]="user.password" formControlName="password" required>
+
+        <div class="input-item" *ngIf="!password.pristine && password.errors">
+         <div class="alert alert-danger" role="alert" *ngIf="password.errors.required">
+           Senha é obrigatória.
+         </div>
+         <div class="alert alert-danger" role="alert" *ngIf="password.errors.minlength">
+           Senha deve ter no mínimo 6 caracters.
+         </div>
+         <div class="alert alert-danger" role="alert" *ngIf="password.errors.maxlength">
+           Senha deve ter no máximo 255 caracters.
+         </div>
+     </div>
+
+    </div>
 
            <div class="manage-buttons-div">
                <button type="button" class="btn1" (click)="cancel()">

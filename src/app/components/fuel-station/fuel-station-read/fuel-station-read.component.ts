@@ -9,9 +9,11 @@ import { FuelStationService } from '../fuel-state.service';
 })
 export class FuelStationReadComponent implements OnInit {
   fuelStation: FuelStation[]
-  displayedColumns = ['id', 'name', 'cnpj', 'email', 'phone_number', 'payment_card'
-    , 'password', 'address', 'cep', 'flag_of_fuel_station', 'openning_hours',
-    'restaurant', 'car_wash', 'mechanical', 'action']
+  // displayedColumns = ['id', 'name', 'cnpj', 'street', 'neighborhood', 'cep'
+  //   , 'time_to_open', 'time_to_close', 'cep', 'flag_of_fuel_station', 'openning_hours',
+  //   'time_to_open', 'car_wash', 'mechanical', 'action']
+  displayedColumns = ['id', 'name', 'cnpj', 'street', 'neighborhood', 'cep'
+    , 'time_to_open', 'time_to_close', 'action']
 
   constructor(private fuelStationService: FuelStationService) { }
 

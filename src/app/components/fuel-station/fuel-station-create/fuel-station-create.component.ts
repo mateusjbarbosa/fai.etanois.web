@@ -1,8 +1,9 @@
 import { FuelStationService } from './../fuel-state.service';
 import { FuelStation } from './../fuel_station.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../../user/user.model';
 
 
 @Component({
@@ -15,24 +16,24 @@ export class FuelStationCreateComponent implements OnInit {
   fuelStation: FuelStation = {
     name: undefined,
     cnpj: undefined,
-    flag_of_fuel_station: undefined,
-    address: undefined,
+    street: undefined,
+    neighborhood: undefined,
     cep: undefined,
-    email: undefined,
-    phone_number: undefined,
-    payment_card: undefined,
+    time_to_open: undefined,
+    time_to_close: undefined,
     // password: '12345678',
     // openning_hours: '24h',
     // restaurant: false,
     // car_wash: true,
     // mechanical: false
   }
-
+  cnpjError: string = '';
+  cepError: string = '';
   // Aqui damos um nome para nosso formulário
   // E ele precisa ser do tipo FormGroup
   formulario: FormGroup;
   // Via DI, nós obtemos o FormBuilder.
-  emailError: string = '';
+
   constructor(
     private fuelStationService: FuelStationService,
     private router: Router,
@@ -40,25 +41,26 @@ export class FuelStationCreateComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.criarFormularioDeUsuario();
+    this.criarFormulario();
+    this.enviaUsuario(sessionStorage);
   }
 
   enviarDados() {
     const dadosFormulario = this.formulario.value;
-    const usuario = (
+    const fuelStation = (
       dadosFormulario.name,
       dadosFormulario.cnpj,
-      dadosFormulario.flag_of_fuel_station,
-      dadosFormulario.address,
+      dadosFormulario.street,
+      dadosFormulario.neighborhood,
       dadosFormulario.cep,
-      dadosFormulario.email,
-      dadosFormulario.payment_card
+      dadosFormulario.time_to_open,
+      dadosFormulario.time_to_open
     );
-    // alert(`O usuário ${usuario.name} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
-    // this.formulario.reset();
+    alert(`O Posto ${fuelStation.name} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(fuelStation)}`);
+    this.formulario.reset();
   }
 
-  criarFormularioDeUsuario() {
+  criarFormulario() {
     this.formulario = this.fb.group({
       name: ['',
         Validators.compose([
@@ -75,18 +77,18 @@ export class FuelStationCreateComponent implements OnInit {
           Validators.maxLength(14)
         ])],
 
-      flag_of_fuel_station: [
+      street: [
         '',
         Validators.compose([
           Validators.required,
           Validators.minLength(6),
-          Validators.maxLength(12)
+          Validators.maxLength(50)
         ])
       ],
-      address: ['',
+      neighborhood: ['',
         Validators.compose([
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(6),
           Validators.maxLength(50)
         ])],
 
@@ -95,35 +97,26 @@ export class FuelStationCreateComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.minLength(8),
-          Validators.maxLength(8)
+          Validators.maxLength(10)
         ])],
 
-      email: ['', Validators.compose([Validators.email])],
-
-      phone_number: [
+      time_to_open: [
         '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(11)
+          Validators.minLength(8),
+          Validators.maxLength(8)
         ])],
 
-        payment_card: [
-          '',
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(16),
-            Validators.maxLength(16)
-          ])],
-  
-
-
-
+      time_to_close: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(8)
+        ])],
     });
   }
-
-
-
   createFuelStation(): void {
     this.fuelStationService.create(this.fuelStation).subscribe(
       res => {
@@ -133,8 +126,14 @@ export class FuelStationCreateComponent implements OnInit {
       },
       err => {
         console.log('error: ', err);
-        if (err.error.msg[0] === 'E-mail is already in use') {
-          this.emailError = 'Esse e-mail já está cadastrado!';
+        if (err.error.msg[0] === 'Invalid CNPJ') {
+          this.cnpjError = 'CNPJ Inválido!';
+          this.fuelStationService.errorHandler('Erro!');
+        } else if (err.error.msg[0] === 'CNPJ is already in use') {
+          this.cnpjError = 'CNPJ já esta cadastrado!';
+          this.fuelStationService.errorHandler('Erro!');
+        }else if (err.error.msg[0] === 'CEP is invalid') {
+          this.cepError = 'CEP inválido!';
           this.fuelStationService.errorHandler('Erro!');
         }
       },
@@ -146,6 +145,12 @@ export class FuelStationCreateComponent implements OnInit {
     this.router.navigate(['/post'])
   }
 
+  @Input() usuarioLogado: User;
+  enviaUsuario(user: Storage): void {
+    this.usuarioLogado = JSON.parse(user["usuarioLogado"]);
+    this.usuarioLogado = this.usuarioLogado["userResponse"]["payload"];
+
+  }
   // Propriedades do formulário que vamos utilizar para obter os erros
   get name() {
     return this.formulario.get('name');
@@ -154,27 +159,23 @@ export class FuelStationCreateComponent implements OnInit {
     return this.formulario.get('cnpj');
   }
 
-  get flag_of_fuel_station() {
-    return this.formulario.get('flag_of_fuel_station');
+  get street() {
+    return this.formulario.get('street');
   }
 
-  get address() {
-    return this.formulario.get('address');
+  get neighborhood() {
+    return this.formulario.get('neighborhood');
   }
 
   get cep() {
     return this.formulario.get('cep');
   }
-  get email() {
-    return this.formulario.get('email');
+  get time_to_open() {
+    return this.formulario.get('time_to_open');
   }
-  get phone_number() {
-    return this.formulario.get('phone_number');
+  get time_to_close() {
+    return this.formulario.get('time_to_close');
   }
-  get payment_card() {
-    return this.formulario.get('payment_card');
-  }
-
   //regras de negócio do component
   maskCnpj: string;
   cnpjMask() {
@@ -185,37 +186,37 @@ export class FuelStationCreateComponent implements OnInit {
     }
   }
 
-  maskCep: string;
-  cepMask() {
-    const value = this.formulario.get('cep').value;
-    // console.log(value, value.length, this.formularioForm)
-    if (value.length <= 8) {
-      this.maskCep = '00.000-000'
-    }
+  // maskCep: string;
+  // cepMask() {
+  //   const value = this.formulario.get('cep').value;
+  //   // console.log(value, value.length, this.formularioForm)
+  //   if (value.length <= 8) {
+  //     this.maskCep = '00.000-000'
+  //   }
 
-  }
+  // }
 
-  maskPhone: string;
-  phoneNumberMask() {
-    const value = this.formulario.get('phone_number').value;
-    // console.log(value, value.length, this.formularioForm)
-    if (value.length < 11) {
-      this.maskPhone = '(00)0000-0000'
-    }else if(value.length >= 11){
-      this.maskPhone = '(00)00000-0000'
-    }
+  // maskPhone: string;
+  // phoneNumberMask() {
+  //   const value = this.formulario.get('phone_number').value;
+  //   // console.log(value, value.length, this.formularioForm)
+  //   if (value.length < 11) {
+  //     this.maskPhone = '(00)0000-0000'
+  //   } else if (value.length >= 11) {
+  //     this.maskPhone = '(00)00000-0000'
+  //   }
 
-  }
+  // }
 
-  maskPaymentCard: string;
-  PaymentCardMask(){
-    const value = this.formulario.get('payment_card').value;
-    // console.log(value, value.length, this.formularioForm)
-    if (value.length <= 16) {
-      this.maskPaymentCard = '0000.0000.0000.0000'
-    }
+  // maskPaymentCard: string;
+  // PaymentCardMask() {
+  //   const value = this.formulario.get('payment_card').value;
+  //   // console.log(value, value.length, this.formularioForm)
+  //   if (value.length <= 16) {
+  //     this.maskPaymentCard = '0000.0000.0000.0000'
+  //   }
 
-  }
+  // }
 
 
 }

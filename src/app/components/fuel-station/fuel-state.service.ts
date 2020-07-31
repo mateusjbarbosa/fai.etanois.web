@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { APP_API } from 'src/app/app.api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-import { Observable, EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { header_object } from 'src/app/authorization';
 import { FuelStation } from './fuel_station.model';
+import { User } from '../user/user.model';
+import { Observable, EMPTY, throwError } from 'rxjs';
+
 
 @Injectable({
     providedIn: 'root'
@@ -25,16 +27,17 @@ export class FuelStationService {
     }
     /*caso aconteça erro no fuelStation, chamo método errorHandler*/
     create(fuelStation: FuelStation): Observable<FuelStation> {
-        return this.http.post<FuelStation>(`${this.endpoint}/new`, fuelStation).pipe(
+        return this.http.post<FuelStation>(`${this.endpoint}/new`, fuelStation, { headers: header_object }).pipe(
             map((obj) => obj),
-            catchError(e => this.errorHandler(e))
+            catchError(e => throwError(e))
+            // catchError(e => this.errorHandler(e))
         );
     }
-
+    
     read(): Observable<FuelStation[]> {
-        return this.http.get<FuelStation[]>(this.endpoint).pipe(
+        return this.http.get<FuelStation[]>(`${this.endpoint}/read-all/1`, { headers: header_object }).pipe(
             map((obj) => obj),
-            catchError(e => this.errorHandler(e))
+            catchError(e => throwError(e))
         );
     }
 
@@ -42,7 +45,7 @@ export class FuelStationService {
         const url = `${this.endpoint}/${id}`;
         return this.http.get<FuelStation>(url, { headers: header_object }).pipe(
             map((obj) => obj),
-            catchError(e => this.errorHandler(e))
+            catchError(e => throwError(e))
         );
     }
 
@@ -50,7 +53,7 @@ export class FuelStationService {
         const url = `${this.endpoint}/${fuelStation.id}`;
         return this.http.put<FuelStation>(url, fuelStation, { headers: header_object }).pipe(
             map((obj) => obj),
-            catchError(e => this.errorHandler(e))
+            catchError(e => throwError(e))
         );
     }
 
@@ -58,7 +61,7 @@ export class FuelStationService {
         const url = `${this.endpoint}/${id}`;
         return this.http.delete<FuelStation>(url, { headers: header_object }).pipe(
             map((obj) => obj),
-            catchError(e => this.errorHandler(e))
+            catchError(e => throwError(e))
         );
     }
 
@@ -66,5 +69,12 @@ export class FuelStationService {
         console.log(e)
         this.showMessage("Ocorreu um erro!", true)
         return EMPTY;
+    }
+
+    @Input() usuarioLogado: User;
+    enviaUsuario(user: Storage): void {
+        this.usuarioLogado = JSON.parse(user["usuarioLogado"]);
+        this.usuarioLogado = this.usuarioLogado["userResponse"]["payload"];
+        
     }
 }
