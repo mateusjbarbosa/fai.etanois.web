@@ -34,8 +34,8 @@ export class FuelStationService {
         );
     }
     
-    read(): Observable<FuelStation[]> {
-        return this.http.get<FuelStation[]>(`${this.endpoint}/read-all/1`, { headers: header_object }).pipe(
+    read(): Observable<any> {
+        return this.http.get<any>(`${this.endpoint}/read-all/1`, { headers: header_object }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );

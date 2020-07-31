@@ -50,7 +50,7 @@ export class AttendantAreaLoginComponent implements OnInit {
       dadosFormulario.userName,
       dadosFormulario.password
     );
-    // alert(`O usuário ${usuario.nome} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
+    alert(`O usuário ${usuario.nome} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
     this.formularioDeUsuario.reset();
   }
   criarFormularioDeUsuario() {
@@ -94,13 +94,13 @@ export class AttendantAreaLoginComponent implements OnInit {
             // console.log('userResponse: ', sessionStorage);
             this.router.navigate(['/post']);
           } else {
-            this.loginError = "Apelido ou senha inválidos!"
+            this.loginError = "Usuário ou senha inválidos!"
           }
         })
       },
       err => {
         console.log('error: ', err);
-        this.loginError = "Apelido ou senha inválidos!";
+        this.loginError = "Usuário ou senha inválidos!";
       },
       () => console.log('HTTP request completed.'))
 
