@@ -1,3 +1,4 @@
+import { DashboardAttendantComponent } from './views/dashboard-attendant/dashboard-attendant.component';
 import { FuelDeleteComponent } from './components/fuel/fuel-delete/fuel-delete.component';
 import { FuelReadComponent } from './components/fuel/fuel-read/fuel-read.component';
 import { FuelUpdateComponent } from './components/fuel/fuel-update/fuel-update.component';
@@ -23,6 +24,7 @@ import { PostCrudComponent } from './views/post-crud/post-crud.component';
 
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { FuelCreateComponent } from './components/fuel/fuel-create/fuel-create.component';
+import { GasStationAttendantManagerAccessComponent } from './views/gas-station-attendant-manager-access/gas-station-attendant-manager-access.component';
 
 
 
@@ -105,6 +107,14 @@ const routes: Routes = [
   {
     path: "user/created/successfully",
     component: UserCreatedSuccessfullyComponent
+  },
+  {
+    path: "Gas/Station/Attendant/Manager/Access",
+    component: GasStationAttendantManagerAccessComponent
+  },
+  {
+    path: "dashboard/attendant",
+    component: DashboardAttendantComponent
   },
   { path: '**', component: NotFoundComponent }
 ];

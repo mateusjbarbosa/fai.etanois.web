@@ -55,6 +55,7 @@ import { FuelStationDeleteComponent } from './components/fuel-station/fuel-stati
 import { DashboardAttendantComponent } from './views/dashboard-attendant/dashboard-attendant.component';
 import { NavComponent } from './components/template/nav/nav.component';
 import { LabelElementsComponent } from './components/label-elements/label-elements.component';
+import { GasStationAttendantManagerAccessComponent } from './views/gas-station-attendant-manager-access/gas-station-attendant-manager-access.component';
 
 
 
@@ -93,7 +94,8 @@ registerLocaleData(localePt);
     FuelStationUpdateComponent,
     DashboardAttendantComponent,
     NavComponent,
-    LabelElementsComponent
+    LabelElementsComponent,
+    GasStationAttendantManagerAccessComponent
   ],
   imports: [
     BrowserModule,

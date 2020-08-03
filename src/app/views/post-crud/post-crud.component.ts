@@ -19,8 +19,8 @@ export class PostCrudComponent implements OnInit {
   navigateToFuelStationCreate(): void {
     this.router.navigate(['/fuelStation/create'])
   }
-  navigateToFuelCreate(): void {
-    this.router.navigate(['/fuel/create'])
+  navigateToFuelStation(): void {
+    this.router.navigate(['/fuelStation'])
   }
-  
+
 }
