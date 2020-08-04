@@ -22,4 +22,11 @@ export class NavComponent implements OnInit {
     this.usuarioLogado = this.usuarioLogado["userResponse"]["payload"];
   }
 
+  navegateDashboardAttendant(): void {
+    this.router.navigate(['dashboard/attendant'])
+  }
+  navegateFuelCreate(): void {
+    this.router.navigate(['fuel/create'])
+  }
+
 }
