@@ -1,10 +1,8 @@
-
-  <li *ngFor="let fuelStation of fuelStations">
+  <!-- <li *ngFor="let fuelStation of fuelStations">
     {{ fuelStation.name }} | {{ fuelStation.street}}
-  </li>
-  <!-- <app-label-elements *ngFor="let fuelStation of fuelStations">
-    {{ fuelStation.name }} | {{ fuelStation.street}}
-  </app-label-elements> -->
+  </li> -->
+  <app-label-elements [fuelStation]="fuelStation" *ngFor="let fuelStation of fuelStations">
+  </app-label-elements>
 
 
 <!-- 

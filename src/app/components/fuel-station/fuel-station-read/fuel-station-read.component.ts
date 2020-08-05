@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FuelStation } from '../fuel_station.model';
 import { FuelStationService } from '../fuel-state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fuel-station-read',
@@ -13,13 +14,17 @@ export class FuelStationReadComponent implements OnInit {
   //'id', 'cnpj', 'neighborhood', 'cep' , 'time_to_open', 'time_to_close'
   , 'action']
 
-  constructor(private fuelStationService: FuelStationService) { }
+
+  constructor(private fuelStationService: FuelStationService, private router: Router) { }
 
   ngOnInit(): void {
     this.fuelStationService.read().subscribe(obj => {
       this.fuelStations = obj.payload.fuel_stations
       console.log(obj)
     })
+  }
+  navigateToFuelStation(): void {
+    this.router.navigate(['Gas/Station/Attendant/Manager/Access'])
   }
 
 }

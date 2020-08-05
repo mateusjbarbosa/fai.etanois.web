@@ -1,6 +1,6 @@
-import { HeaderService } from './../../components/template/header/header.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { FuelStation } from 'src/app/components/fuel-station/fuel_station.model';
 
 @Component({
   selector: 'app-post-crud',
@@ -8,19 +8,21 @@ import { Router } from '@angular/router'
   styleUrls: ['./post-crud.component.css']
 })
 export class PostCrudComponent implements OnInit {
+ 
 
   constructor(private router: Router) {
  
   }
 
   ngOnInit(): void {
+    
   }
 
   navigateToFuelStationCreate(): void {
     this.router.navigate(['/fuelStation/create'])
   }
   navigateToFuelStation(): void {
-    this.router.navigate(['/fuelStation'])
+    this.router.navigate(['Gas/Station/Attendant/Manager/Access'])
   }
 
 }
