@@ -29,7 +29,7 @@ export class FuelUpdateComponent implements OnInit {
     this.fuelService.update(this.fuel).subscribe(() => {
     
       this.fuelService.showMessage('Combustível  atualizado com sucesso!')
-      // this.router.navigate(['/post']);
+      this.router.navigate(['/dashboard/attendant'])
     },
     err => {
       // console.log('error: ', err);
@@ -41,8 +41,8 @@ export class FuelUpdateComponent implements OnInit {
   }
   
   cancel(): void {
-    // this.router.navigate(['/post']);
-
+    this.router.navigate(['/dashboard/attendant'])
   }
+
 
 }

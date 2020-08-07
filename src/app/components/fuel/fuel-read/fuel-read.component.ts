@@ -8,15 +8,15 @@ import { FuelService } from '../fuel.service';
   styleUrls: ['./fuel-read.component.css']
 })
 export class FuelReadComponent implements OnInit {
-  fuel: Fuel[]
-  displayedColumns = ['id', 'name', 'action']
+  fuels: Fuel[]
+  displayedColumns = ['id', 'name', 'price','action']
 
   constructor(private fuelService: FuelService) { }
 
   ngOnInit(): void {
-    this.fuelService.read().subscribe(user => {
-      this.fuel = this.fuel
-      console.log(this.fuel)
+    this.fuelService.read().subscribe(fuels => {
+      this.fuels = this.fuels
+      console.log(this.fuels)
     })
 
 }

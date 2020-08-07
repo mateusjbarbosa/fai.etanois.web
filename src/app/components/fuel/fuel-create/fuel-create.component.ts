@@ -14,7 +14,7 @@ export class FuelCreateComponent implements OnInit {
 
   fuel: Fuel = {
     name: undefined,
-
+    price: undefined
   }
   
 
@@ -41,7 +41,7 @@ export class FuelCreateComponent implements OnInit {
     );
   }
   cancel(): void {
-    this.router.navigate(['/post'])
+    this.router.navigate(['/dashboard/attendant'])
   }
 
 }

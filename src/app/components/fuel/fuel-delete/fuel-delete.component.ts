@@ -39,7 +39,7 @@ export class FuelDeleteComponent implements OnInit {
     })
   }
   cancel(): void {
-    // this.router.navigate(['/post']);
+    this.router.navigate(['/dashboard/attendant'])
 
   }
 
@@ -58,7 +58,7 @@ export class FuelDeleteComponent implements OnInit {
           this.router.navigate(['']);
         })
       }else{
-        // this.router.navigate(['/post']);
+        this.router.navigate(['/dashboard/attendant'])
       }
 
     });

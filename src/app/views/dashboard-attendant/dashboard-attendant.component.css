@@ -8,4 +8,9 @@
     letter-spacing: -0.27px;
     line-height: 77px;
     color: #1A1A1A;
+    
+    position: absolute; 
+	left: 180px; /* posiciona a 90px para a esquerda */ 
+	top: 150px; /* posiciona a 70px para baixo */
+
 }

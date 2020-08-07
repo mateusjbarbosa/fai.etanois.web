@@ -15,10 +15,6 @@
     padding-top: 0%;
 }
 
-.sidenav a {
-    color: #FFF;
-}
-
 .content {
     padding: 16px;
     background-color: #FFF;
@@ -34,6 +30,7 @@
     height: 48px;
     background: transparent 0% 0% no-repeat padding-box;
     opacity: 1;
+    
 }
 
 .icons {

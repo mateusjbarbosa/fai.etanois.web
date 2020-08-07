@@ -18,6 +18,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./attendant-area-login.component.css']
 })
 export class AttendantAreaLoginComponent implements OnInit {
+  hide = true;
   login = {
     email: '',
     userName: '',
