@@ -87,11 +87,11 @@ body {
     font-weight: 600;
     font-size: 24px;
     background-color: #dadada;
-    padding: 18px 20px;
+    padding: 8px 20px; 
     margin-bottom: 30px;
     color: #1a1a1a;
     border: none;
-    border-radius: 20px;
+    border-radius: 20px; 
 }
 
 .manage-buttons-div {

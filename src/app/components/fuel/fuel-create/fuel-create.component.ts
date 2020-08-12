@@ -1,8 +1,10 @@
+import { ModalElementsComponent } from './../../modal-elements/modal-elements.component';
 import { FuelService } from './../fuel.service';
 import { Component, OnInit } from '@angular/core';
 import { Fuel } from '../fuel.model';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-fuel-create',
@@ -19,6 +21,7 @@ export class FuelCreateComponent implements OnInit {
   
 
   constructor(
+    public dialog: MatDialog,
     private fuelService: FuelService,
     private router: Router,
     private fb: FormBuilder
@@ -42,6 +45,15 @@ export class FuelCreateComponent implements OnInit {
   }
   cancel(): void {
     this.router.navigate(['/dashboard/attendant'])
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(ModalElementsComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("encerrrado", result);
+      
+    });
+
   }
 
 }

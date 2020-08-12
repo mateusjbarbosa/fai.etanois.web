@@ -3,7 +3,7 @@ import { APP_API } from 'src/app/app.api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { header_object } from 'src/app/authorization';
+import { AuthorizationService } from 'src/app/authorization';
 import { FuelStation } from './fuel_station.model';
 import { User } from '../user/user.model';
 import { Observable, EMPTY, throwError } from 'rxjs';
@@ -15,7 +15,9 @@ import { Observable, EMPTY, throwError } from 'rxjs';
 
 export class FuelStationService {
     endpoint: string = ` ${APP_API}fuel_station`
-    constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
+    constructor(
+        private authorizationService: AuthorizationService, 
+        private snackBar: MatSnackBar, private http: HttpClient) { }
 
     showMessage(msg: string, isError: boolean = false): void {
         this.snackBar.open(msg, 'X', {
@@ -27,7 +29,7 @@ export class FuelStationService {
     }
     /*caso aconteça erro no fuelStation, chamo método errorHandler*/
     create(fuelStation: FuelStation): Observable<FuelStation> {
-        return this.http.post<FuelStation>(`${this.endpoint}/new`, fuelStation, { headers: header_object }).pipe(
+        return this.http.post<FuelStation>(`${this.endpoint}/new`, fuelStation, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
             // catchError(e => this.errorHandler(e))
@@ -35,7 +37,7 @@ export class FuelStationService {
     }
     
     read(): Observable<any> {
-        return this.http.get<any>(`${this.endpoint}/read-all/1`, { headers: header_object }).pipe(
+        return this.http.get<any>(`${this.endpoint}/read-all/1`, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );
@@ -43,7 +45,7 @@ export class FuelStationService {
 
     readById(id: number): Observable<FuelStation> {
         const url = `${this.endpoint}/${id}`;
-        return this.http.get<FuelStation>(url, { headers: header_object }).pipe(
+        return this.http.get<FuelStation>(url, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );
@@ -51,7 +53,7 @@ export class FuelStationService {
 
     update(fuelStation: FuelStation): Observable<FuelStation> {
         const url = `${this.endpoint}/${fuelStation.id}`;
-        return this.http.put<FuelStation>(url, fuelStation, { headers: header_object }).pipe(
+        return this.http.put<FuelStation>(url, fuelStation, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );
@@ -59,7 +61,7 @@ export class FuelStationService {
 
     delete(id: number): Observable<FuelStation> {
         const url = `${this.endpoint}/${id}`;
-        return this.http.delete<FuelStation>(url, { headers: header_object }).pipe(
+        return this.http.delete<FuelStation>(url, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );

@@ -1,4 +1,4 @@
-import { header_object } from 'src/app/authorization';
+import { AuthorizationService } from 'src/app/authorization';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';

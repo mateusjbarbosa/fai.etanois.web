@@ -1,3 +1,4 @@
+import { FuelCrudComponent } from './views/fuel-crud/fuel-crud.component';
 import { DashboardAttendantComponent } from './views/dashboard-attendant/dashboard-attendant.component';
 import { FuelDeleteComponent } from './components/fuel/fuel-delete/fuel-delete.component';
 import { FuelReadComponent } from './components/fuel/fuel-read/fuel-read.component';
@@ -95,6 +96,10 @@ const routes: Routes = [
   {
     path: "fuel/delete",
     component: FuelDeleteComponent
+  },
+  {
+    path: "fuel/crud",
+    component: FuelCrudComponent
   },
   {
     path: "fuel/create",

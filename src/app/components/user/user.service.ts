@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, EMPTY, throwError } from 'rxjs';
 import { User } from './user.model';
 import { APP_API } from 'src/app/app.api';
-import { header_object } from 'src/app/authorization';
+import { AuthorizationService } from 'src/app/authorization';
 
 
 
@@ -17,7 +17,10 @@ import { header_object } from 'src/app/authorization';
 export class UserService {
     endpoint: string = ` ${APP_API}user`
 
-    constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
+    constructor(
+        private authorizationService: AuthorizationService,
+        private snackBar: MatSnackBar,
+        private http: HttpClient) { }
 
     showMessage(msg: string, isError: boolean = false): void {
         this.snackBar.open(msg, 'X', {
@@ -32,8 +35,6 @@ export class UserService {
         return this.http.post<User>(`${this.endpoint}/new`, user).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
-            // catchError(e => this.errorHandler(e))
-
         );
     }
     // read(): Observable<User[]> {
@@ -44,8 +45,10 @@ export class UserService {
     // }
 
     readById(id: number): Observable<User> {
+        console.log('header', this.authorizationService.getHttpHeaders());
+
         const url = `${this.endpoint}/${id}`;
-        return this.http.get<User>(url, { headers: header_object }).pipe(
+        return this.http.get<User>(url, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
@@ -54,16 +57,15 @@ export class UserService {
     update(user: User): Observable<User> {
         console.log(user);
         const url = `${this.endpoint}/${user.id}`;
-        return this.http.patch<User>(url, user, { headers: header_object }).pipe(
+        return this.http.patch<User>(url, user, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );
     }
 
     delete(id: number): Observable<User> {
-        console.log(header_object);
         const url = `${this.endpoint}/${id}`;
-        return this.http.delete<User>(url, { headers: header_object }).pipe(
+        return this.http.delete<User>(url, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => this.errorHandler(e))
         );
@@ -76,6 +78,7 @@ export class UserService {
     }
 
     generateToken(username: string, password: string): Observable<any> {
+        console.log("usuario:" + username);
         const url = `${APP_API}auth/token/`;
         return this.http.post<any>(url, { "username": username, "password": password }).pipe(
             map((obj) => obj),

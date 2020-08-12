@@ -8,7 +8,9 @@ import { FuelService } from '../fuel.service';
   styleUrls: ['./fuel-read.component.css']
 })
 export class FuelReadComponent implements OnInit {
-  fuels: Fuel[]
+  fuels: Fuel[
+    
+  ]
   displayedColumns = ['id', 'name', 'price','action']
 
   constructor(private fuelService: FuelService) { }
@@ -18,6 +20,8 @@ export class FuelReadComponent implements OnInit {
       this.fuels = this.fuels
       console.log(this.fuels)
     })
-
 }
+navigateToFuelCrud():void{
+  
 }
+ }

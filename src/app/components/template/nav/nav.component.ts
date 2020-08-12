@@ -25,8 +25,8 @@ export class NavComponent implements OnInit {
   navegateDashboardAttendant(): void {
     this.router.navigate(['dashboard/attendant'])
   }
-  navegateFuelCreate(): void {
-    this.router.navigate(['fuel/create'])
+  navegateFuelCrud(): void {
+    this.router.navigate(['dashboard/attendant'])
   }
 
 }

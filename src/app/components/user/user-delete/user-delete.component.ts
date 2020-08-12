@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { User } from '../user.model';
 import { Token } from '@angular/compiler/src/ml_parser/lexer';
-import { header_object } from 'src/app/authorization';
+import { AuthorizationService } from 'src/app/authorization';
 import { MatDialog } from '@angular/material/dialog';
 
 

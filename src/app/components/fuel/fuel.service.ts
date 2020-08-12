@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, EMPTY } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { header_object } from 'src/app/authorization';
+import { AuthorizationService } from 'src/app/authorization';
 
 
 @Injectable({
@@ -17,7 +17,10 @@ export class FuelService {
 
     endpoint: string = ` ${APP_API}fuel`
 
-    constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
+    constructor(
+        private authorizationService: AuthorizationService,
+        private snackBar: MatSnackBar,
+        private http: HttpClient) { }
 
     showMessage(msg: string, isError: boolean = false): void {
         this.snackBar.open(msg, 'X', {
@@ -45,7 +48,7 @@ export class FuelService {
 
     readById(id: number): Observable<Fuel> {
         const url = `${this.endpoint}/${id}`;
-        return this.http.get<Fuel>(url, { headers: header_object }).pipe(
+        return this.http.get<Fuel>(url, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );
@@ -54,16 +57,16 @@ export class FuelService {
     update(fuel: Fuel): Observable<Fuel> {
         console.log(fuel);
         const url = `${this.endpoint}/${fuel.id}`;
-        return this.http.patch<Fuel>(url, fuel, { headers: header_object }).pipe(
+        return this.http.patch<Fuel>(url, fuel, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );
     }
 
     delete(id: number): Observable<Fuel> {
-        console.log(header_object);
+        console.log(this.authorizationService.getHttpHeaders());
         const url = `${this.endpoint}/${id}`;
-        return this.http.delete<Fuel>(url, { headers: header_object }).pipe(
+        return this.http.delete<Fuel>(url, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );
