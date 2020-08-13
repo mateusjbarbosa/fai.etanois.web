@@ -17,7 +17,7 @@ button {
     height: 40px;
     color: #fafafa;
     font: Dark 16px/22px Bagatela;
-    background: #208016 0% 0% no-repeat padding-box;
+    background: #208016;
     border-radius: 10px;
     opacity: 1;
 }
@@ -32,7 +32,7 @@ button {
     width: auto;
     float: left;
     /*deixa as divs uma do lado da outra*/
-}
+ } 
 
 
 #div_direita {
@@ -45,4 +45,16 @@ button {
 
 #div_lista {
     clear: both;
+}
+
+.title {
+    top: 264px;
+    left: 485px;
+    width: 424px;
+    height: 36px;
+    text-align: left;
+    font: Bold 36px/50px Bagatela;
+    letter-spacing: -0.18px;
+    color: #FF951C;
+    opacity: 1;
 }

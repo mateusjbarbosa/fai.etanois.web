@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FuelService } from '../fuel/fuel.service';
 import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
 import { Fuel } from '../fuel/fuel.model';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-elements',
@@ -11,18 +10,19 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./modal-elements.component.css']
 })
 export class ModalElementsComponent {
-  fuel: Fuel = {
-    name: undefined,
-    price: undefined
-  }
+  fuel: Fuel;
   closeResult = '';
 
   constructor(
-    private dialogRef: MatDialogRef<ModalElementsComponent>,
     private fuelService: FuelService,
     private router: Router,
-  ) { }
+    private dialogRef: MatDialogRef<ModalElementsComponent>,
+    @ Inject ( MAT_DIALOG_DATA )  data )  {
 
+      this.title  =  data . title ;
+      // this.message = data.message;
+  }
+    
   onClose(result: Boolean) {
     // this.result = result;
     this.dialogRef.close(result);
@@ -43,8 +43,10 @@ export class ModalElementsComponent {
     );
   }
 
-  title: String = 'Adicionar novo combustível';
-  editarDialog(title: string): void {
-    this.title = title;
+  @Input() title: String = '';
+  // @Input() message: String = '';
+  editarDialog(title: string, message:string): void {
+  this.title = title;
+  // this.message = message;
   }
 }

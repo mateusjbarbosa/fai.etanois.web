@@ -1,11 +1,9 @@
 import { DialogElementsComponent } from './../../dialog-elements/dialog-elements.component';
-import { Component, OnInit, Input, ɵConsole } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { User } from '../user.model';
-import { Token } from '@angular/compiler/src/ml_parser/lexer';
-import { AuthorizationService } from 'src/app/authorization';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
 
@@ -54,7 +52,14 @@ export class UserDeleteComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(DialogElementsComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title:'Atenção',
+      message:'Deseja realmente excluir sua conta?'
+  };
+    let dialogRef = this.dialog.open(DialogElementsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result == true) {
         this.userService.delete(this.usuarioLogado.id).subscribe(() => {

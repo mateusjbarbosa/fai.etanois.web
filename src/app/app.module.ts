@@ -42,12 +42,10 @@ import { UserCreateComponent } from './components/user/user-create/user-create.c
 import { UserReadComponent } from './components/user/user-read/user-read.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { UserDeleteComponent } from './components/user/user-delete/user-delete.component';
-
 import { FuelCreateComponent } from './components/fuel/fuel-create/fuel-create.component';
 import { FuelReadComponent } from './components/fuel/fuel-read/fuel-read.component';
 import { FuelDeleteComponent } from './components/fuel/fuel-delete/fuel-delete.component';
 import { FuelUpdateComponent } from './components/fuel/fuel-update/fuel-update.component';
-
 import { FuelStationCreateComponent } from './components/fuel-station/fuel-station-create/fuel-station-create.component';
 import { FuelStationReadComponent } from './components/fuel-station/fuel-station-read/fuel-station-read.component';
 import { FuelStationUpdateComponent } from './components/fuel-station/fuel-station-update/fuel-station-update.component';
@@ -101,6 +99,7 @@ registerLocaleData(localePt);
     GasStationAttendantManagerAccessComponent,
     FuelCrudComponent,
     ModalElementsComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -129,6 +128,6 @@ registerLocaleData(localePt);
     provide: LOCALE_ID,
     useValue: 'pt-BR',
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalElementsComponent } from 'src/app/components/modal-elements/modal-elements.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-fuel-crud',
@@ -22,7 +22,15 @@ export class FuelCrudComponent implements OnInit {
   // }
 
   openDialog() {
-    let dialogRef = this.dialog.open(ModalElementsComponent); 
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title:'Adicionar novo combustível',
+      // message:'Deseja realmente excluir sua conta?'
+  }; 
+  
+  let dialogRef = this.dialog.open(ModalElementsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       console.log("encerrrado", result);
     });

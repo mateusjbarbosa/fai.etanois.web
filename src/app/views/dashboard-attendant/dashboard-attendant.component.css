@@ -45,32 +45,31 @@ header{
 	height: auto;
 }
 
-#div_esquerda{
+/* #div_esquerda{
 
 	background-color: #ffff;
 	min-height: 200px;/*começa com 200 e vai crescendo conforme necessidade*/
-	width: auto;
-	float:left;/*deixa as divs uma do lado da outra*/
-}
+	/* width: 200px; */
+	/* float:left;deixa as divs uma do lado da outra */
+/* }  */
 
 
 #div_direita{
 
 	background-color: #ffff;
 	min-height: 200px;
-	width: auto;
-	float:right;
+	width: 100;
+	/* float: 0px; */
 }
-footer{
+/* footer{
 	clear: both; /*para força ela aparecer depois de usar float*/
-	background-color:  yellow;
+	/* background-color:  yellow;
 	height: 30px;
-}
+}  */
 
 /*class*/
 .container{
-	width: 960px;
-	margin: 100px; /*calcula espaço*/
-    /* margin: 0 auto; largura e altura calcula automatico o centro da pagina  */
-    
-}
+	width: auto;
+	margin: auto; /*calcula espaço*/
+    margin: 0 auto;  
+ }

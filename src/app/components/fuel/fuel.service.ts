@@ -33,7 +33,7 @@ export class FuelService {
 
     /*caso aconteça erro no user, chamo método errorHandler*/
     create(fuel: Fuel): Observable<Fuel> {
-        return this.http.post<Fuel>(`${this.endpoint}/new`, fuel).pipe(
+        return this.http.post<Fuel>(`${this.endpoint}/new`, fuel, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );

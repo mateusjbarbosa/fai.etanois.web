@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user.model';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -16,7 +17,9 @@ export class UserReadComponent implements OnInit {
     , 'search_distance_with_route', 'search_distance_without_route', 'payment_mode', 'phone_number', 'role',
     'etacoins', 'action']
 
-  constructor(private userService: UserService) { }
+  constructor(
+    public dialog: MatDialog,
+    private userService: UserService) { }
 
 
   ngOnInit(): void {
