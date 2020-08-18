@@ -186,15 +186,15 @@ export class FuelStationCreateComponent implements OnInit {
     }
   }
 
-  // maskCep: string;
-  // cepMask() {
-  //   const value = this.formulario.get('cep').value;
-  //   // console.log(value, value.length, this.formularioForm)
-  //   if (value.length <= 8) {
-  //     this.maskCep = '00.000-000'
-  //   }
+  maskCep: string;
+  cepMask() {
+    const value = this.formulario.get('cep').value;
+    // console.log(value, value.length, this.formularioForm)
+    if (value.length <= 8) {
+      this.maskCep = '00.000-000'
+    }
 
-  // }
+  }
 
   // maskPhone: string;
   // phoneNumberMask() {

@@ -16,20 +16,19 @@ export class FuelReadComponent implements OnInit {
     {id: 3, name: 'Diesel', price: 3},
     {id: 4, name: 'Gasolina Comum', price: 3},
   ];
- 
-  
+  // fuels: Fuel[]
   displayedColumns = ['id', 'name', 'price','action']
 
   constructor(
     public dialog: MatDialog,
     private fuelService: FuelService) { }
 
-  ngOnInit(): void {
-    // this.fuelService.read().subscribe(fuels => {
-    //   this.fuels = this.fuels
-    //   console.log(this.fuels)
-    //})
-  }
+    ngOnInit(): void {
+      // this.fuelService.readAll().subscribe(fuels => {
+      //   this.fuels = fuels
+      //   console.log(fuels)
+      // })
+    }
 
 navigateToFuelCrud():void{
   
@@ -40,8 +39,7 @@ openDialog() {
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
   dialogConfig.data = {
-    title:'Editar combustível',
-    // message:'Deseja realmente excluir sua conta?'
+  title:'Editar combustível'
 }; 
 
 let dialogRef = this.dialog.open(ModalElementsComponent, dialogConfig);

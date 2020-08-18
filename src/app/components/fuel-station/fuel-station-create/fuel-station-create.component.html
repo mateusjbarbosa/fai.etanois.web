@@ -101,8 +101,7 @@
             </div>
             <div class="input-item-div">
               <label for="cep">Qual é o Cep?</label>
-              <!-- <input (keyup)="cepMask()"  [mask]="maskCep" type="text" name="cep" placeholder="Digite o cep" -->
-              <input type="text" name="cep" placeholder="Digite o cep"
+              <input (keyup)="cepMask()"  [mask]="maskCep" type="text" name="cep" placeholder="Digite o cep"
               [(ngModel)]="fuelStation.cep" formControlName="cep">
 
               <div class="input-item" *ngIf="!cep.pristine && cep.errors">

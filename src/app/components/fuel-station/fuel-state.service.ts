@@ -16,7 +16,7 @@ import { Observable, EMPTY, throwError } from 'rxjs';
 export class FuelStationService {
     endpoint: string = ` ${APP_API}fuel_station`
     constructor(
-        private authorizationService: AuthorizationService, 
+        private authorizationService: AuthorizationService,
         private snackBar: MatSnackBar, private http: HttpClient) { }
 
     showMessage(msg: string, isError: boolean = false): void {
@@ -35,7 +35,7 @@ export class FuelStationService {
             // catchError(e => this.errorHandler(e))
         );
     }
-    
+
     read(): Observable<any> {
         return this.http.get<any>(`${this.endpoint}/read-all/1`, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
@@ -66,6 +66,14 @@ export class FuelStationService {
             catchError(e => throwError(e))
         );
     }
+    createUpdateAvaliableFuel(fuelStation: FuelStation): Observable<FuelStation> {
+        const url = `${this.endpoint}/${fuelStation.id}/available-fuel`;
+        return this.http.post<FuelStation>(url, fuelStation, { headers: this.authorizationService.getHttpHeaders() }).pipe(
+            map((obj) => obj),
+            catchError(e => throwError(e))
+        );
+    }
+    
 
     errorHandler(e: any): Observable<any> {
         console.log(e)
@@ -77,6 +85,6 @@ export class FuelStationService {
     enviaUsuario(user: Storage): void {
         this.usuarioLogado = JSON.parse(user["usuarioLogado"]);
         this.usuarioLogado = this.usuarioLogado["userResponse"]["payload"];
-        
+
     }
 }

@@ -39,8 +39,8 @@ export class FuelService {
         );
     }
 
-    read(): Observable<Fuel[]> {
-        return this.http.get<Fuel[]>(this.endpoint).pipe(
+    readAll(): Observable<Fuel[]> {
+        return this.http.get<Fuel[]>(this.endpoint, { headers: this.authorizationService.getHttpHeaders() }).pipe(
             map((obj) => obj),
             catchError(e => throwError(e))
         );
