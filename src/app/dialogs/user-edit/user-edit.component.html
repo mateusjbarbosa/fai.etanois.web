@@ -1,0 +1,37 @@
+<section class="text-section right">
+  <form class="form-container" [formGroup]="userGroup" (ngSubmit)="confirmUpdate($event)">
+    <mat-form-field appearance="fill" class="login-form-field">
+      <mat-label class="login-form-field-label">Qual o seu nome?</mat-label>
+      <input class="login-form-field-input" type="text" formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="login-form-field">
+      <mat-label class="login-form-field-label">Qual o seu username?</mat-label>
+      <input class="login-form-field-input" type="text" formControlName="username" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="login-form-field">
+      <mat-label class="login-form-field-label">Qual o seu melhor e-mail?</mat-label>
+      <input class="login-form-field-input" type="text" formControlName="email" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="login-form-field">
+      <mat-label class="login-form-field-label">Qual o seu CEP?</mat-label>
+      <input class="login-form-field-input" type="text" formControlName="cep" matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="login-form-field">
+      <mat-label class="login-form-field-label">Defina uma senha de acesso</mat-label>
+      <input class="login-form-field-input" type="password" formControlName="password" matInput>
+    </mat-form-field>
+    <!-- <mat-card class="error-card" *ngIf="registerError">{{getErrorMessage()}}</mat-card> -->
+    <div class="buttons-row">
+      <button id="update-button" type="submit" mat-flat-button>
+        <div>
+          Atualizar
+        </div>
+      </button>
+      <button (click)="cancel()" id="cancel-button" mat-flat-button>
+        <div>
+          Cancelar
+        </div>
+      </button>
+    </div>
+  </form>
+</section>

@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  // api: 'http://etanois.com.br/api/v1/',
   api: 'http://api.etanois.com.br/api/v1/',
-  // api:'http://18.230.20.26/',
 };
 
 /*
