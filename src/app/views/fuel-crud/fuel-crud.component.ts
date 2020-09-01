@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalElementsComponent } from 'src/app/components/modal-elements/modal-elements.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -13,6 +13,8 @@ export class FuelCrudComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router) { }
+
+    @Input() isTrue: boolean;
 
   ngOnInit(): void {
   }

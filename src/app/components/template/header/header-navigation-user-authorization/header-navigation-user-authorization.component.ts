@@ -20,8 +20,6 @@ export class HeaderNavigationUserAuthorizationComponent implements OnInit {
     this.enviaUsuario(sessionStorage);
   }
   logout(): void {
-    // sessionStorage.removeItem('usuarioLogado');
-    // localStorage.removeItem('token');
     sessionStorage.clear();
     this.hearderService.setUsuarioLogado(null);
     this.router.navigate(['/']);

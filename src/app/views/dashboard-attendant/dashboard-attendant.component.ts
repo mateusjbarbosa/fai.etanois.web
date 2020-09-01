@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FuelService } from 'src/app/components/fuel/fuel.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
@@ -14,11 +14,16 @@ export class DashboardAttendantComponent implements OnInit {
     private fuelService: FuelService,
     private router: Router,
     private fb: FormBuilder
-  ) { }
+  ) { 
 
+    
+  }
+
+  @Input() isTrue: boolean;
   
 
   ngOnInit(): void {
+    
   }
 
   createFuel(): void {

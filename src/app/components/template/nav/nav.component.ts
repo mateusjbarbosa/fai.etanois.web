@@ -10,7 +10,9 @@ import { User } from '../../user/user.model';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private router: Router, private hearderService: HeaderService) { }
+  constructor(private router: Router, private hearderService: HeaderService) {
+   
+   }
 
   ngOnInit(): void {
     this.enviaUsuario(sessionStorage);
@@ -23,10 +25,24 @@ export class NavComponent implements OnInit {
   }
 
   navegateDashboardAttendant(): void {
+    this.isTrue = false;
     this.router.navigate(['dashboard/attendant'])
+    console.log("Resultado depois: " + this.isTrue);
+  }
+
+  // @Input() isTrue: boolean = false;
+  private _isTrue: boolean = false;
+  public get isTrue(): boolean {
+    return this._isTrue;
+  }
+  public set isTrue(value: boolean) {
+    this._isTrue = value;
   }
   navegateFuelCrud(): void {
-    this.router.navigate(['dashboard/attendant'])
+    // this.router.navigate(['fuel/crud'])
+    // console.log("Resultado antes: " + this.isTrue);
+    this.isTrue = true;
+    console.log("Resultado depois: " + this.isTrue);
   }
 
 }
