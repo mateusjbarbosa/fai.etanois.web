@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { GasStationServices } from './../../models/services.model';
 import { UserService } from './../../services/user/user.service';
 import { GasStationService } from './../../services/gas-station/gas-station.service';
@@ -33,6 +34,7 @@ export class ManagementComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialog: MatDialog,
+    private router: Router,
     private userService: UserService,
     private gasStationService: GasStationService,
   ) { }
@@ -109,5 +111,10 @@ export class ManagementComponent implements OnInit, OnDestroy {
 
   changeMenu = (menuId: number) => {
     this.activeMenu = menuId;
+  }
+
+  backToGasStationChoose = () => {
+    this.gasStationService.clearCurrentGasStation();
+    this.router.navigate(['/attendant']);
   }
 }

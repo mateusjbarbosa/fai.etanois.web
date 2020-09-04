@@ -12,6 +12,7 @@ import { User } from './../../models/user.model';
 export class UserService {
   userGetPath = 'user/';
   userCreatePath = 'user/new';
+  recoverPasswordPath = 'user/forgot_password';
 
   @Input()
   public user: User;
@@ -51,10 +52,11 @@ export class UserService {
       });
   }
 
-  public update = async (userId, user: User) => {
+  public update = async (userId, user: Partial<User>) => {
     return await this.http.patch(BASE_URL + this.userGetPath + userId, user, { headers: this.authService.getHeaders() })
       .toPromise()
       .then((res) => {
+        this.getUserById(userId);
         return res;
       })
       .catch((err) => {
@@ -66,7 +68,7 @@ export class UserService {
     return await this.http.delete(BASE_URL + this.userGetPath + userId, { headers: this.authService.getHeaders() })
       .toPromise()
       .then((res) => {
-        this.getUserById(userId);
+        this.clearUser();
         return res;
       })
       .catch((err) => {
@@ -80,6 +82,18 @@ export class UserService {
       .then((user: { payload: User }) => {
         this.setUser(user.payload);
         return;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  public recoverPassword = async (email: string) => {
+    return await this.http.post(BASE_URL + this.recoverPasswordPath, { email }, { headers: this.authService.getHeaders() })
+      .toPromise()
+      .then((res: { payload: string }) => {
+        console.log(res);
+        return res.payload;
       })
       .catch((err) => {
         throw err;

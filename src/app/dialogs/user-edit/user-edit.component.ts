@@ -26,22 +26,18 @@ export class UserEditComponent implements OnInit {
     this.user = this.data.user;
 
     this.userGroup = this.formBuilder.group({
-      name: [this.user.name, Validators.required],
-      username: [this.user.username, Validators.required],
-      email: [this.user.email, Validators.required],
-      cep: [this.user.cep, Validators.required],
-      password: [this.user.password, Validators.required]
+      name: [this.user.name, Validators.required]
     });
   }
 
-
   confirmUpdate = (event: Event) => {
     event.preventDefault();
-    const { name, username, email, cep, password } = this.userGroup.value;
-    const updatedUser: User = { name, username, email, cep, password };
+    const { name } = this.userGroup.value;
+    const updatedUser: Partial<User> = { name };
 
     this.userService.update(this.user.id, updatedUser)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         this.closeDialog();
       })
       .catch((err: HttpErrorResponse) => {

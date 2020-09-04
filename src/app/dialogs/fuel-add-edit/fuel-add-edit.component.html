@@ -1,25 +1,44 @@
 <section class="text-section right">
-  <form class="form-container" [formGroup]="fuelGroup" (ngSubmit)="fuel ? updateFuel($event) : createFuel($event)">
-    <mat-form-field appearance="fill" class="login-form-field">
-      <mat-label class="login-form-field-label">Combustível</mat-label>
-      <input class="login-form-field-input" type="text" formControlName="fuel" matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="login-form-field">
-      <mat-label class="login-form-field-label">Preço</mat-label>
-      <input class="login-form-field-input" type="text" formControlName="price" matInput>
-    </mat-form-field>
+  <form id="fuel-form" class="form-container" [formGroup]="fuelGroup"
+    (ngSubmit)="fuel ? updateFuel($event) : createFuel($event)">
+    <table style="width: 100%;">
+      <tr>
+        <td style="width: 100%;">
+          <label for="fuel-select" class="form-label">Combustível</label>
+          <mat-form-field appearance="outline">
+            <mat-select id="fuel-select" formControlName="fuel">
+              <mat-option default value="0">
+                Gasolina Comum
+              </mat-option>
+              <mat-option value="1">
+                Gasolina Aditivada
+              </mat-option>
+              <mat-option value="2">
+                Etanol
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <label for="price" class="form-label">Preço</label>
+          <mat-form-field appearance="outline">
+            <input id="price" type="text" formControlName="price" matInput>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
     <!-- <mat-card class="error-card" *ngIf="registerError">{{getErrorMessage()}}</mat-card> -->
-    <div class="buttons-row">
-      <button id="update-button" type="submit" mat-flat-button>
-        <div>
-          {{fuel?  'Atualizar' : 'Criar'}}
-        </div>
-      </button>
-      <button (click)="cancel()" id="cancel-button" mat-flat-button>
-        <div>
-          Cancelar
-        </div>
-      </button>
-    </div>
   </form>
+  <div class="buttons-row">
+    <button id="update-button" type="submit" form="fuel-form" mat-flat-button>
+      <div>
+        {{fuel?  'Atualizar' : 'Criar'}}
+      </div>
+    </button>
+    <button (click)="cancel()" id="cancel-button" mat-flat-button>
+      <div>
+        Cancelar
+      </div>
+    </button>
+  </div>
 </section>

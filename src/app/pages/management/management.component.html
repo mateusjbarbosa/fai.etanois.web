@@ -13,7 +13,7 @@
       <li (click)="changeMenu(2)" [ngClass]="activeMenu === 2 ? 'active':''">
         <a><img src="../../../assets/svgs/attendant.svg"></a>
       </li>
-      <li>
+      <li (click)="backToGasStationChoose()">
         <a><img src="../../../assets/svgs/logout.svg"></a>
       </li>
     </ul>

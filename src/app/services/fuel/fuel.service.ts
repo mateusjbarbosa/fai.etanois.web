@@ -1,46 +1,32 @@
 import { BASE_URL } from './../../utils/constants';
-import { Injectable } from '@angular/core';
+import { Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Fuel } from '../../models/fuel.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FuelService {
   fuelGetPath = 'fuel/';
-  fuelCreatePath = 'fuel/new/';
+
+  @Input()
+  public fuelsToSelect: { name: string }[];
+
+  @Output()
+  public fuelsToSelectChange: EventEmitter<{ name: string }[]> = new EventEmitter<{ name: string }[]>();
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
-  public delete = async (fuelId: number) => {
-    await this.http.delete(BASE_URL + this.fuelGetPath + fuelId)
+  public getFuelSelectList = async () => {
+    return await this.http.get(BASE_URL + this.fuelGetPath, { headers: this.authService.getHeaders() })
       .toPromise()
-      .then((res) => {
-        return res;
-      })
-      .catch((err: HttpErrorResponse) => {
-        throw err;
-      });
-  }
-
-  public create = async (fuel: Fuel) => {
-    await this.http.patch(BASE_URL + this.fuelCreatePath, fuel)
-      .toPromise()
-      .then((res) => {
-        return res;
-      })
-      .catch((err: HttpErrorResponse) => {
-        throw err;
-      });
-  }
-
-  public update = async (fuelId: number, fuel: Fuel) => {
-    await this.http.patch(BASE_URL + this.fuelGetPath + fuelId, fuel)
-      .toPromise()
-      .then((res) => {
-        return res;
+      .then((res: { payload: [{ name: string }] }) => {
+        this.fuelsToSelect = res.payload;
+        return this.fuelsToSelect;
       })
       .catch((err: HttpErrorResponse) => {
         throw err;

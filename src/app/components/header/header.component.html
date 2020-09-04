@@ -13,7 +13,7 @@
 
 <mat-toolbar *ngIf="user" class="toolbar-container">
   <div class="gas-title-div">
-    Área do Frentista | {{currentGasStation ? currentGasStation.name : ''}}
+    Área do Frentista {{currentGasStation ? '| '+ currentGasStation.name : ''}}
   </div>
   <div class="icons-div">
     <div>

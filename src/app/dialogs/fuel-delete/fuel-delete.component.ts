@@ -1,3 +1,4 @@
+import { GasStationService } from './../../services/gas-station/gas-station.service';
 import { FuelService } from './../../services/fuel/fuel.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -15,7 +16,8 @@ export class FuelDeleteComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<FuelDeleteComponent>,
-    public fuelService: FuelService
+    public fuelService: FuelService,
+    private gasStationService: GasStationService
   ) { }
 
   ngOnInit(): void {
@@ -24,12 +26,13 @@ export class FuelDeleteComponent implements OnInit {
   }
 
   confirmDelete = () => {
-    this.fuelService.delete(this.fuelId)
-      .then(() => {
-        this.closeDialog();
+    this.gasStationService.deleteAvailableFuels(this.fuelName)
+      .then((res) => {
+        console.log(res);
+        this.dialogRef.close();
       })
       .catch((err: HttpErrorResponse) => {
-        console.log('Erro ao deletar usuário', err);
+        console.log(err);
       });
   }
 

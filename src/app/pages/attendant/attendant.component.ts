@@ -15,7 +15,9 @@ enum steps {
   gasStationChoose,
   gasStationAccessCode,
   gasStationRegister,
-  gasStationRegisterDone
+  gasStationRegisterDone,
+  passwordRecover,
+  passwordEmailSended
 }
 
 @Component({
@@ -27,10 +29,13 @@ export class AttendantComponent implements OnInit, OnDestroy {
   user: User;
   userSub: Subscription;
 
+  currentGasStation: FuelStation;
+  currentGasStationSub: Subscription;
   gasStations: FuelStation[] = [];
   gasStationsSub: Subscription;
 
   loginGroup: FormGroup;
+  passwordRecoverGroup: FormGroup;
   gasStationLoginGroup: FormGroup;
   gasStationRegisterGroup: FormGroup;
 
@@ -54,10 +59,14 @@ export class AttendantComponent implements OnInit, OnDestroy {
       password: ['', Validators.required]
     });
 
+    this.passwordRecoverGroup = this.formBuilder.group({
+      email: ['', Validators.required],
+    });
+
     this.gasStationLoginGroup = this.formBuilder.group({
-      accessField1: ['', Validators.required],
-      // accessField2: ['', Validators.required],
-      // accessField3: ['', Validators.required]
+      accessCodeField1: ['', Validators.required],
+      accessCodeField2: ['', Validators.required],
+      accessCodeField3: ['', Validators.required]
     });
 
     this.gasStationRegisterGroup = this.formBuilder.group({
@@ -82,27 +91,35 @@ export class AttendantComponent implements OnInit, OnDestroy {
     this.gasStationsSub = this.gasStationService.gasStationsChange.subscribe((gasStations: FuelStation[]) => {
       this.gasStations = gasStations;
     });
+
+    this.currentGasStationSub = this.gasStationService.currentGasStationChange.subscribe((currentGasStation: FuelStation) => {
+      this.currentGasStation = currentGasStation;
+    });
+
+    if (this.userService.getUser()) {
+      this.currentStep = steps.gasStationChoose;
+      this.user = this.userService.getUser();
+      this.gasStations = this.gasStationService.getGasStations();
+    }
   }
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
     this.gasStationsSub.unsubscribe();
+    this.currentGasStationSub.unsubscribe();
   }
 
   back = () => {
     switch (this.currentStep) {
       case 1:
+      case 5:
+      case 6:
         this.currentStep = steps.login;
         break;
-
       case 2:
-        this.currentStep = steps.gasStationChoose;
+        this.currentGasStation = undefined;
         break;
-
       case 3:
-        this.currentStep = steps.gasStationChoose;
-        break;
-
       case 4:
         this.currentStep = steps.gasStationChoose;
         break;
@@ -120,7 +137,7 @@ export class AttendantComponent implements OnInit, OnDestroy {
         return userId;
       })
       .then((userId: number) => {
-        return this.gasStationService.getGasStationsByUserId(userId);
+        return this.gasStationService.getGasStationsByUserId();
       })
       .then(() => {
         this.currentStep = steps.gasStationChoose;
@@ -175,6 +192,24 @@ export class AttendantComponent implements OnInit, OnDestroy {
 
   initGasStationRegister = () => {
     this.currentStep = steps.gasStationRegister;
+  }
+
+  recoverPasswordInit = () => {
+    this.currentStep = steps.passwordRecover;
+  }
+
+  submitRecoverPassword = (event: Event) => {
+    event.preventDefault();
+
+    if (!this.passwordRecoverGroup.valid) { return; }
+    const { email } = this.passwordRecoverGroup.value;
+    this.userService.recoverPassword(email)
+      .then((res) => {
+        this.currentStep = steps.passwordEmailSended;
+      })
+      .catch((err: HttpErrorResponse) => {
+        console.log(err);
+      });
   }
 
   getErrorMessage = () => {
