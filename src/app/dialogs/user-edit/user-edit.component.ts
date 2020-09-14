@@ -26,14 +26,18 @@ export class UserEditComponent implements OnInit {
     this.user = this.data.user;
 
     this.userGroup = this.formBuilder.group({
-      name: [this.user.name, Validators.required]
+      name: [this.user.name, Validators.required],
+      old_password: [this.user.old_password, Validators.required],
+      new_password: [this.user.new_password, Validators.required]
     });
   }
 
   confirmUpdate = (event: Event) => {
     event.preventDefault();
     const { name } = this.userGroup.value;
-    const updatedUser: Partial<User> = { name };
+    const { old_password } = this.userGroup.value;
+    const { new_password } = this.userGroup.value;
+    const updatedUser: Partial<User> = { name, old_password, new_password };
 
     this.userService.update(this.user.id, updatedUser)
       .then((res) => {

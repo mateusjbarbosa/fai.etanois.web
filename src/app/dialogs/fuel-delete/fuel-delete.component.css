@@ -4,6 +4,7 @@ h1 {
   text-align: center;
   line-height: 55px;
   font-weight: 800;
+
 }
 
 .container {
@@ -16,6 +17,7 @@ span {
   text-align: center;
   line-height: 28px;
   font-weight: 800;
+  
 }
 
 .buttons-row {
@@ -39,4 +41,5 @@ span {
   background-color: #ff1c1c;
   color: #fafafa;
   border-radius: 10px;
+  
 }
