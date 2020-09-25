@@ -1,6 +1,7 @@
 export interface GasStationServices {
-  id: number;
-  name: string;
-  start: string;
-  end: string;
+  fuel_station_id: number;
+  service_type: string;
+  time_to_close: string;
+  time_to_open: string;
+  service_24_hours: boolean;
 }

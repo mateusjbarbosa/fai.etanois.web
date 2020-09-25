@@ -19,7 +19,6 @@ section .form-container {
 
 #cancel-button {
   font-size: 1.5rem;
-  font-weight: bold;
   background-color: transparent;
   color: #b3b3b3;
 }
@@ -29,7 +28,6 @@ section .form-container {
   text-decoration: none;
   min-width: 200px;
   padding: 10px;
-  font-weight: bold;
   background-color: #208016;
   color: #fafafa;
   border-radius: 10px;

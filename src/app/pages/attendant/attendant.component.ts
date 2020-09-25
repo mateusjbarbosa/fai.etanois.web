@@ -34,6 +34,9 @@ export class AttendantComponent implements OnInit, OnDestroy {
   gasStations: FuelStation[] = [];
   gasStationsSub: Subscription;
 
+  gasStationsFlags: string[] = [];
+  gasStationsFlagsSub: Subscription;
+
   loginGroup: FormGroup;
   passwordRecoverGroup: FormGroup;
   gasStationLoginGroup: FormGroup;
@@ -71,13 +74,13 @@ export class AttendantComponent implements OnInit, OnDestroy {
 
     this.gasStationRegisterGroup = this.formBuilder.group({
       name: ['', Validators.required],
-      flag: ['', Validators.required],
+      flag: ['branca', Validators.required],
       cnpj: ['', Validators.required],
       street: ['', Validators.required],
       streetNumber: ['', Validators.required],
       neighborhood: ['', Validators.required],
-      city: ['', Validators.required],
-      uf: ['', Validators.required],
+      // city: ['', Validators.required],
+      // uf: ['', Validators.required],
       zip: ['', Validators.required],
       openTime: ['', Validators.required],
       closeTime: ['', Validators.required],
@@ -96,6 +99,10 @@ export class AttendantComponent implements OnInit, OnDestroy {
       this.currentGasStation = currentGasStation;
     });
 
+    this.gasStationsFlagsSub = this.gasStationService.gasStationsFlagsChange.subscribe((gasStationsFlags: string[]) => {
+      this.gasStationsFlags = gasStationsFlags;
+    });
+
     if (this.userService.getUser()) {
       this.currentStep = steps.gasStationChoose;
       this.user = this.userService.getUser();
@@ -107,6 +114,7 @@ export class AttendantComponent implements OnInit, OnDestroy {
     this.userSub.unsubscribe();
     this.gasStationsSub.unsubscribe();
     this.currentGasStationSub.unsubscribe();
+    this.gasStationsFlagsSub.unsubscribe();
   }
 
   back = () => {
@@ -171,13 +179,15 @@ export class AttendantComponent implements OnInit, OnDestroy {
 
     const newGasStation: FuelStation = {
       name,
+      flag_of_fuel_station: flag,
       cnpj,
       street,
       street_number: streetNumber,
       neighborhood,
       cep: zip,
       time_to_open: openTime,
-      time_to_close: closeTime
+      time_to_close: closeTime,
+      phone_number: phone
     };
 
     this.gasStationService.create(newGasStation)
@@ -191,7 +201,13 @@ export class AttendantComponent implements OnInit, OnDestroy {
   }
 
   initGasStationRegister = () => {
-    this.currentStep = steps.gasStationRegister;
+    this.gasStationService.getGasStationsFlags()
+      .then(() => {
+        this.currentStep = steps.gasStationRegister;
+      })
+      .catch((err: HttpErrorResponse) => {
+        console.log(err);
+      });
   }
 
   recoverPasswordInit = () => {

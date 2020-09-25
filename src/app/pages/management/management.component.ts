@@ -10,6 +10,8 @@ import { FuelDeleteComponent } from '../../dialogs/fuel-delete/fuel-delete.compo
 import { User } from '../../models/user.model';
 import { FuelStation } from '../../models/gas-station.model';
 import { Subscription } from 'rxjs';
+import { ServiceAddEditComponent } from '../../dialogs/service-add-edit/service-add-edit.component';
+import { ServiceDeleteComponent } from '../../dialogs/service-delete/service-delete.component';
 
 enum menus {
   fuelManagement,
@@ -48,39 +50,14 @@ export class ManagementComponent implements OnInit, OnDestroy {
 
     this.currentGasStationSub = this.gasStationService.currentGasStationChange.subscribe((gasStation: FuelStation) => {
       this.currentGasStation = gasStation;
-      this.availableFuels = gasStation.available_fuels;
+      this.availableFuels = this.currentGasStation.available_fuels;
+      this.availableServices = this.currentGasStation.available_services;
     });
 
     this.user = this.userService.getUser();
     this.currentGasStation = this.gasStationService.getCurrentGasStation();
     this.availableFuels = this.currentGasStation.available_fuels;
-
-    if (this.currentGasStation.restaurant) {
-      this.availableServices.push({
-        id: 1,
-        name: 'Restaurante',
-        start: this.currentGasStation.time_to_open,
-        end: this.currentGasStation.time_to_close
-      });
-    }
-
-    if (this.currentGasStation.car_wash) {
-      this.availableServices.push({
-        id: 2,
-        name: 'Lava-jato',
-        start: this.currentGasStation.time_to_open,
-        end: this.currentGasStation.time_to_close
-      });
-    }
-
-    if (this.currentGasStation.mechanical) {
-      this.availableServices.push({
-        id: 3,
-        name: 'Borracharia',
-        start: this.currentGasStation.time_to_open,
-        end: this.currentGasStation.time_to_close
-      });
-    }
+    this.availableServices = this.currentGasStation.available_services;
   }
 
   ngOnDestroy(): void {
@@ -107,6 +84,36 @@ export class ManagementComponent implements OnInit, OnDestroy {
 
   addFuel = () => {
     const dialogRef = this.dialog.open(FuelAddEditComponent);
+  }
+
+  deleteService = (service: GasStationServices) => {
+    const dialogRef = this.dialog.open(ServiceDeleteComponent, {
+      data: {
+        service
+      }
+    });
+  }
+
+  editService = (service: GasStationServices) => {
+    const dialogRef = this.dialog.open(ServiceAddEditComponent, {
+      data: {
+        service
+      }
+    });
+  }
+
+  addService = () => {
+    const dialogRef = this.dialog.open(ServiceAddEditComponent);
+  }
+
+  translateServiceName = (name: string): string => {
+    switch (name) {
+      case 'mechanical': return 'Mecânico';
+      case 'car_wash': return 'Lava Rápido';
+      case 'restaurant': return 'Restaurante';
+      case 'convenience_store': return 'Loja de Conveniência';
+      case 'tire_repair_shop': return 'Borracharia';
+    }
   }
 
   changeMenu = (menuId: number) => {

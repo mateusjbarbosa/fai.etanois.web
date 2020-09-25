@@ -17,6 +17,8 @@ import { FuelAddEditComponent } from './dialogs/fuel-add-edit/fuel-add-edit.comp
 import { FuelDeleteComponent } from './dialogs/fuel-delete/fuel-delete.component';
 import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
 import { UserDeleteComponent } from './dialogs/user-delete/user-delete.component';
+import { ServiceDeleteComponent } from './dialogs/service-delete/service-delete.component';
+import { ServiceAddEditComponent } from './dialogs/service-add-edit/service-add-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { UserDeleteComponent } from './dialogs/user-delete/user-delete.component
     FuelDeleteComponent,
     UserDeleteComponent,
     UserEditComponent,
-    FuelAddEditComponent
+    FuelAddEditComponent,
+    ServiceDeleteComponent,
+    ServiceAddEditComponent
   ],
   imports: [
     AppMaterialModule,

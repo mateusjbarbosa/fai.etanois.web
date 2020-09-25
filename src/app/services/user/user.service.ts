@@ -42,7 +42,7 @@ export class UserService {
   }
 
   public create = async (user: User) => {
-    return await this.http.post(BASE_URL + this.userCreatePath, user, { headers: this.authService.getHeaders() })
+    return await this.http.post(BASE_URL + this.userCreatePath, user)
       .toPromise()
       .then((res) => {
         return res;

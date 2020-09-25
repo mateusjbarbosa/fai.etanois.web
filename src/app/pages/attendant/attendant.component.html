@@ -196,7 +196,11 @@
           <td>
             <label for="flag" class="form-label">Qual a Bandeira?</label>
             <mat-form-field appearance="outline">
-              <input id="flag" type="text" formControlName="flag" matInput>
+              <mat-select id="flag" formControlName="flag">
+                <mat-option *ngFor="let flag of gasStationsFlags" value="{{flag}}">
+                  {{flag.toUpperCase()}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </td>
         </tr>
@@ -224,12 +228,17 @@
         <input id="neighborhood" type="text" formControlName="neighborhood" matInput>
       </mat-form-field>
 
-      <label for="city" class="form-label">Qual cidade?</label>
+      <!-- <label for="city" class="form-label">Qual cidade?</label>
       <mat-form-field appearance="outline">
         <input id="city" type="text" formControlName="city" matInput>
+      </mat-form-field> -->
+
+      <label for="zip" class="form-label">CEP?</label>
+      <mat-form-field appearance="outline">
+        <input id="zip" type="text" formControlName="zip" matInput>
       </mat-form-field>
 
-      <table>
+      <!-- <table>
         <tr>
           <td>
             <label for="zip" class="form-label">CEP?</label>
@@ -244,7 +253,7 @@
             </mat-form-field>
           </td>
         </tr>
-      </table>
+      </table> -->
 
       <table>
         <tr>
