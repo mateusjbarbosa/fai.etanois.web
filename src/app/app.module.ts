@@ -19,6 +19,9 @@ import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
 import { UserDeleteComponent } from './dialogs/user-delete/user-delete.component';
 import { ServiceDeleteComponent } from './dialogs/service-delete/service-delete.component';
 import { ServiceAddEditComponent } from './dialogs/service-add-edit/service-add-edit.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { ServiceAddEditComponent } from './dialogs/service-add-edit/service-add-
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

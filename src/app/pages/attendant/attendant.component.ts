@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { UserService } from './../../services/user/user.service';
@@ -43,10 +43,11 @@ export class AttendantComponent implements OnInit, OnDestroy {
   gasStationRegisterGroup: FormGroup;
 
   currentStep: steps = 0;
-  authError = false;
 
-  createError = false;
-  createErrorMessage: string;
+  httpError = {
+    error: false,
+    errorInfo: ''
+  };
 
   constructor(
     private router: Router,
@@ -58,33 +59,31 @@ export class AttendantComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loginGroup = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)])
     });
 
     this.passwordRecoverGroup = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: new FormControl('', [Validators.required, Validators.email]),
     });
 
     this.gasStationLoginGroup = this.formBuilder.group({
-      accessCodeField1: ['', Validators.required],
-      accessCodeField2: ['', Validators.required],
-      accessCodeField3: ['', Validators.required]
+      accessCodeField1: new FormControl('', [Validators.required]),
+      accessCodeField2: new FormControl('', [Validators.required]),
+      accessCodeField3: new FormControl('', [Validators.required])
     });
 
     this.gasStationRegisterGroup = this.formBuilder.group({
-      name: ['', Validators.required],
-      flag: ['branca', Validators.required],
-      cnpj: ['', Validators.required],
-      street: ['', Validators.required],
-      streetNumber: ['', Validators.required],
-      neighborhood: ['', Validators.required],
-      // city: ['', Validators.required],
-      // uf: ['', Validators.required],
-      zip: ['', Validators.required],
-      openTime: ['', Validators.required],
-      closeTime: ['', Validators.required],
-      phone: ['', Validators.required],
+      name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      flag: new FormControl('branca', [Validators.required]),
+      cnpj: new FormControl('', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]),
+      street: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
+      streetNumber: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]),
+      neighborhood: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      zip: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
+      openTime: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
+      closeTime: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
+      phone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)])
     });
 
     this.userSub = this.userService.userChange.subscribe((user: User) => {
@@ -117,6 +116,22 @@ export class AttendantComponent implements OnInit, OnDestroy {
     this.gasStationsFlagsSub.unsubscribe();
   }
 
+  get loginUsername(): AbstractControl { return this.loginGroup.get('username'); }
+  get loginPassword(): AbstractControl { return this.loginGroup.get('password'); }
+
+  get recoverEmail(): AbstractControl { return this.passwordRecoverGroup.get('email'); }
+
+  get name(): AbstractControl { return this.gasStationRegisterGroup.get('name'); }
+  get flag(): AbstractControl { return this.gasStationRegisterGroup.get('flag'); }
+  get cnpj(): AbstractControl { return this.gasStationRegisterGroup.get('cnpj'); }
+  get street(): AbstractControl { return this.gasStationRegisterGroup.get('street'); }
+  get streetNumber(): AbstractControl { return this.gasStationRegisterGroup.get('streetNumber'); }
+  get neighborhood(): AbstractControl { return this.gasStationRegisterGroup.get('neighborhood'); }
+  get zip(): AbstractControl { return this.gasStationRegisterGroup.get('zip'); }
+  get openTime(): AbstractControl { return this.gasStationRegisterGroup.get('openTime'); }
+  get closeTime(): AbstractControl { return this.gasStationRegisterGroup.get('closeTime'); }
+  get phone(): AbstractControl { return this.gasStationRegisterGroup.get('phone'); }
+
   back = () => {
     switch (this.currentStep) {
       case 1:
@@ -135,7 +150,7 @@ export class AttendantComponent implements OnInit, OnDestroy {
   }
 
   submitLogin = (event: Event) => {
-    this.authError = false;
+    this.httpError.error = false;
     event.preventDefault();
     if (!this.loginGroup.valid) { return; }
     const { username, password } = this.loginGroup.value;
@@ -150,10 +165,9 @@ export class AttendantComponent implements OnInit, OnDestroy {
       .then(() => {
         this.currentStep = steps.gasStationChoose;
       })
-      .catch((err: HttpErrorResponse) => {
-        if (err.status === 401) {
-          this.authError = true;
-        }
+      .catch((httpErrorResponse: HttpErrorResponse) => {
+        this.httpError.error = true;
+        this.httpError.errorInfo = httpErrorResponse.status === 401 ? 'Usuário ou senha incorretos.' : httpErrorResponse.error.msg[0];
       });
   }
 
@@ -171,11 +185,11 @@ export class AttendantComponent implements OnInit, OnDestroy {
   }
 
   submitGasRegister = (event: Event) => {
+    this.httpError.error = false;
     event.preventDefault();
     if (!this.gasStationRegisterGroup.valid) { return; }
     // Montar o pacote certo para ser criado pois falta algumas informações
-    const { name, flag, cnpj, street, streetNumber, neighborhood,
-      city, uf, zip, openTime, closeTime, phone } = this.gasStationRegisterGroup.value;
+    const { name, flag, cnpj, street, streetNumber, neighborhood, zip, openTime, closeTime, phone } = this.gasStationRegisterGroup.value;
 
     const newGasStation: FuelStation = {
       name,
@@ -195,18 +209,21 @@ export class AttendantComponent implements OnInit, OnDestroy {
         this.currentStep = steps.gasStationRegisterDone;
         // this.gasStationService.getGasStationsByUserId(this.user.id); // USAR PARA ATUALIZAR A LISTA DE POSTOS
       })
-      .catch((err: HttpErrorResponse) => {
-        this.createErrorMessage = err.message;
+      .catch((httpErrorResponse: HttpErrorResponse) => {
+        this.httpError.errorInfo = httpErrorResponse.error.msg[0];
+        this.httpError.error = true;
       });
   }
 
   initGasStationRegister = () => {
+    this.httpError.error = false;
     this.gasStationService.getGasStationsFlags()
       .then(() => {
         this.currentStep = steps.gasStationRegister;
       })
-      .catch((err: HttpErrorResponse) => {
-        console.log(err);
+      .catch((httpErrorResponse: HttpErrorResponse) => {
+        this.httpError.errorInfo = httpErrorResponse.error.msg[0];
+        this.httpError.error = true;
       });
   }
 
@@ -216,25 +233,28 @@ export class AttendantComponent implements OnInit, OnDestroy {
 
   submitRecoverPassword = (event: Event) => {
     event.preventDefault();
-
+    this.httpError.error = false;
     if (!this.passwordRecoverGroup.valid) { return; }
     const { email } = this.passwordRecoverGroup.value;
     this.userService.recoverPassword(email)
       .then((res) => {
         this.currentStep = steps.passwordEmailSended;
       })
-      .catch((err: HttpErrorResponse) => {
-        console.log(err);
+      .catch((httpErrorResponse: HttpErrorResponse) => {
+        this.httpError.errorInfo = httpErrorResponse.error.msg[0];
+        this.httpError.error = true;
       });
   }
 
   getErrorMessage = () => {
-    if (this.loginGroup.hasError('required')) {
-      return 'Digite um valor.';
-    } else if (this.gasStationLoginGroup.hasError('required')) {
-      return 'Usuário ou senha incorretos';
-    } else if (this.authError) {
-      return 'Usuário ou senha incorretos';
+    if (this.httpError.error) {
+      switch (this.httpError.errorInfo) {
+        case 'Phone number is already in use': return 'Telefone já cadastrado.';
+        case 'CNPJ is already in use': return 'CNPJ já cadastrado.';
+        case 'Invalid CNPJ': return 'CNPJ inválido.';
+        case 'User not found': return 'Email não encontrado.';
+        default: return this.httpError.errorInfo;
+      }
     }
   }
 }

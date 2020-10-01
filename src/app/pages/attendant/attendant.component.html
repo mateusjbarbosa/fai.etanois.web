@@ -25,16 +25,40 @@
       <label for="username" class="form-label">Digite seu username</label>
       <mat-form-field appearance="outline">
         <input id="username" class="form-input" type="text" formControlName="username" matInput>
+        <mat-error
+          *ngIf="loginUsername.invalid && (loginUsername.dirty || loginUsername.touched) && loginUsername.errors.required">
+          Username é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="loginUsername.invalid && (loginUsername.dirty || loginUsername.touched) && loginUsername.errors.minlength">
+          Username precisa ter no mínimo <strong>3 caracteres</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="loginUsername.invalid && (loginUsername.dirty || loginUsername.touched) && loginUsername.errors.maxlength">
+          Username pode ter no máximo <strong>30 caracteres</strong>
+        </mat-error>
       </mat-form-field>
 
       <label for="password" class="form-label">Digite sua senha de acesso</label>
       <mat-form-field appearance="outline">
         <input id="password" class="form-input" type="password" formControlName="password" matInput>
+        <mat-error
+          *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched) && loginPassword.errors.required">
+          Senha é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched) && loginPassword.errors.minlength">
+          Senha precisa ter no mínimo <strong>3 caracteres</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched) && loginPassword.errors.maxlength">
+          Senha pode ter no máximo <strong>30 caracteres</strong>
+        </mat-error>
       </mat-form-field>
 
       <a (click)="recoverPasswordInit()">Esqueci a senha</a>
 
-      <mat-card class="error-card" *ngIf="authError">{{getErrorMessage()}}</mat-card>
+      <mat-card class="error-card">{{getErrorMessage()}}</mat-card>
     </form>
     <div class="login-buttons">
       <button id="back-button" mat-flat-button routerLink="/" class="btn-back">
@@ -60,9 +84,17 @@
       <label for="email" class="form-label">Digite seu email</label>
       <mat-form-field appearance="outline">
         <input id="email" class="form-input" type="text" formControlName="email" matInput>
+        <mat-error
+          *ngIf="recoverEmail.invalid && (recoverEmail.dirty || recoverEmail.touched) && recoverEmail.errors.required">
+          Email é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="recoverEmail.invalid && (recoverEmail.dirty || recoverEmail.touched) && recoverEmail.errors.email">
+          Digite um email <strong>válido</strong>
+        </mat-error>
       </mat-form-field>
 
-      <mat-card class="error-card" *ngIf="authError">{{getErrorMessage()}}</mat-card>
+      <mat-card class="error-card">{{getErrorMessage()}}</mat-card>
     </form>
     <div class="login-buttons">
       <button id="back-button" mat-flat-button class="btn-back" (click)="back()">
@@ -183,16 +215,37 @@
       <label for="name" class="form-label">Qual o nome do posto de combustível?</label>
       <mat-form-field appearance="outline">
         <input id="name" type="text" formControlName="name" matInput>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required">
+          Nome do posto é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.minlength">
+          Nome do posto precisa ter no mínimo <strong>6 caracteres</strong>
+        </mat-error>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.maxlength">
+          Nome do posto  pode ter no máximo <strong>50 caracteres</strong>
+        </mat-error>
       </mat-form-field>
 
       <table style="width: 100%;" cellspacing="0">
         <tr>
+
           <td>
             <label for="cnpj" class="form-label">Qual o CNPJ?</label>
             <mat-form-field appearance="outline">
-              <input id="cnpj" type="text" formControlName="cnpj" matInput>
+              <input id="cnpj" type="text" mask="00.000.000/0000-00" formControlName="cnpj" matInput>
+              <mat-error *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched) && cnpj.errors.required">
+                CNPJ é <strong>obrigatório</strong>
+              </mat-error>
+              <mat-error *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched) && cnpj.errors.minlength">
+                Digite um CNPJ <strong>válido</strong>
+              </mat-error>
+              <mat-error *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched) && cnpj.errors.maxlength">
+                Digite um CNPJ <strong>válido</strong>
+              </mat-error>
             </mat-form-field>
           </td>
+
+
           <td>
             <label for="flag" class="form-label">Qual a Bandeira?</label>
             <mat-form-field appearance="outline">
@@ -201,72 +254,121 @@
                   {{flag.toUpperCase()}}
                 </mat-option>
               </mat-select>
+              <mat-error *ngIf="flag.invalid && (flag.dirty || flag.touched) && flag.errors.required">
+                Bandeira é <strong>obrigatório</strong>
+              </mat-error>
             </mat-form-field>
           </td>
+
         </tr>
       </table>
 
       <table>
         <tr>
+
           <td>
             <label for="street" class="form-label">Qual rua?</label>
             <mat-form-field appearance="outline">
               <input id="street" type="text" formControlName="street" matInput>
+              <mat-error *ngIf="street.invalid && (street.dirty || street.touched) && street.errors.required">
+                Rua é <strong>obrigatório</strong>
+              </mat-error>
+              <mat-error *ngIf="street.invalid && (street.dirty || street.touched) && street.errors.minlength">
+                Rua precisa ter no mínimo <strong>6 caracteres</strong>
+              </mat-error>
+              <mat-error *ngIf="street.invalid && (street.dirty || street.touched) && street.errors.maxlength">
+                Rua pode ter no máximo <strong>100 caracteres</strong>
+              </mat-error>
             </mat-form-field>
           </td>
+
           <td>
             <label for="streetNumber" class="form-label">Número?</label>
             <mat-form-field appearance="outline">
               <input id="streetNumber" type="text" formControlName="streetNumber" matInput>
+              <mat-error
+                *ngIf="streetNumber.invalid && (streetNumber.dirty || streetNumber.touched) && streetNumber.errors.required">
+                Número da rua é <strong>obrigatório</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="streetNumber.invalid && (streetNumber.dirty || streetNumber.touched) && streetNumber.errors.minlength">
+                Número da rua precisa ter no mínimo <strong>6 caracteres</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="streetNumber.invalid && (streetNumber.dirty || streetNumber.touched) && streetNumber.errors.maxlength">
+                Número da rua pode ter no máximo <strong>10 caracteres</strong>
+              </mat-error>
             </mat-form-field>
           </td>
+
         </tr>
       </table>
 
       <label for="neighborhood" class="form-label">E bairro?</label>
       <mat-form-field appearance="outline">
         <input id="neighborhood" type="text" formControlName="neighborhood" matInput>
+        <mat-error
+          *ngIf="neighborhood.invalid && (neighborhood.dirty || neighborhood.touched) && neighborhood.errors.required">
+          Bairro é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="neighborhood.invalid && (neighborhood.dirty || neighborhood.touched) && neighborhood.errors.minlength">
+          Bairro precisa ter no mínimo <strong>6 caracteres</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="neighborhood.invalid && (neighborhood.dirty || neighborhood.touched) && neighborhood.errors.maxlength">
+          Bairro pode ter no máximo <strong>50 caracteres</strong>
+        </mat-error>
       </mat-form-field>
-
-      <!-- <label for="city" class="form-label">Qual cidade?</label>
-      <mat-form-field appearance="outline">
-        <input id="city" type="text" formControlName="city" matInput>
-      </mat-form-field> -->
 
       <label for="zip" class="form-label">CEP?</label>
       <mat-form-field appearance="outline">
-        <input id="zip" type="text" formControlName="zip" matInput>
+        <input id="zip" type="text" mask="00000-000" formControlName="zip" matInput>
+        <mat-error *ngIf="zip.invalid && (zip.dirty || zip.touched) && zip.errors.required">
+          CEP é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error *ngIf="zip.invalid && (zip.dirty || zip.touched) && zip.errors.minlength">
+          Digite um CEP <strong>válido</strong>
+        </mat-error>
+        <mat-error *ngIf="zip.invalid && (zip.dirty || zip.touched) && zip.errors.maxlength">
+          Digite um CEP <strong>válido</strong>
+        </mat-error>
       </mat-form-field>
-
-      <!-- <table>
-        <tr>
-          <td>
-            <label for="zip" class="form-label">CEP?</label>
-            <mat-form-field appearance="outline">
-              <input id="zip" type="text" formControlName="zip" matInput>
-            </mat-form-field>
-          </td>
-          <td>
-            <label for="uf" class="form-label">E UF?</label>
-            <mat-form-field appearance="outline">
-              <input id="uf" type="text" formControlName="uf" matInput>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table> -->
 
       <table>
         <tr>
           <td>
             <label for="openTime" class="form-label">Que horas abre? </label>
             <mat-form-field appearance="outline">
-              <input id="openTime" type="text" placeholder="(HH:MM:SS)" formControlName="openTime" matInput>
+              <!-- mask="00:00:00" -->
+              <input id="openTime" type="text" mask="00:00:00" placeholder="(HH:MM:SS)" formControlName="openTime" matInput>
+              <mat-error *ngIf="openTime.invalid && (openTime.dirty || openTime.touched) && openTime.errors.required">
+                Horário de abertura é <strong>obrigatório</strong>
+              </mat-error>
+              <mat-error *ngIf="openTime.invalid && (openTime.dirty || openTime.touched) && openTime.errors.minlength">
+                Digite um Horário de abertura <strong>válido</strong>
+              </mat-error>
+              <mat-error *ngIf="openTime.invalid && (openTime.dirty || openTime.touched) && openTime.errors.maxlength">
+                Digite um Horário de abertura <strong>válido</strong>
+              </mat-error>
             </mat-form-field>
           </td>
           <td>
             <label for="closeTime" class="form-label">Que horas fecha?</label>
             <mat-form-field appearance="outline">
-              <input id="closeTime" type="text" placeholder="(HH:MM:SS)" formControlName="closeTime" matInput>
+              <input id="closeTime" type="text"  mask="00:00:00" placeholder="(HH:MM:SS)" formControlName="closeTime" matInput>
+              <mat-error
+                *ngIf="closeTime.invalid && (closeTime.dirty || closeTime.touched) && closeTime.errors.required">
+                Horário de fechamento é <strong>obrigatório</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="closeTime.invalid && (closeTime.dirty || closeTime.touched) && closeTime.errors.minlength">
+                Digite um Horário de fechamento <strong>válido</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="closeTime.invalid && (closeTime.dirty || closeTime.touched) && closeTime.errors.maxlength">
+                Digite um Horário de fechamento <strong>válido</strong>
+              </mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -274,10 +376,19 @@
 
       <label for="phone" class="form-label">Qual telefone?</label>
       <mat-form-field appearance="outline">
-        <input id="phone" type="text" formControlName="phone" matInput>
+        <input id="phone" type="text" formControlName="phone" mask="(00) 0000-0000||(00) 0 0000-0000" matInput>
+        <mat-error *ngIf="phone.invalid && (phone.dirty || phone.touched) && phone.errors.required">
+          Telefone é <strong>requerido</strong>
+        </mat-error>
+        <mat-error *ngIf="phone.invalid && (phone.dirty || phone.touched) && phone.errors.minlength">
+          Digite um Telefone <strong>válido</strong>
+        </mat-error>
+        <mat-error *ngIf="phone.invalid && (phone.dirty || phone.touched) && phone.errors.maxlength">
+          Digite um Telefone <strong>válido</strong>
+        </mat-error>
       </mat-form-field>
 
-      <mat-card class="error-card" *ngIf="createError">{{createErrorMessage}}</mat-card>
+      <mat-card class="error-card">{{getErrorMessage()}}</mat-card>
 
     </form>
     <div class="login-buttons">
