@@ -3,6 +3,7 @@
     (ngSubmit)="currentService ? updateService($event) : createService($event)">
     <label for="service-select" class="form-label">Serviços</label>
     <mat-form-field appearance="outline">
+      <mat-label class="form-label">Selecione o Tipo de Serviço</mat-label>
       <mat-select id="service-select" formControlName="type" [disabled]="currentService">
         <mat-option *ngFor="let service of servicesToSelect" value="{{service}}">
           {{translateServiceName(service)}}

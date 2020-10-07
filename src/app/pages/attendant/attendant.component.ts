@@ -81,8 +81,8 @@ export class AttendantComponent implements OnInit, OnDestroy {
       streetNumber: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]),
       neighborhood: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
       zip: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
-      openTime: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
-      closeTime: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
+      openTime: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
+      closeTime: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
       phone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)])
     });
 
@@ -205,7 +205,9 @@ export class AttendantComponent implements OnInit, OnDestroy {
     };
 
     this.gasStationService.create(newGasStation)
+    
       .then((res) => {
+        console.log(newGasStation);
         this.currentStep = steps.gasStationRegisterDone;
         // this.gasStationService.getGasStationsByUserId(this.user.id); // USAR PARA ATUALIZAR A LISTA DE POSTOS
       })
@@ -252,7 +254,9 @@ export class AttendantComponent implements OnInit, OnDestroy {
         case 'Phone number is already in use': return 'Telefone já cadastrado.';
         case 'CNPJ is already in use': return 'CNPJ já cadastrado.';
         case 'Invalid CNPJ': return 'CNPJ inválido.';
+        case 'CEP is invalid ': return 'CEP inválido.';
         case 'User not found': return 'Email não encontrado.';
+        case 'Invalid opening hours': return 'Horário de funcionamento inválido';
         default: return this.httpError.errorInfo;
       }
     }

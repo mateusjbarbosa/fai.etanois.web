@@ -341,7 +341,7 @@
             <label for="openTime" class="form-label">Que horas abre? </label>
             <mat-form-field appearance="outline">
               <!-- mask="00:00:00" -->
-              <input id="openTime" type="text" mask="00:00:00" placeholder="(HH:MM:SS)" formControlName="openTime" matInput>
+              <input id="openTime" type="text"  placeholder="(HH:MM:SS)" formControlName="openTime" matInput>
               <mat-error *ngIf="openTime.invalid && (openTime.dirty || openTime.touched) && openTime.errors.required">
                 Horário de abertura é <strong>obrigatório</strong>
               </mat-error>
@@ -356,7 +356,7 @@
           <td>
             <label for="closeTime" class="form-label">Que horas fecha?</label>
             <mat-form-field appearance="outline">
-              <input id="closeTime" type="text"  mask="00:00:00" placeholder="(HH:MM:SS)" formControlName="closeTime" matInput>
+              <input id="closeTime" type="text"   placeholder="(HH:MM:SS)" formControlName="closeTime" matInput>
               <mat-error
                 *ngIf="closeTime.invalid && (closeTime.dirty || closeTime.touched) && closeTime.errors.required">
                 Horário de fechamento é <strong>obrigatório</strong>

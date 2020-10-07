@@ -15,6 +15,7 @@ export class GasStationService {
   private gasStationGetPath = 'fuel_station/';
   private gasStationGetUserPath = 'fuel_station/read-by-user/1';
   private gasStationCreatePath = 'fuel_station/new';
+  private gasStationUpdatePath = 'fuel_station/update';
   private AVAILABLE_FUEL_URL = '/available-fuel';
   private AVAILABLE_SERVICES_URL = '/available-service';
   private GET_AVAILABLE_SERVICES_URL = 'fuel_station/read-all-available-services';
@@ -228,6 +229,17 @@ export class GasStationService {
       });
   }
 
+  public update = async (gasStationId, gasStations: Partial<FuelStation>) => {
+    return await this.http.post(BASE_URL + this.gasStationUpdatePath + gasStationId, gasStations, { headers: this.authService.getHeaders() })
+      .toPromise()
+      .then((res) => {
+        this.getGasStationsByUserId();
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
   // getAllGasStations = async (userId: number) => {
   //   return await this.http.get(BASE_URL + this.gasStationPath + userId, { headers: this.authService.getHeaders() })
   //     .toPromise()
@@ -240,3 +252,4 @@ export class GasStationService {
   //     });
   // }
 }
+

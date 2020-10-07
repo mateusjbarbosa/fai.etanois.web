@@ -1,3 +1,4 @@
+import { UserEditPasswordComponent } from './../../dialogs/user-edit-password/user-edit-password.component';
 import { FuelStation } from './../../models/gas-station.model';
 import { Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -44,6 +45,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   editUser = () => {
     const dialogRef = this.dialog.open(UserEditComponent, {
+      data: {
+        user: this.user
+      }
+    });
+  }
+  editPassword = () => {
+    const dialogRef = this.dialog.open(UserEditPasswordComponent, {
       data: {
         user: this.user
       }
