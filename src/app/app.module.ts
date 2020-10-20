@@ -21,6 +21,8 @@ import { ServiceDeleteComponent } from './dialogs/service-delete/service-delete.
 import { ServiceAddEditComponent } from './dialogs/service-add-edit/service-add-edit.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { UserEditPasswordComponent } from './dialogs/user-edit-password/user-edit-password.component';
+import { FuelStationEditComponent } from './dialogs/fuel-station-edit/fuel-station-edit.component';
+import { FuelStationDeleteComponent } from './dialogs/fuel-station-delete/fuel-station-delete.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -39,7 +41,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     FuelAddEditComponent,
     ServiceDeleteComponent,
     ServiceAddEditComponent,
-    UserEditPasswordComponent
+    UserEditPasswordComponent,
+    FuelStationEditComponent,
+    FuelStationDeleteComponent
   ],
   imports: [
     AppMaterialModule,

@@ -26,14 +26,16 @@ export class UserEditComponent implements OnInit {
     this.user = this.data.user;
 
     this.userGroup = this.formBuilder.group({
-      name: [this.user.name, Validators.required]
+      name: [this.user.name, Validators.required],
+      email: [this.user.email, Validators.required]
     });
   }
 
   confirmUpdate = (event: Event) => {
     event.preventDefault();
     const { name } = this.userGroup.value;
-    const updatedUser: Partial<User> = { name };
+    const { email } = this.userGroup.value;
+    const updatedUser: Partial<User> = { name, email };
 
     this.userService.update(this.user.id, updatedUser)
       .then((res) => {

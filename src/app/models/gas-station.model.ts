@@ -11,6 +11,7 @@ export interface FuelStation {
   time_to_open: string;
   time_to_close: string;
   flag_of_fuel_station?: string;
+  // city: string;
   // address: string;
   // email: string;
   phone_number: string;

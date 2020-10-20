@@ -1,3 +1,5 @@
+import { GasStationService } from 'src/app/services/gas-station/gas-station.service';
+import { FuelStationDeleteComponent } from './../../dialogs/fuel-station-delete/fuel-station-delete.component';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,9 +8,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { UserService } from './../../services/user/user.service';
 import { AuthService } from './../../services/auth/auth.service';
-import { GasStationService } from './../../services/gas-station/gas-station.service';
 import { FuelStation } from './../../models/gas-station.model';
 import { User } from '../../models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { FuelStationEditComponent } from 'src/app/dialogs/fuel-station-edit/fuel-station-edit.component';
 
 enum steps {
   login,
@@ -26,8 +29,13 @@ enum steps {
   styleUrls: ['./attendant.component.css']
 })
 export class AttendantComponent implements OnInit, OnDestroy {
-  user: User;
-  userSub: Subscription;
+  public user: User;
+  private userSub: Subscription;
+  public fuelStation: FuelStation;
+  private fuelStationSub: Subscription;
+
+  // fuelStation: FuelStation;
+  // fuelStationSub: Subscription;
 
   currentGasStation: FuelStation;
   currentGasStationSub: Subscription;
@@ -54,10 +62,13 @@ export class AttendantComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private userService: UserService,
-    private gasStationService: GasStationService
+    private gasStationService: GasStationService,
+    private fuelStationService: GasStationService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+
     this.loginGroup = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)])
@@ -85,7 +96,9 @@ export class AttendantComponent implements OnInit, OnDestroy {
       closeTime: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
       phone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)])
     });
-
+    this.fuelStationSub = this.gasStationService.currentGasStationChange.subscribe((fuelStation: FuelStation) => {
+      this.fuelStation = fuelStation;
+    });
     this.userSub = this.userService.userChange.subscribe((user: User) => {
       this.user = user;
     });
@@ -106,10 +119,12 @@ export class AttendantComponent implements OnInit, OnDestroy {
       this.currentStep = steps.gasStationChoose;
       this.user = this.userService.getUser();
       this.gasStations = this.gasStationService.getGasStations();
+      this.fuelStation = this.fuelStationService.getFuelStation();
     }
   }
 
   ngOnDestroy(): void {
+    this.fuelStationSub.unsubscribe();
     this.userSub.unsubscribe();
     this.gasStationsSub.unsubscribe();
     this.currentGasStationSub.unsubscribe();
@@ -131,6 +146,7 @@ export class AttendantComponent implements OnInit, OnDestroy {
   get openTime(): AbstractControl { return this.gasStationRegisterGroup.get('openTime'); }
   get closeTime(): AbstractControl { return this.gasStationRegisterGroup.get('closeTime'); }
   get phone(): AbstractControl { return this.gasStationRegisterGroup.get('phone'); }
+
 
   back = () => {
     switch (this.currentStep) {
@@ -205,7 +221,7 @@ export class AttendantComponent implements OnInit, OnDestroy {
     };
 
     this.gasStationService.create(newGasStation)
-    
+
       .then((res) => {
         console.log(newGasStation);
         this.currentStep = steps.gasStationRegisterDone;
@@ -260,5 +276,21 @@ export class AttendantComponent implements OnInit, OnDestroy {
         default: return this.httpError.errorInfo;
       }
     }
+  }
+
+  editFuelStation = () => {
+    const dialogRef = this.dialog.open(FuelStationEditComponent, {
+      data: {
+        fuelStation: this.fuelStation
+      }
+    });
+  }
+
+  deleteFuelStation = () => {
+    const dialogRef = this.dialog.open(FuelStationDeleteComponent, {
+      data: {
+        fuelStationId: this.fuelStation.id
+      }
+    });
   }
 }

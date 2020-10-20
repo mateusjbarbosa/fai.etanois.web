@@ -154,6 +154,12 @@
           <span class="address">
             {{currentGasStation.city}} - {{currentGasStation.state}}
           </span>
+          <td class="icons-btn">
+            <!-- <button class="edit-btn"><img src="../../../assets/images/edit.png"></button> -->
+            <button (click)="editFuelStation()"  class="edit-btn">Editar</button>
+            <button (click)="deleteFuelStation()" class="remove-btn">Excluir</button>
+            <!-- <button class="remove-btn" >x</button> -->
+          </td>
         </div>
       </mat-card>
     </div>

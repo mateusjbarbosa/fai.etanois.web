@@ -15,11 +15,19 @@ export class GasStationService {
   private gasStationGetPath = 'fuel_station/';
   private gasStationGetUserPath = 'fuel_station/read-by-user/1';
   private gasStationCreatePath = 'fuel_station/new';
-  private gasStationUpdatePath = 'fuel_station/update';
+  private gasStationUpdatePath = 'fuel_station/update/';
   private AVAILABLE_FUEL_URL = '/available-fuel';
   private AVAILABLE_SERVICES_URL = '/available-service';
   private GET_AVAILABLE_SERVICES_URL = 'fuel_station/read-all-available-services';
   private FLAGS_URL = 'fuel_station/read-all-flags';
+  postGetPath = 'fuelStation/';
+  private gasStationService: GasStationService;
+
+  @Input()
+  public fuelStation: FuelStation;
+
+  @Output()
+  public fuelStationChange: EventEmitter<FuelStation> = new EventEmitter<FuelStation>();
 
   @Input()
   public currentGasStation: FuelStation;
@@ -49,14 +57,22 @@ export class GasStationService {
     private http: HttpClient,
     private authService: AuthService
   ) { }
+  getFuelStation = (): FuelStation => {
+    return this.fuelStation;
+  }
 
-  setCurrentGasStation = (gasStation: FuelStation) => {
-    this.currentGasStation = gasStation;
-    this.currentGasStationChange.emit(this.currentGasStation);
+  setFuelStation = (gasStation: FuelStation) => {
+    this.fuelStation = gasStation;
+    this.fuelStationChange.emit(this.fuelStation);
   }
 
   getCurrentGasStation = (): FuelStation => {
     return this.currentGasStation;
+  }
+
+  setCurrentGasStation = (gasStation: FuelStation) => {
+    this.currentGasStation = gasStation;
+    this.currentGasStationChange.emit(this.currentGasStation);
   }
 
   clearCurrentGasStation = () => {
@@ -186,6 +202,11 @@ export class GasStationService {
         throw err;
       });
   }
+  public clearFuelStation = () => {
+    this.gasStationService.clearGasStation();
+    this.gasStations = undefined;
+    this.gasStationsChange.emit(this.gasStations);
+  }
 
   deleteAvailableService = async (serviceType: string) => {
     const newAvailableService = {
@@ -230,7 +251,7 @@ export class GasStationService {
   }
 
   public update = async (gasStationId, gasStations: Partial<FuelStation>) => {
-    return await this.http.post(BASE_URL + this.gasStationUpdatePath + gasStationId, gasStations, { headers: this.authService.getHeaders() })
+    return await this.http.put(BASE_URL + this.gasStationUpdatePath + gasStationId, gasStations, { headers: this.authService.getHeaders() })
       .toPromise()
       .then((res) => {
         this.getGasStationsByUserId();
@@ -239,7 +260,17 @@ export class GasStationService {
         throw err;
       });
   }
-
+  public delete = async (gasStationId: number) => {
+    return await this.http.delete(BASE_URL + this.postGetPath + gasStationId, { headers: this.authService.getHeaders() })
+      .toPromise()
+      .then((res) => {
+        this.clearFuelStation();
+        return res;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
   // getAllGasStations = async (userId: number) => {
   //   return await this.http.get(BASE_URL + this.gasStationPath + userId, { headers: this.authService.getHeaders() })
   //     .toPromise()

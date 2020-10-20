@@ -254,3 +254,45 @@ main .form-container .error-card {
     font-size: 1rem;
   }
 }
+
+main button.new-btn {
+  display: inline-block;
+  background: #208009;
+  font-size: 1.5rem;
+  color: #fafafa;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 17px 20px;
+  font-family: Bagatela !important;
+}
+
+main .icons-btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-self: center;
+}
+
+main button.edit-btn {
+  width: 70px;
+  height: 40px;
+  font-size: 1.0rem;
+  font-weight: 300;
+  color: #e6e6e6;
+  background: #ff951c;
+  border: none;
+  border-radius: 10px;
+  font-family: Bagatela !important;
+}
+
+main button.remove-btn {
+  width: 70px;
+  height: 40px;
+  font-size: 1.0rem;
+  font-weight: 300;
+  color: #e6e6e6;
+  background: #ff1c1c;
+  border: none;
+  border-radius: 10px;
+  font-family: Bagatela !important;
+}
