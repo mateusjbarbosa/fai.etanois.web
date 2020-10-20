@@ -26,17 +26,17 @@
       </mat-form-field>
 
 
-      <label class="form-label" for="username">Qual o seu username?</label>
+      <label class="form-label" for="username">Qual o seu apelido?</label>
       <mat-form-field appearance="outline">
         <input id="username" type="text" formControlName="username" matInput>
         <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.required">
-          Username é <strong>obrigatório</strong>
+          Apelido é <strong>obrigatório</strong>
         </mat-error>
         <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.minlength">
-          Username precisa ter no mínimo <strong>3 caracteres</strong>
+          Apelido precisa ter no mínimo <strong>3 caracteres</strong>
         </mat-error>
         <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.maxlength">
-          Username pode ter no máximo <strong>30 caracteres</strong>
+          Apelido pode ter no máximo <strong>30 caracteres</strong>
         </mat-error>
       </mat-form-field>
 

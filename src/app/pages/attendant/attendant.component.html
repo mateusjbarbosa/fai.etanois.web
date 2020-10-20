@@ -22,20 +22,20 @@
   <section *ngIf="currentStep === 0" class="text-section right">
     <form id="login-form" class="form-container" [formGroup]="loginGroup" (ngSubmit)="submitLogin($event)">
 
-      <label for="username" class="form-label">Digite seu username</label>
+      <label for="username" class="form-label">Digite seu apelido</label>
       <mat-form-field appearance="outline">
         <input id="username" class="form-input" type="text" formControlName="username" matInput>
         <mat-error
           *ngIf="loginUsername.invalid && (loginUsername.dirty || loginUsername.touched) && loginUsername.errors.required">
-          Username é <strong>obrigatório</strong>
+          Apelido é <strong>obrigatório</strong>
         </mat-error>
         <mat-error
           *ngIf="loginUsername.invalid && (loginUsername.dirty || loginUsername.touched) && loginUsername.errors.minlength">
-          Username precisa ter no mínimo <strong>3 caracteres</strong>
+          Apelido precisa ter no mínimo <strong>3 caracteres</strong>
         </mat-error>
         <mat-error
           *ngIf="loginUsername.invalid && (loginUsername.dirty || loginUsername.touched) && loginUsername.errors.maxlength">
-          Username pode ter no máximo <strong>30 caracteres</strong>
+          Apelido pode ter no máximo <strong>30 caracteres</strong>
         </mat-error>
       </mat-form-field>
 
