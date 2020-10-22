@@ -155,21 +155,21 @@
             {{currentGasStation.city}} - {{currentGasStation.state}}
           </span>
           <td class="icons-btn">
-            <!-- <button class="edit-btn"><img src="../../../assets/images/edit.png"></button> -->
             <button (click)="editFuelStation()"  class="edit-btn">Editar</button>
             <button (click)="deleteFuelStation()" class="remove-btn">Excluir</button>
-            <!-- <button class="remove-btn" >x</button> -->
           </td>
         </div>
       </mat-card>
     </div>
     <!-- Final do posto selecionado -->
 
-    <form id="gas-station-login" *ngIf="currentStep === 2" class="form-container" [formGroup]="gasStationLoginGroup"
-      (ngSubmit)="submitGasLogin($event, gasStation)">
+     <!-- <form id="gas-station-login" *ngIf="currentStep === 2" class="form-container" [formGroup]="gasStationLoginGroup"
+      (ngSubmit)="submitGasLogin($event, gasStation)">  -->
+     <form id="gas-station-login" *ngIf="currentStep === 2" class="form-container" 
+      (ngSubmit)="submitGasLogin($event, gasStation)"> 
 
-      <label for="accessCodeField1" class="form-label">Insira o código de acesso</label>
-      <table>
+     <!-- <label for="accessCodeField1" class="form-label">Insira o código de acesso</label> -->
+      <!-- <table>
         <tr>
           <td>
             <mat-form-field appearance="outline">
@@ -189,8 +189,8 @@
         </tr>
       </table>
 
-      <mat-card class="error-card" *ngIf="gasStationLoginGroup.invalid">{{getErrorMessage()}}</mat-card>
-    </form>
+      <mat-card class="error-card" *ngIf="gasStationLoginGroup.invalid">{{getErrorMessage()}}</mat-card> --> 
+    </form> 
     <div *ngIf="currentStep === 2" class="login-buttons">
       <button id="back-button" mat-flat-button (click)="back()">
         <div>
@@ -415,9 +415,10 @@
 
 <main *ngIf="currentStep === 4">
   <div class="center-div">
-    <h1>Muito bem! <br>Seu posto foi cadastrado com sucesso.<br>Utilize o código abaixo para acessá-lo!</h1>
-    <h2>123 ABC 123</h2>
-    <span>Utilize esse código para acessar seu posto tanto pelo site quanto pelo aplicativo Etanóis</span>
+    <!-- <h1>Muito bem! <br>Seu posto foi cadastrado com sucesso.<br>Utilize o código abaixo para acessá-lo!</h1> -->
+    <h1>Muito bem! <br>Seu posto foi cadastrado com sucesso!</h1>
+    <!-- <h2>123 ABC 123</h2> -->
+    <!-- <span>Utilize esse código para acessar seu posto tanto pelo site quanto pelo aplicativo Etanóis</span> -->
     <button mat-flat-button (click)="back()" class="btn-next">
       <div class="btn-text">
         Ir para a Área do Frentista

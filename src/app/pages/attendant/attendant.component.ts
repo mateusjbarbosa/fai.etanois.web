@@ -78,11 +78,11 @@ export class AttendantComponent implements OnInit, OnDestroy {
       email: new FormControl('', [Validators.required, Validators.email]),
     });
 
-    this.gasStationLoginGroup = this.formBuilder.group({
-      accessCodeField1: new FormControl('', [Validators.required]),
-      accessCodeField2: new FormControl('', [Validators.required]),
-      accessCodeField3: new FormControl('', [Validators.required])
-    });
+    // this.gasStationLoginGroup = this.formBuilder.group({
+    //   accessCodeField1: new FormControl('', [Validators.required]),
+    //   accessCodeField2: new FormControl('', [Validators.required]),
+    //   accessCodeField3: new FormControl('', [Validators.required])
+    // });
 
     this.gasStationRegisterGroup = this.formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
@@ -193,10 +193,9 @@ export class AttendantComponent implements OnInit, OnDestroy {
   }
 
   submitGasLogin = (event: Event) => {
-    event.preventDefault();
-    if (!this.gasStationLoginGroup.valid) { return; }
+    // event.preventDefault();
+    // if (!this.gasStationLoginGroup.valid) { return; }
     // Depois colocar a validação dessa senha de postos que ainda não está pronta
-
     this.router.navigate(['management']);
   }
 

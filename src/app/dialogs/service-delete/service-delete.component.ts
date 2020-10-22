@@ -1,3 +1,5 @@
+import { ManagementComponent } from './../../pages/management/management.component';
+import { FuelService } from './../../services/fuel/fuel.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -11,6 +13,8 @@ import { GasStationService } from '../../services/gas-station/gas-station.servic
 })
 export class ServiceDeleteComponent implements OnInit {
   public currentService: GasStationServices = undefined;
+  nomeServico : string;
+ 
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -20,6 +24,7 @@ export class ServiceDeleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentService = this.data.service;
+    this.nomeServico = this.currentService.service_type;
   }
 
   confirmDelete = () => {
@@ -30,6 +35,16 @@ export class ServiceDeleteComponent implements OnInit {
       .catch((err: HttpErrorResponse) => {
         console.log(err);
       });
+  }
+  
+  translateServiceName = (name: string): string => {
+    switch (name) {
+      case 'mechanical': return 'Mecânico';
+      case 'car_wash': return 'Lava Rápido';
+      case 'restaurant': return 'Restaurante';
+      case 'convenience_store': return 'Loja de Conveniência';
+      case 'tire_repair_shop': return 'Borracharia';
+    }
   }
 
   closeDialog = () => {

@@ -41,8 +41,8 @@
         </tr>
       </thead>
       <tr *ngFor="let fuel of availableFuels" for>
-        <td>{{fuel.fuel}}</td>
-        <td>{{fuel.price}}</td>
+        <td>{{fuel.fuel }}</td>
+        <td>{{fuel.price | currency:'BRL'}}</td>
         <td class="icons-btn">
           <button class="edit-btn" (click)="editFuel(fuel)"><img src="../../../assets/images/edit.png"></button>
           <button class="remove-btn" (click)="deleteFuel(fuel.fuel, fuel.id)">X</button>

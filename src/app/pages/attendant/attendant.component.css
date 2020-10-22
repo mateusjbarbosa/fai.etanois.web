@@ -274,10 +274,10 @@ main .icons-btn {
 }
 
 main button.edit-btn {
-  width: 70px;
-  height: 40px;
-  font-size: 1.0rem;
-  font-weight: 300;
+  width: 100px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: 500;
   color: #e6e6e6;
   background: #ff951c;
   border: none;
@@ -286,10 +286,10 @@ main button.edit-btn {
 }
 
 main button.remove-btn {
-  width: 70px;
-  height: 40px;
-  font-size: 1.0rem;
-  font-weight: 300;
+  width: 100px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: 500;
   color: #e6e6e6;
   background: #ff1c1c;
   border: none;

@@ -1,4 +1,7 @@
 <section class="text-section right">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/i18n/angular-locale_pt-br.js"></script>
+
   <form id="fuel-form" class="form-container" [formGroup]="fuelGroup"
     (ngSubmit)="fuel ? updateFuel($event) : createFuel($event)">
     <table style="width: 100%;">
@@ -21,7 +24,7 @@
           </mat-form-field>
         </td>
         <td>
-          <label for="price" class="form-label">Preço</label>
+          <label for="price" class="form-label"  ng-model="valor">Preço</label>
           <mat-form-field appearance="outline">
             <input id="price" type="text" formControlName="price" prefix="R$" matInput>
           </mat-form-field>

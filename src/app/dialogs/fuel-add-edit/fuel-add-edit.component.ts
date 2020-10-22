@@ -17,6 +17,7 @@ export class FuelAddEditComponent implements OnInit {
   fuelsToSelect: { name: string }[];
   fuel: Fuel;
 
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<FuelAddEditComponent>,

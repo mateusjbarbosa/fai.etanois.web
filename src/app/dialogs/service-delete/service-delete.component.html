@@ -1,6 +1,6 @@
 <h1>Apagar servico</h1>
 <div class="container">
-  <span>Tem certeza que deseja apagar o serviço: {{currentService.service_type}}?</span>
+  <span>Tem certeza que deseja apagar o serviço: {{translateServiceName(nomeServico)}}?</span>
 </div>
 <div class="buttons-row">
   <button (click)="confirmDelete()" id="delete-button" mat-flat-button>
